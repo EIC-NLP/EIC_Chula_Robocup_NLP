@@ -1,0 +1,1 @@
+- placeobject. obj+room ---> place anyone in the room(find any furniture)

@@ -1,0 +1,9 @@
+version: "4.0"
+nlu:
+  - lookup: information # only carry
+    examples: |
+      - day of the week
+      - time
+      - date
+      - month 
+      - year 

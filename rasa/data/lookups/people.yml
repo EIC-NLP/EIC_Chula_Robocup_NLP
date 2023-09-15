@@ -1,0 +1,35 @@
+version: "3.1"
+nlu:
+  - lookup: people_action
+    examples: |
+      - sitting
+      - standing
+      - lying
+      - waving
+  - regex: people
+    examples: |
+      - Adel
+      - angel
+      - Axel
+      - charlie
+      - Jane
+      - John
+      - Jules
+      - Morgan
+      - Paris
+      - Robin
+      - Simone
+      - jack
+      - noah
+      - oliver
+      - thomas
+      - william
+      - thomus
+      - Game 
+      - Arch 
+      - Ice
+      - Jom 
+      - Pun
+      - Pim
+      - Adam
+

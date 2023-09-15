@@ -1,0 +1,132 @@
+version: "3.1"
+nlu:
+  - intent: move_to
+    examples: |
+      - [go](vb_gor) to the [bedroom](room)
+      - [move](vb_gor) to [living room](room)
+      - [navigate](vb_gor) to the [office](room)
+      - let's [move](vb_gor) to [living room](room)
+      - let's [head to](vb_gor) the [kitchen](room)
+      - [go](vb_gor) to the [table](furniture)
+      - [move](vb_gor) to [couch](furniture)
+      - [navigate](vb_gor) to the [chair](furniture)
+      - let's [move](vb_gor) to the [couch](furniture)
+      - let's [head to](vb_gor) the [table](furniture)
+      - [go](vb_gor) to [John](people)
+      - [go](vb_gor) find [Mary](people)
+      - [move](vb_gor) to the [coke](object) (on)[adj_placement] the [table](furniture)
+      - [navigate](vb_gor) to the [coke](object) [in](adj_placement) the [fridge](furniture)
+      - [locate](vb_find) [in](adj_placement) the [fridge](furniture)
+      - [go](vb_gor) to the [coke](object) [in](adj_placement) the [fridge](furniture)
+      - [find](vb_find) a [coke](object) [in](adj_placement) the [cabinet](furniture) in the [kitchen](room)
+      - [go](vb_gor) to [John](people) in the [kitchen](room)
+      - [go](vb_gor) to [John](people) on the [couch](furniture)
+      - [come](vb_gor) over here
+      - [move](vb_gor) to [me](people)
+      - [move](vb_gor) back to [origin](room)
+  
+  - intent: grasp_object
+    examples: |
+      - [grasp](vb_take) the [coke](object)
+      - [get](vb_take) a [coke](object)
+      - [grasp](vb_take) the [coke](object)
+
+  # - intent: find_object
+  #   examples: |
+  #     - [find](vb_find) the [show rack](furniture)
+  #     - where is the [dinner table](furniture)
+  #     - where is the [book shelf](furniture)
+  #     - where is the [cupboard](furniture)
+  #     - where is the [pantry](furniture)
+  #     - [locate](vb_find) the [small shelf](furniture)
+
+  - intent: place_object # user tells robot location
+    examples: |
+      - move the [coke](object) into the [fridge](furniture)
+      - put the [coke](object) in the [fridge](furniture)
+      - bring the [coke](object) to the [fridge](furniture)
+      - move the [coke](object) to the [kitchen](room)
+      - put the [coke](object) in the [kitchen](room)
+      - bring the [coke](object) to the [kitchen](room)
+      - Give the [spoon](object) to [me](people)
+      - Could you place the [bowl](object) on the [end table](furniture)
+      - Take the [scrubby](object) to the [cupboard](furniture)
+
+  - intent: object_counting # task GPSR 5
+    examples: |
+      - [tell](vb_speak) [hunter](people) how many [spoon](object) are in the [small shelf](furniture)
+      - count the [fork](object) at the [sink](furniture)
+      - count the [plate](object) at the [book shelf](furniture) and [report](vb_report)
+      - count the [knife](object) and [report](vb_report) [thomas](people)
+      - count [tuna can](object) on  [office shelf](furniture)
+      - [tell](vb_speak) me how many people in the [dining room](room) are [boys](object)
+      - Tell me how many people in the [living room](room) are [boys](object)
+
+  - intent: follow_people # task follow me
+    examples: |
+      - [follow](vb_follow) [me](people)
+      - [go behind](vb_follow) [amelia](people)
+      - [go after](vb_follow) [angel](people)
+      - [follow](vb_follow) [ava](people)
+      - [follow](vb_follow) [charlie](people)
+      - can you [follow](vb_follow) [me](people)
+      - can you [come after](vb_follow) [me](people)
+      - Please [follow](vb_follow) [me](people)
+      - Can you [come with](vb_follow) [me](people)?
+      - I need you to [walk behind](vb_follow) [me](people).
+      - Let's go, [I](people)'ll lead the way.
+      - I'd like you to [accompany](vb_follow) [me](people) as I move about.
+      - I would like for you to [stick close](vb_follow) and follow my lead.
+      - Will you [shadow](vb_follow) [me](people) as I walk?
+      - Can you [walk behind](vb_follow) [me](people) and stay close?
+      - I need you to [stay with](vb_follow) [me](people) as I move around.
+      - Please [come along] with [me](people)
+      - [I](people) need you to [follow](vb_follow) my lead.
+      - I need you to [keep up](vb_follow) with [me](people).
+      - I need you to [walk with](vb_follow) [me](people).
+
+  - intent: escort_people
+    examples: |
+      - [escort](vb_escort) [me](people)
+      - [go with](vb_escort) [me](people)
+      - [go with](vb_escort) [me](people) to the [kitchen]{"entity": "room", "role": "to"} 
+      - [escort](vb_escort) [Patricia](people) to the [kitchen]{"entity": "room", "role": "to"} 
+      
+  - intent: grasp_object
+    examples: |
+      - [grab](vb_take) the [apple](object)
+      - [get](vb_take) the [coca cola](object)
+      - [take](vb_take) the [milk](object)
+      - [retrieve](vb_take) the [apple](object)
+
+  - intent: place_object
+    examples: |
+      - [put](vb_place) the [apple](object)
+      - [place](vb_place) the [coca cola](object)
+      - [put](vb_place) the [milk](object) in the [fridge](furniture)
+      - [put](vb_place) the [apple](object) on the [table](furniture)
+      - [place](vb_place) the [coca cola](object) in the [fridge](furniture)
+
+  - intent: ask_to_leave
+    examples: |
+      - ask [William](people) to leave
+      - Can you ask [William](people) to leave
+      - tell [William](people) to leave
+
+  - intent: what_is_your_name
+    examples: |
+      - What is your name?
+      - Can you tell me your name?
+      - How should I call you?
+
+  - intent: what_is_their_name
+    examples: |
+      - What is his name?
+      - What is her name?
+      - Can you tell me his name?
+      - Can you tell me her name?
+      - Can you tell me the name of the person in the [kitchen](room)?
+      - Can you tell me the name of the person in the [living room](room)?
+      - Can you tell me the name of the person sitting on the [couch](furniture)?
+      - Can you tell me the name of the person standing next to the [fridge](furniture)?
+      

@@ -1,0 +1,126 @@
+{
+    "intent": {
+        "name": "restaurant_order",
+        "confidence": 0.971455454826355
+    },
+    "entities": [
+        {
+            "entity": "object",
+            "start": 12,
+            "end": 16,
+            "value": "Coke",
+            "extractor": "RegexEntityExtractor"
+        },
+        {
+            "entity": "vb_gor",
+            "start": 0,
+            "end": 2,
+            "value": "Go",
+            "extractor": "RegexEntityExtractor"
+        },
+        {
+            "entity": "people",
+            "start": 7,
+            "end": 9,
+            "confidence_entity": 0.9763202667236328,
+            "value": "me",
+            "extractor": "DIETClassifier"
+        },
+        {
+            "entity": "object",
+            "start": 12,
+            "end": 16,
+            "confidence_entity": 0.9992740750312805,
+            "value": "Coke",
+            "extractor": "DIETClassifier"
+        }
+    ],
+    "text": "Go get me a Coke.",
+    "message_id": "ef18d2979386409baf2eddc8149a4cc5",
+    "metadata": {},
+    "text_tokens": [
+        [
+            0,
+            2
+        ],
+        [
+            3,
+            6
+        ],
+        [
+            7,
+            9
+        ],
+        [
+            10,
+            11
+        ],
+        [
+            12,
+            16
+        ]
+    ],
+    "intent_ranking": [
+        {
+            "name": "restaurant_order",
+            "confidence": 0.971455454826355
+        },
+        {
+            "name": "my_name",
+            "confidence": 0.007077676709741354
+        },
+        {
+            "name": "move_to",
+            "confidence": 0.004448932595551014
+        },
+        {
+            "name": "move_to+grasp_object+object_to_person",
+            "confidence": 0.004226731136441231
+        },
+        {
+            "name": "restaurant_checkout",
+            "confidence": 0.0015829578042030334
+        },
+        {
+            "name": "mood_great",
+            "confidence": 0.0015654105227440596
+        },
+        {
+            "name": "follow_people",
+            "confidence": 0.0013832258991897106
+        },
+        {
+            "name": "favorite_object",
+            "confidence": 0.000999158015474677
+        },
+        {
+            "name": "stop",
+            "confidence": 0.0009461083682253957
+        },
+        {
+            "name": "mood_unhappy",
+            "confidence": 0.0008250486571341753
+        }
+    ],
+    "response_selector": {
+        "all_retrieval_intents": [],
+        "default": {
+            "response": {
+                "responses": null,
+                "confidence": 0.0,
+                "intent_response_key": null,
+                "utter_action": "utter_None"
+            },
+            "ranking": []
+        },
+        "chitchat": {
+            "response": {
+                "responses": null,
+                "confidence": 0.0,
+                "intent_response_key": null,
+                "utter_action": "utter_None"
+            },
+            "ranking": []
+        }
+    }
+}

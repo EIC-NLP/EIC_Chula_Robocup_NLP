@@ -1,0 +1,103 @@
+version: "3.1"
+nlu:
+  - lookup: vb_deliver
+    examples: |
+      - bring
+      - deliver to
+      - give
+      - hand
+
+  - lookup: vb_place
+    examples: |
+      - put
+      - place
+      - leave
+      - set
+
+  - lookup: vb_find
+    examples: |
+      - find
+      - locate
+      - spot
+      - pinpoint
+      - look for
+      - pick
+
+  - lookup: vb_report
+    examples: |
+      - inform
+      - report to
+      - report
+
+  - lookup: vb_action
+    examples: |
+      - open
+      - close
+
+  - lookup: vb_take
+    examples: |
+      - get
+      - grasp
+      - take
+      - retrieve
+      - pick up
+
+  - lookup: vb_follow
+    examples: |
+      - follow
+      - shadow
+      - track
+      - chase
+      - keep up with
+      - keep pace with
+      - come with
+      - go with
+      - keep up
+      - stay close
+      - walk with
+      - come behind
+      - come after
+      - trial behind
+      - trail after
+
+  - lookup: vb_escort  
+    examples: |
+      - lead
+      - escort
+      - accompany
+
+  - lookup: vb_speak
+    examples: |
+      - tell
+      - say
+
+  - lookup: vb_gor
+    examples: |
+      - go
+      - navigate
+      - enter
+
+  - lookup: demonstrative
+    examples: |
+      - this
+      - that
+      - these
+      - those
+
+  - lookup: vb_carry
+    examples: |
+      - carry
+      - hold
+      - transport
+      - move
+  
+  - lookup: vb_affection
+    examples: |
+      - like
+      - love 
+      - favorite
+      - can't live without 
+
+  - lookup: vb_order
+    examples: |
+      - order

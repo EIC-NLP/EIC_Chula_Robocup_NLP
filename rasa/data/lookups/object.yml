@@ -1,0 +1,113 @@
+version: "4.0"
+nlu:
+  - lookup: object # only carry
+    examples: |
+      - coat
+      - water
+      - milk
+      - coke
+      - tonic
+      - bubble tea
+      - ice tea
+      - cloth
+      - sponge
+      - cleaner
+      - corn flakes
+      - tuna can
+      - coffee jar
+      - sugar
+      - mustard
+      - apple
+      - peach
+      - orange
+      - banana
+      - strawberry
+      - pockys
+      - pringles
+      - spoon
+      - fork
+      - plate
+      - bowl
+      - mug
+      - knife
+      - wine
+      - coffee
+      - Lemonade
+      - Iced tea
+      - Hot chocolate
+      - Beer
+      - Soda
+      - Smoothie
+      - Coconut milk
+      - Orange juice
+      - Cocoa
+      - pepsi
+      - diet coke
+      - coke zero
+      - fanta
+      - seven up
+      - coca-cola
+      - coat
+      - jacket
+      - book
+      - pen
+      - phone
+      - glass
+      - cup
+      - bottle
+      - keyboard
+      - mouse
+      - remote control
+      - wallet
+      - bag
+      - newspaper
+      - magazine
+      - tablet
+      - laptop
+      - camera
+      - headphones
+      - umbrella
+      - hat
+      - shirt
+      - brush
+      - toothbrush
+      - comb
+      - hair dryer
+      - towel
+      - soap
+      - shampoo bottle
+      - toothpaste
+      - scissors
+      - tape
+      - notebook
+      - backpack
+      - shoes
+      - ball
+      - toy
+      - watch
+      - glasses
+      - keys
+      - credit card
+      - pillow
+      - blanket
+
+
+  - lookup: storage
+    examples: |
+      - microwave
+      - fridge
+      - oven
+      - box
+
+  - lookup: adj_object
+    examples: |
+      - red
+      - blue
+      - green
+      - pink
+      - yellow
+      - black
+      - white
+      - red
+      - orange
+      - gray

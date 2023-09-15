@@ -1,0 +1,128 @@
+version: "3.1"
+nlu:
+  - lookup: rpos
+    examples: |
+      - left
+      - right
+      - center
+      - middle
+      - bottom
+      - top
+
+  - lookup: door_action
+    examples: |
+      - entrance 
+      - exit 
+      - corridor
+
+  # ------------------------------------------ end lookup -----------------------------------
+  # - intent: hello_world
+  #   examples: |
+  #     - hello world
+
+  - intent: how_are_you
+    examples: |
+      - how are you doing?
+      - how are you?
+      - how do you do?
+      - how are you today?
+      - what's up
+      - how's it going?
+ 
+  - intent: introduce_yourself
+    examples: |
+      - can you introduce yourself?
+      - tell me a little bit about yourself
+      - who are you?
+      - what's your name?
+
+  - intent: leave_arena
+    examples: |
+      - leave arena
+      - can you leave the arena
+      - can you get out of the arena
+      - leave the arena please
+      - can you please leave the arena
+
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - good morning
+      - good evening
+      - hey there
+      - say hello to me 
+      - hi there
+      - its very nice to meet you 
+
+  # - intent: mood_great
+  #   examples: |
+  #     - perfect
+  #     - very good
+  #     - great
+  #     - amazing
+  #     - wonderful
+  #     - I am feeling very good
+  #     - I am great
+  #     - I'm good
+
+  # - intent: mood_unhappy
+  #   examples: |
+  #     - sad
+  #     - very sad
+  #     - unhappy
+  #     - bad
+  #     - very bad
+  #     - awful
+  #     - terrible
+  #     - not very good
+  #     - extremely sad
+  #     - so sad
+
+  - intent: affirm
+    examples: |
+      - yes
+      - indeed
+      - of course
+      - that sounds good
+      - sounds great
+      - correct
+
+  # - intent: deny
+  #   examples: |
+  #     - no
+  #     - nope
+  #     - never
+  #     - I don't think so
+  #     - don't like that
+  #     - no way
+  #     - not 
+      
+  - intent: stop # general command
+    examples: |
+      - stop
+      - pause
+      - break
+      - Hey walkie, Stop 
+      - discontinue
+      - Hey Walkie, Stop
+      - Stop right now
+      - Stop please
+      - fuck stop
+      - shit stop stop 
+      - Please stop
+      - The walkies stop
+      - Hey, Waukee, stop!
+  
+  - intent: set_origin # general command
+    examples: |
+      - where are you at is the origin
+      - that's home
+      - where you are standing is the origin
+      - where you are standing is the home
+      
+
+
+# ------------------------------------------ end basic intent -----------------------------------
+

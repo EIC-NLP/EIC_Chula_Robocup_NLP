@@ -1,0 +1,84 @@
+version: "3.2"
+nlu:
+  - lookup: furniture
+    examples: |  
+      - bed
+      - bedside table
+      - shelf
+      - trashbin
+      - dishwasher
+      - potted plant
+      - kitchen table
+      - chairs
+      - pantry
+      - refridgerator
+      - sink
+      - cabinet
+      - coatrack
+      - desk
+      - armchair
+      - desk lamp
+      - waste basket
+      - tv stand
+      - storage rack
+      - lamp
+      - side tables
+      - sofa
+      - bookshelf
+#       - house plant
+#       - coat rack
+      # - sofa
+      # - couch
+      # - tv
+      # - side table
+      # - book shelf
+      # - kitchen shelf
+      # - pantry
+      # - dinner table
+      # - kitchen bin
+      # - fridge
+      # - washing machine
+      # - sink
+      # - small shelf
+      # - cupboard
+      # - big shelf
+      # - bed
+      # - desk
+      # - show rack
+      # - bin
+      # - office shelf 
+      # - television
+      # - drawers
+      # - bookcase
+      # - dishwasher
+      # - refrigerator
+      # - table
+      # - chair
+      # - table
+      # - sink
+
+  - lookup: room
+    examples: |
+      - kitchen
+      - bedroom
+      - living room
+      - office
+      - this room
+      - Entrance
+      - Exit
+      - study
+  
+  - lookup: adj_placement
+    examples: |
+      - on
+      - in
+      - next to
+      - under
+      - behind
+
+  - lookup: room_come_back
+    examples: |
+      - back
+      - come back
+      - return here
+      - get back

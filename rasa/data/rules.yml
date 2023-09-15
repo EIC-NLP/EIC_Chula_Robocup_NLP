@@ -1,0 +1,204 @@
+version: "3.1"
+rules:
+  - rule: how are you walkie
+    steps:
+      - intent : how_are_you
+      - action: action_send_task
+  - rule: introduce walkie
+    steps:
+      - intent:  introduce_yourself
+      - action: action_send_task
+      
+  - rule: leave arena
+    steps:
+      - intent: leave_arena
+      - action: action_send_task
+  
+  - rule: greet
+    steps:
+      - intent: greet
+      - action: action_send_task
+      
+  - rule: say hello world
+    steps:
+      - intent: hello_world
+      - action: action_hello_world
+
+  - rule: stop
+    steps:
+      - intent: stop
+      - action: action_send_task
+
+  # Task
+  - rule: send follow_people # task Carry My Luggage
+    steps:
+      - intent: follow_people
+      - action: action_send_task
+
+  - rule: send move_to
+    steps:
+      - intent: move_to
+      - action: action_send_task
+
+  # Demo type shit
+
+  - rule: send set_origin
+    steps:
+      - intent: set_origin
+      - action: action_send_task
+
+  # - rule: send find_object # task GPSR 2
+  #   steps:
+  #     - intent: find_object
+  #     - action: action_send_task
+
+  - rule: send place_object # task tells location
+    steps:
+      - intent: place_object
+      - action: action_send_task
+
+  - rule: send move_to+grasp_object+object_to_person # task GPSR 3
+    steps:
+      - intent: move_to+grasp_object+object_to_person
+      - action: action_send_task
+
+  - rule: send find_people # task GPSR 4
+    steps:
+      - intent: find_people
+      - action: action_send_task
+
+  - rule: send escort_people
+    steps:
+      - intent: escort_people
+      - action: action_send_task
+
+  - rule: object_counting # task GPSR 5
+    steps:
+      - intent: object_counting
+      - action: action_send_task
+
+  - rule: affirm # yes
+    steps:
+      - intent: affirm
+      - action: action_send_task
+
+  - rule: deny # no
+    steps:
+      - intent: deny
+      - action: action_send_task
+
+  - rule: carry_luggage
+    steps:
+      - intent: carry_luggage
+      - action: action_send_task
+
+  - rule: what is that # task show follow
+    steps:
+      - intent: what_is_that
+      - action: action_send_task
+
+  - rule: intruduce my name
+    steps:
+      - intent: my_name
+      - action: action_send_task
+
+  - rule: restaurant_order
+    steps:
+      - intent: restaurant_order
+      - action: action_send_task
+
+  - rule: restaurant_checkout
+    steps:
+      - intent: restaurant_checkout
+      - action: action_send_task
+  
+  - rule: ask_to_leave
+    steps:
+      - intent: ask_to_leave
+      - action: action_send_task
+
+  - rule: favorite_object
+    steps:
+      - intent: favorite_object
+      - action: action_send_task
+
+  - rule: intruduce my name
+    steps:
+      - intent: my_name
+      - action: action_send_task
+      
+  - rule: grasp object
+    steps:
+      - intent: grasp_object
+      - action: action_send_task
+
+  - rule: what is your name
+    steps:
+      - intent: what_is_your_name
+      - action: action_send_task
+  
+  - rule: what is their name
+    steps:
+      - intent: what_is_their_name
+      - action: action_send_task
+
+  - rule: move to + grasp object
+    steps:
+      - intent: move_to+grasp_object
+      - action: action_send_task
+      
+  - rule: move to + grasp object + move to
+    steps:
+      - intent: move_to+grasp_object+move_to
+      - action: action_send_task
+  
+  - rule: move to + grasp + place
+    steps:
+      - intent: move_to+grasp_object+place_object
+      - action: action_send_task
+
+  - rule: move to + follow people
+    steps:
+      - intent: move_to+follow_people
+      - action: action_send_task
+
+  - rule: move to + escort
+    steps:
+      - intent: move_to+escort_people
+      - action: action_send_task
+
+  - rule: move to + ask to leave
+    steps:
+      - intent: move_to+ask_to_leave
+      - action: action_send_task
+
+  - rule: send patriotism
+    steps:
+      - intent: patriotism
+      - action: action_send_task
+
+  - rule: send tell_time
+    steps:
+      - intent: tell_time
+      - action: action_send_task
+
+  - rule: send tell_day
+    steps:
+      - intent: tell_day
+      - action: action_send_task
+
+  # chitchat
+  # - rule: ask the weather
+  #   steps:
+  #     - intent: what_is_the_weather
+  #     - action: action_tell_weather
+
+  # - rule: ready
+  #   steps:
+  #     - intent: ready
+  #     - action: action_ready
+
+  # - rule: respond to chitchat # Retrieval intent. more: https://www.google.com/url?q=https://rasa.com/docs/rasa/chitchat-faqs&sa=D&source=docs&ust=1641222903954262&usg=AOvVaw19DdG1d5mFVJXT7zHEocDc
+  #   steps:
+  #     - intent: chitchat
+  #     - action: utter_chitchat

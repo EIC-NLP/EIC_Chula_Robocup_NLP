@@ -1,0 +1,19 @@
+[{'recipient_id': 'bot', 'text': '{"intent": "my_name", "confidence": 0.2850702702999115, "text": "Could you Tell me the name of the person in the bedroom", "room_to": "bedroom"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "follow_people", "confidence": 0.6355935335159302, "text": "Could you meet Elizabeth at the bookcase, follow her, and accompany her back", "people": "Elizabeth", "furniture_to": "bookcase", "object": "back"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "grasp_object", "confidence": 0.5125693082809448, "text": "Robot please take out the junk"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "move_to+follow_people", "confidence": 0.9888584613800049, "text": "Meet Alex at the sink, follow him, and lead him back", "people": "Alex", "furniture_from": "sink", "object": "back"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "move_to+escort_people", "confidence": 0.7193846702575684, "text": "Could you face Alex at the main door and introduce him to everyone in the dining room.", "people": "Alex", "room_to": "room"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "place_object", "confidence": 0.8667415380477905, "text": "Please give me the right most object from the end table", "rpos": "right", "people": "me", "furniture_to": "end table"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "place_object", "confidence": 0.7559888362884521, "text": "Bring me the object above the knife from the dining table", "object": "knife", "furniture": "dining table"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "move_to+grasp_object+place_object", "confidence": 0.19133104383945465, "text": "Say your team's country to the person raising their right arm in the living room", "rpos": "right", "room": "raising", "room_to": "living room"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "move_to+grasp_object", "confidence": 0.4553358554840088, "text": "Tell me the gender of the person in the kitchen", "furniture": "gender", "room_to": "kitchen"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "object_counting", "confidence": 0.7695633172988892, "text": "Robot please tell me which are the three biggest snacks on the counter"}'}]

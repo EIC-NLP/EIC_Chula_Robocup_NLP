@@ -1,0 +1,17 @@
+can_pour_in:
+  - box
+  - plate
+  - bottle
+pourable:
+  - plate
+  - cereal
+  - bottle
+  - jug
+  - water bottle
+tableware:
+  - plate
+  - dish
+  - bowl
+  - cup
+  - napkin
+  

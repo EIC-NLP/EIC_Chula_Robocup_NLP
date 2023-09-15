@@ -1,0 +1,122 @@
+version: "3.1"
+nlu:
+  - intent: what_is_that # task show
+    examples: |
+      - what is [that](demonstrative)
+      - what's [this](demonstrative)
+      - what is [those](demonstrative)
+      - what is [those](demonstrative)
+
+  - intent: carry_luggage # task carry luggage
+    examples: |
+      - [carry](vb_carry) my [bag](object)
+      - [carry](vb_carry) my [can](object)
+      - please [carry](vb_carry) my [bag](object)
+      - could you [hold](vb_carry) onto this for me
+      - can you [hold](vb_carry) this for me
+      - can you [move](vb_carry) this for me
+      - can you [move](vb_carry) this [can]() for me
+      - please [transport](vb_carry) this [can](object) for me
+      - Can you please [grasp](vb_carry) that [box](object) of books for me?
+      - Would you mind [carrying](vb_carry) this [bag](object) of groceries to the [kitchen](room) for me?
+      - Can you [take](vb_carry) this [tray](object) of food to the [dining room](room) for me?
+      - Can you pick up that [umbrella](object) and [carry](vb_carry) it for me?
+      - Can you [carry](vb_carry) this [plant](object) to the [living room](room) for me?
+      - Can you [hold](vb_carry) my [backpack](object) while I put on my coat?
+      - Can you [carry](vb_carry) this [laundry basket](object) to the [basement](room) for me?
+      - Can you [take](vb_carry) this [basket](object) of laundry to the [washer](furniture) for me?
+      - Can you [hold](vb_carry) this [shopping bag](object) while I pay?
+      - Can you take this tray of dishes to the kitchen?
+      - Can you carry this box of tools to the garage?
+      - Can you bring me my phone?
+      - Can you [carry](vb_carry) this [bag of trash](object) to the [dumpster](furniture)?
+      - Can you [take](vb_carry) this [box of toys](object) to the [playroom](room)?
+
+
+  - intent: my_name
+    examples: |
+      - my name is [jackson](people)
+      - my name's [william](people)
+      - my name's [jack](people)
+      - my name's [Ice](people)
+      - my name's [parker](people)
+      - my name's [olivia](people)
+      - My name's [chaca](people)
+      - My name is [Arch](people).
+      - I'm [rose](people)
+      - I'm [mick](people)
+      - name's [mick](people)
+      - name's [Pun](people)
+      - name's [Pim](people)
+      - [mick](people)
+      - [Adam](people)
+
+  - intent: favorite_object
+    examples: |
+      - [I](people) [like](vb_affection) [water](object)
+      - [my](people) [favorite](vb_affection) is [cocktail](object)
+      - [my](people) [favorite](vb_affection) is [orange](object)
+      - [I](people) [love](vb_affection) [coca cola](object)
+      - [I](people) [like](vb_affection) [milk](object)
+      - [My](people) [favorite](vb_affection) drink is a [Coca-Cola](object)
+      - [My](people) [favorite](vb_affection) drink is [Coca-Cola](object)
+      - [beer](object)
+      - it's [beer](object)
+      - [beer](object) is my [favorite](vb_affection) drink
+
+
+  # - intent: restaurant_order
+  #   examples: |
+  #     - Hey there, can I have a bottle of [Coke](object)?
+  #     - Hey walkie, can you bring me some [milk](object)?
+  #     - can I order a [coke](object)
+  #     - can I order one [milk](object)
+  #     - can I get a [coffee](object)
+  #     - I will take a [coke](object)
+  #     - can I have a [beer](object)
+  #     - can I have [coca cola](object)
+  #     - I would like a [water](object), please
+  #     - Hey, can you bring me a [coca-cola](object), please?"
+
+  - intent: restaurant_checkout
+    examples: |
+      - I am ready to checkout
+      - Can I pay now?
+      - Can you bring me the check?
+      - I'd like to settle my bill
+      - I think I'm all set to go
+      - I need to check out
+      - I would like to pay my bill.
+      - Where do I pay?
+      - Can I get the check please?
+      - Check please
+      - Can I pay?
+      - I'm ready to check out
+
+
+  
+    
+
+  # - intent: bring_from_to_storage
+  #   examples: |
+  #     - put the [apple](object) into the [microwave](storage)
+  #     - pick up a [phone](object) from the [badroom]{"entity": "furniture", "role": "from"} and put it into the [box](storage)
+
+  # - intent: interact_with_door
+  #   examples: |
+  #     - [open](vb_action) the [entrance](door_action) door
+  #     - [open](vb_action) [corridor](door_action) door
+  #     - [close](vb_action) [exit](door_action) door
+  #     - [close](vb_action) [corridor](door_action) door
+
+  # - intent: take_object
+  #   examples: |
+  #     - [take](vb_take) the [glass](object) from the [bedroom](furniture)
+  #     - [pick up](vb_take) the [red](adj_object) [apple](object)
+  #     - [grasp](vb_take) [ball](object)
+
+  # - intent: serving
+  #   examples: |
+  #     - [place](vb_place) a [banana](object) in the [table](position)
+  #     - [set](vb_place) a [phone](object) on [shelf](position) and a [banana](object) in the [desk](position)
+

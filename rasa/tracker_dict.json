@@ -1,0 +1,676 @@
+{
+    "events": [
+        {
+            "event": "action",
+            "timestamp": 1673882895.4803703,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "name": "action_session_start",
+            "policy": null,
+            "confidence": 1.0,
+            "action_text": null,
+            "hide_rule_turn": false
+        },
+        {
+            "event": "session_started",
+            "timestamp": 1673882895.4813719,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            }
+        },
+        {
+            "event": "action",
+            "timestamp": 1673882895.4813719,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "name": "action_listen",
+            "policy": null,
+            "confidence": null,
+            "action_text": null,
+            "hide_rule_turn": false
+        },
+        {
+            "event": "user",
+            "timestamp": 1673882895.5484097,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "text": "can you hold this coke for me",
+            "parse_data": {
+                "intent": {
+                    "name": "carry_luggage",
+                    "confidence": 0.9962719678878784
+                },
+                "entities": [
+                    {
+                        "entity": "object",
+                        "start": 18,
+                        "end": 22,
+                        "value": "coke",
+                        "extractor": "RegexEntityExtractor"
+                    },
+                    {
+                        "entity": "demonstrative",
+                        "start": 13,
+                        "end": 17,
+                        "value": "this",
+                        "extractor": "RegexEntityExtractor"
+                    },
+                    {
+                        "entity": "vb_carry",
+                        "start": 8,
+                        "end": 12,
+                        "value": "hold",
+                        "extractor": "RegexEntityExtractor"
+                    },
+                    {
+                        "entity": "vb_carry",
+                        "start": 8,
+                        "end": 12,
+                        "confidence_entity": 0.9994868040084839,
+                        "value": "hold",
+                        "extractor": "DIETClassifier"
+                    }
+                ],
+                "text": "can you hold this coke for me",
+                "message_id": "e4fa721de0834609afce4bc50cf23fc7",
+                "metadata": {},
+                "text_tokens": [
+                    [
+                        0,
+                        3
+                    ],
+                    [
+                        4,
+                        7
+                    ],
+                    [
+                        8,
+                        12
+                    ],
+                    [
+                        13,
+                        17
+                    ],
+                    [
+                        18,
+                        22
+                    ],
+                    [
+                        23,
+                        26
+                    ],
+                    [
+                        27,
+                        29
+                    ]
+                ],
+                "intent_ranking": [
+                    {
+                        "name": "carry_luggage",
+                        "confidence": 0.9962719678878784
+                    },
+                    {
+                        "name": "ready",
+                        "confidence": 0.0013759058201685548
+                    },
+                    {
+                        "name": "hello_world",
+                        "confidence": 0.0005835146293975413
+                    },
+                    {
+                        "name": "greet",
+                        "confidence": 0.0002318989863852039
+                    },
+                    {
+                        "name": "counting",
+                        "confidence": 0.00018758415535558015
+                    },
+                    {
+                        "name": "favorite_object",
+                        "confidence": 0.00017435212794225663
+                    },
+                    {
+                        "name": "stop",
+                        "confidence": 0.0001637791283428669
+                    },
+                    {
+                        "name": "affirm",
+                        "confidence": 0.00015705845726188272
+                    },
+                    {
+                        "name": "mood_great",
+                        "confidence": 0.00015084327606018633
+                    },
+                    {
+                        "name": "favorite_object",
+                        "confidence": 0.00014321462367661297
+                    }
+                ],
+                "response_selector": {
+                    "all_retrieval_intents": [],
+                    "default": {
+                        "response": {
+                            "responses": null,
+                            "confidence": 0.0,
+                            "intent_response_key": null,
+                            "utter_action": "utter_None"
+                        },
+                        "ranking": []
+                    },
+                    "chitchat": {
+                        "response": {
+                            "responses": null,
+                            "confidence": 0.0,
+                            "intent_response_key": null,
+                            "utter_action": "utter_None"
+                        },
+                        "ranking": []
+                    }
+                }
+            },
+            "input_channel": "rest",
+            "message_id": "e4fa721de0834609afce4bc50cf23fc7"
+        },
+        {
+            "event": "user_featurization",
+            "timestamp": 1673882901.87447,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "use_text_for_featurization": false
+        },
+        {
+            "event": "action",
+            "timestamp": 1673882901.8754692,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "name": "action_send_task",
+            "policy": "RulePolicy",
+            "confidence": 1.0,
+            "action_text": null,
+            "hide_rule_turn": true
+        },
+        {
+            "event": "bot",
+            "timestamp": 1673882901.8754692,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "text": "{\"intent\": \"carry_luggage\", \"object\": \"coke\", \"demonstrative\": \"this\"}",
+            "data": {
+                "elements": null,
+                "quick_replies": null,
+                "buttons": null,
+                "attachment": null,
+                "image": null,
+                "custom": null
+            }
+        },
+        {
+            "event": "action",
+            "timestamp": 1673882901.8824723,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "name": "action_listen",
+            "policy": "RulePolicy",
+            "confidence": 1.0,
+            "action_text": null,
+            "hide_rule_turn": true
+        },
+        {
+            "event": "user",
+            "timestamp": 1673883064.1683974,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "text": "can you hold onto my bag",
+            "parse_data": {
+                "intent": {
+                    "name": "carry_luggage",
+                    "confidence": 0.9953100085258484
+                },
+                "entities": [
+                    {
+                        "entity": "vb_carry",
+                        "start": 8,
+                        "end": 12,
+                        "value": "hold",
+                        "extractor": "RegexEntityExtractor"
+                    },
+                    {
+                        "entity": "vb_carry",
+                        "start": 8,
+                        "end": 12,
+                        "confidence_entity": 0.9994432330131531,
+                        "value": "hold",
+                        "extractor": "DIETClassifier"
+                    },
+                    {
+                        "entity": "object",
+                        "start": 21,
+                        "end": 24,
+                        "confidence_entity": 0.9995736479759216,
+                        "value": "bag",
+                        "extractor": "DIETClassifier"
+                    }
+                ],
+                "text": "can you hold onto my bag",
+                "message_id": "be5f6750ca2842568e7cdd43af8833aa",
+                "metadata": {},
+                "text_tokens": [
+                    [
+                        0,
+                        3
+                    ],
+                    [
+                        4,
+                        7
+                    ],
+                    [
+                        8,
+                        12
+                    ],
+                    [
+                        13,
+                        17
+                    ],
+                    [
+                        18,
+                        20
+                    ],
+                    [
+                        21,
+                        24
+                    ]
+                ],
+                "intent_ranking": [
+                    {
+                        "name": "carry_luggage",
+                        "confidence": 0.9953100085258484
+                    },
+                    {
+                        "name": "ready",
+                        "confidence": 0.001155563397333026
+                    },
+                    {
+                        "name": "hello_world",
+                        "confidence": 0.0010347127681598067
+                    },
+                    {
+                        "name": "stop",
+                        "confidence": 0.000735995767172426
+                    },
+                    {
+                        "name": "greet",
+                        "confidence": 0.0002995857212226838
+                    },
+                    {
+                        "name": "mood_great",
+                        "confidence": 0.0002537154359742999
+                    },
+                    {
+                        "name": "counting",
+                        "confidence": 0.0002284468209836632
+                    },
+                    {
+                        "name": "favorite_object",
+                        "confidence": 0.00015283039829228073
+                    },
+                    {
+                        "name": "move_to+grasp_object+object_to_person",
+                        "confidence": 9.717835928313434e-05
+                    },
+                    {
+                        "name": "favorite_object",
+                        "confidence": 9.712545579532161e-05
+                    }
+                ],
+                "response_selector": {
+                    "all_retrieval_intents": [],
+                    "default": {
+                        "response": {
+                            "responses": null,
+                            "confidence": 0.0,
+                            "intent_response_key": null,
+                            "utter_action": "utter_None"
+                        },
+                        "ranking": []
+                    },
+                    "chitchat": {
+                        "response": {
+                            "responses": null,
+                            "confidence": 0.0,
+                            "intent_response_key": null,
+                            "utter_action": "utter_None"
+                        },
+                        "ranking": []
+                    }
+                }
+            },
+            "input_channel": "rest",
+            "message_id": "be5f6750ca2842568e7cdd43af8833aa"
+        },
+        {
+            "event": "user_featurization",
+            "timestamp": 1673883070.5080273,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "use_text_for_featurization": false
+        },
+        {
+            "event": "action",
+            "timestamp": 1673883070.5080273,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "name": "action_send_task",
+            "policy": "RulePolicy",
+            "confidence": 1.0,
+            "action_text": null,
+            "hide_rule_turn": true
+        },
+        {
+            "event": "bot",
+            "timestamp": 1673883070.5080273,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "text": "{\"intent\": \"carry_luggage\", \"object\": \"bag\"}",
+            "data": {
+                "elements": null,
+                "quick_replies": null,
+                "buttons": null,
+                "attachment": null,
+                "image": null,
+                "custom": null
+            }
+        },
+        {
+            "event": "action",
+            "timestamp": 1673883070.5110242,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "name": "action_listen",
+            "policy": "RulePolicy",
+            "confidence": 1.0,
+            "action_text": null,
+            "hide_rule_turn": true
+        },
+        {
+            "event": "user",
+            "timestamp": 1673883070.980992,
+            "metadata": {
+                "model_id": "d1e76dbd60c64b59875ae9f262acbf45"
+            },
+            "text": "can you hold onto my bag",
+            "parse_data": {
+                "intent": {
+                    "name": "carry_luggage",
+                    "confidence": 0.9953100085258484
+                },
+                "entities": [
+                    {
+                        "entity": "vb_carry",
+                        "start": 8,
+                        "end": 12,
+                        "value": "hold",
+                        "extractor": "RegexEntityExtractor"
+                    },
+                    {
+                        "entity": "vb_carry",
+                        "start": 8,
+                        "end": 12,
+                        "confidence_entity": 0.9994432330131531,
+                        "value": "hold",
+                        "extractor": "DIETClassifier"
+                    },
+                    {
+                        "entity": "object",
+                        "start": 21,
+                        "end": 24,
+                        "confidence_entity": 0.9995736479759216,
+                        "value": "bag",
+                        "extractor": "DIETClassifier"
+                    }
+                ],
+                "text": "can you hold onto my bag",
+                "message_id": "1095883d3ca24ea6a932c76d9eadd10b",
+                "metadata": {},
+                "text_tokens": [
+                    [
+                        0,
+                        3
+                    ],
+                    [
+                        4,
+                        7
+                    ],
+                    [
+                        8,
+                        12
+                    ],
+                    [
+                        13,
+                        17
+                    ],
+                    [
+                        18,
+                        20
+                    ],
+                    [
+                        21,
+                        24
+                    ]
+                ],
+                "intent_ranking": [
+                    {
+                        "name": "carry_luggage",
+                        "confidence": 0.9953100085258484
+                    },
+                    {
+                        "name": "ready",
+                        "confidence": 0.001155563397333026
+                    },
+                    {
+                        "name": "hello_world",
+                        "confidence": 0.0010347127681598067
+                    },
+                    {
+                        "name": "stop",
+                        "confidence": 0.000735995767172426
+                    },
+                    {
+                        "name": "greet",
+                        "confidence": 0.0002995857212226838
+                    },
+                    {
+                        "name": "mood_great",
+                        "confidence": 0.0002537154359742999
+                    },
+                    {
+                        "name": "counting",
+                        "confidence": 0.0002284468209836632
+                    },
+                    {
+                        "name": "favorite_object",
+                        "confidence": 0.00015283039829228073
+                    },
+                    {
+                        "name": "move_to+grasp_object+object_to_person",
+                        "confidence": 9.717835928313434e-05
+                    },
+                    {
+                        "name": "favorite_object",
+                        "confidence": 9.712545579532161e-05
+                    }
+                ],
+                "response_selector": {
+                    "all_retrieval_intents": [],
+                    "default": {
+                        "response": {
+                            "responses": null,
+                            "confidence": 0.0,
+                            "intent_response_key": null,
+                            "utter_action": "utter_None"
+                        },
+                        "ranking": []
+                    },
+                    "chitchat": {
+                        "response": {
+                            "responses": null,
+                            "confidence": 0.0,
+                            "intent_response_key": null,
+                            "utter_action": "utter_None"
+                        },
+                        "ranking": []
+                    }
+                }
+            },
+            "input_channel": "rest",
+            "message_id": "1095883d3ca24ea6a932c76d9eadd10b"
+        },
+        {
+            "event": "user_featurization",
+            "timestamp": 1673883070.9919555,
+            "use_text_for_featurization": false
+        }
+    ],
+    "sender_id": "human",
+    "slots": {
+        "session_started_metadata": null
+    },
+    "followup_action": null,
+    "_paused": false,
+    "latest_message": {
+        "intent": {
+            "name": "carry_luggage",
+            "confidence": 0.9953100085258484
+        },
+        "entities": [
+            {
+                "entity": "vb_carry",
+                "start": 8,
+                "end": 12,
+                "value": "hold",
+                "extractor": "RegexEntityExtractor"
+            },
+            {
+                "entity": "vb_carry",
+                "start": 8,
+                "end": 12,
+                "confidence_entity": 0.9994432330131531,
+                "value": "hold",
+                "extractor": "DIETClassifier"
+            },
+            {
+                "entity": "object",
+                "start": 21,
+                "end": 24,
+                "confidence_entity": 0.9995736479759216,
+                "value": "bag",
+                "extractor": "DIETClassifier"
+            }
+        ],
+        "text": "can you hold onto my bag",
+        "message_id": "1095883d3ca24ea6a932c76d9eadd10b",
+        "metadata": {},
+        "text_tokens": [
+            [
+                0,
+                3
+            ],
+            [
+                4,
+                7
+            ],
+            [
+                8,
+                12
+            ],
+            [
+                13,
+                17
+            ],
+            [
+                18,
+                20
+            ],
+            [
+                21,
+                24
+            ]
+        ],
+        "intent_ranking": [
+            {
+                "name": "carry_luggage",
+                "confidence": 0.9953100085258484
+            },
+            {
+                "name": "ready",
+                "confidence": 0.001155563397333026
+            },
+            {
+                "name": "hello_world",
+                "confidence": 0.0010347127681598067
+            },
+            {
+                "name": "stop",
+                "confidence": 0.000735995767172426
+            },
+            {
+                "name": "greet",
+                "confidence": 0.0002995857212226838
+            },
+            {
+                "name": "mood_great",
+                "confidence": 0.0002537154359742999
+            },
+            {
+                "name": "counting",
+                "confidence": 0.0002284468209836632
+            },
+            {
+                "name": "favorite_object",
+                "confidence": 0.00015283039829228073
+            },
+            {
+                "name": "move_to+grasp_object+object_to_person",
+                "confidence": 9.717835928313434e-05
+            },
+            {
+                "name": "favorite_object",
+                "confidence": 9.712545579532161e-05
+            }
+        ],
+        "response_selector": {
+            "all_retrieval_intents": [],
+            "default": {
+                "response": {
+                    "responses": null,
+                    "confidence": 0.0,
+                    "intent_response_key": null,
+                    "utter_action": "utter_None"
+                },
+                "ranking": []
+            },
+            "chitchat": {
+                "response": {
+                    "responses": null,
+                    "confidence": 0.0,
+                    "intent_response_key": null,
+                    "utter_action": "utter_None"
+                },
+                "ranking": []
+            }
+        }
+    },
+    "active_loop": {},
+    "latest_action_name": "action_listen"
+}

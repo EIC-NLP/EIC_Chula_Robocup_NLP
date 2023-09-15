@@ -1,0 +1,132 @@
+version: "3.1"
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+intents:
+  # basic intent--nlu.yaml
+  # - hello_world
+  - greet
+  # - mood_great
+  # - mood_unhappy
+  - affirm
+  # - deny
+  - how_are_you
+  - introduce_yourself
+  # end basic intent
+
+  # Demo type shit
+  - set_origin
+
+  # Restaurant task 
+  # - restaurant_checkout
+  # - restaurant_order
+
+  # Receptionist task
+  - my_name
+  - favorite_object
+  
+  # nlu task - nlu_task.yaml
+  - follow_people
+  - escort_people
+  - what_is_that
+  - stop
+  - bring_from_to_storage
+  - interact_with_door
+  - take_object
+  - serving
+  - ask_to_leave
+  - what_is_your_name
+  - what_is_their_name
+  
+  - set_table
+  - smoothie_chef
+  
+  # General Smach State
+  - move_to
+  - grasp_object
+  - place_object
+  # - find_object
+  - find_people
+  - object_counting
+
+  # GPSR task
+  - patriotism
+  - tell_time
+  - tell_day
+
+  # Composite Multiple Intents
+  - move_to+grasp_object
+  - move_to+grasp_object+move_to
+  - move_to+grasp_object+place_object
+  - move_to+follow_people
+  - move_to+escort_people
+  - move_to+ask_to_leave
+  # - move_to+find_people 
+  # - move_to+find_object
+  # - move_to+grasp_object+place_object # Move object from furniture A to B [obj, room, furniture]
+  # - move_to+grasp_object+object_to_person # Deliver an object to a person [obj, room, person]
+
+  # - place_object
+
+  # task trigger
+  # - receptionist
+  # - serve_breakfast
+  # - store_groceries
+  # - clean_up
+  # - farewell
+  # - find_people
+  # - serve_drinks
+  # - take_out_garbage
+  # - cocktail_party
+  # - carry_luggage
+  # end nlu task
+
+  - chitchat
+  - ready
+
+# NOTES
+# funiture information will need to provide the location of the object to be grasp. i.e. inside in the cabinet or on top of the table
+
+
+entities: # to be returned by nlu
+  - object
+  - people
+  - room
+  - furniture
+  - position
+  - demonstrative
+  - rpos # position for the robot to be in 
+  - room_come_back
+  - leave_arena
+  - information
+
+  - door_action
+
+  # adj
+  - people_action
+  - adj_object
+  - adj_placement
+
+  # verb data/lookups/verb.yml
+  - vb_deliver
+  - vb_place
+  - vb_find
+  - vb_report
+  - vb_action
+  - vb_take
+  - vb_follow
+  - vb_escort
+  - vb_speak
+  - vb_gor
+  - vb_carry
+# end-verb
+
+actions:
+  - utter_happy
+  - action_send_task
+  # - action_tell_weather
+  - action_follow_people
+  - action_what_is_that
+  # - action_ready
+  - action_hello_world

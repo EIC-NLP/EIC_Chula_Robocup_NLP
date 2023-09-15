@@ -1,0 +1,4 @@
+requests==2.25.1
+git+https://github.com/GameTL/ratfingers.git
+simpleaudio
+# pip install git+https://github.com/GameTL/ratfingers.git --use-pep517m

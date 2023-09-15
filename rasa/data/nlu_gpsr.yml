@@ -1,0 +1,82 @@
+version: "3.1"
+nlu: # composite intents
+  - intent: move_to+grasp_object
+    examples: |
+     - [go](vb_gor) to the [kitchen]{"entity": "room", "role": "to"} and [grasp](vb_take) the [milk](object)
+     - [get](vb_take) the [milk](object) in the [kitchen]{"entity": "room", "role": "from"}
+     - [retrieve](vb_take) a [milk](object) in the [kitchen]{"entity": "room", "role": "from"}
+
+  - intent: move_to+grasp_object+move_to
+    examples: |
+     - [go](vb_gor) to the [kitchen]{"entity": "room", "role": "from"}, [grasp](vb_take) the [milk](object) and [go](vb_gor) to the [living room]{"entity": "room", "role": "to"}
+     - [get](vb_take) the [milk](object) in the [kitchen]{"entity": "room", "role": "from"} and [go](vb_gor) to the [living room]{"entity": "room", "role": "to"}
+  
+  - intent: move_to+grasp_object+place_object
+    examples: |
+     - [go](vb_gor) to the [kitchen]{"entity": "room", "role": "from"}, [grasp](vb_take) the [milk](object) and [place](vb_place) it in the [living room]{"entity": "room", "role": "to"}
+     - [get](vb_take) the [milk](object) in the [kitchen]{"entity": "room", "role": "from"} and [place](vb_place) it in the [living room]{"entity": "room", "role": "to"}
+     - [get](vb_take) the [coke](object) from the [living room]{"entity": "room", "role": "from"} and [bring](vb_place) it to the [fridge]{"entity": "furniture", "role": "to"}
+     - [get](vb_take) the [coke](object) from the [living room]{"entity": "room", "role": "from"} and [bring](vb_place) it to [John](people)
+     - [go](vb_gor) to the [living room]{"entity": "room", "role": "from"}, [retrieve](vb_take) the [coke](object) and [bring](vb_place) it to [John](people)
+     - [go](vb_gor) to the [living room]{"entity": "room", "role": "from"}, [retrieve](vb_take) the [coke](object) and [bring](vb_place) it to the [fridge]{"entity": "furniture", "role": "to"}
+     - take the [peach](object) from [kitchen]{"entity": "room", "role": "from"} to [living room]{"entity": "room", "role": "to"}
+     - take the [pockys](object) to [living room]{"entity": "room", "role": "to"} from [kitchen]{"entity": "room", "role": "from"}
+     - take the [pringles](object) at the [bedroom]{"entity": "room", "role": "from"} [center](rpos) to the [kitchen]{"entity": "room", "role": "to"}
+     - Get the [tray](object) and place it on the [desk]{"entity": "furniture", "role": "to"}
+     - Could you please give [me](people) the [paprika](object) from the [end table]{"entity": "furniture", "role": "from"}
+     - in the [kitchen]{"entity": "room", "role": "from"}, there's a [coke](object), please bring it to the [living room]{"entity": "room", "role": "to"}
+     - in the [kitchen]{"entity": "room", "role": "from"}, there's a [coke](object), please bring it to [me](people)
+
+  - intent: move_to+follow_people
+    examples: |
+     - meet [William](people) in the [kitchen]{"entity": "room", "role": "from"} and [follow](vb_follow) him
+     - meet [William](people) at the [sink]{"entity": "furniture", "role": "from"} and [follow](vb_follow) him
+     - Meet [Charlie](people) at the [bed]{"entity" : "furniture", "role" : "from"} and [follow](vb_follow) him to the [bedroom]{"entity": "room", "role": "to"}
+     - Robot please meet [Charlie](people) at the [desk]{"entity" : "furniture", "role" : "from"} and [follow](vb_follow) her to the [corridor]{"entity": "room", "role": "to"}
+     - Please meet [Robert](people) at the [desk]{"entity" : "furniture", "role" : "from"} and [follow](vb_follow) him
+     - [Follow](vb_follow) [Patricia](people) from the [couch]{"entity" : "furniture", "role" : "from"} to the [bedroom]{"entity": "room", "role": "to"}
+     - Meet [Robin](people) at the [sink]{"entity" : "furniture", "role" : "from"}, [follow](vb_follow) him, and go to the [kitchen]{"entity": "room", "role": "to"}
+     - [Follow](vb_follow) [Linda](people) from the [sink]{"entity" : "furniture", "role" : "from"} to the [living room]{"entity": "room", "role": "to"}
+     - Go to the [bookcase]{"entity" : "furniture", "role" : "from"}, meet [Patricia](people), and [follow](vb_follow) her
+     - Meet [John](people) at the [couch]{"entity" : "furniture", "role" : "from"}, (follow)[vb_follow] him, and navigate to the [bedroom]{"entity": "room", "role": "to"}
+
+  - intent: move_to+escort_people
+    examples: |
+     - [go](vb_gor) to the [kitchen]{"entity": "room", "role": "from"} and [escort](vb_follow) [William](people) to the [living room]{"entity": "room", "role": "to"}
+     - Please escort [Patricia](people) from the [bed]{"entity" : "furniture", "role" : "from"} to the [bookcase]{"entity" : "furniture", "role" : "to"}
+     - Navigate to the [couch]{"entity": "furniture", "role": "from"}, meet [Alex](people), and take him to the [entrance]{"entity": "room", "role": "to"}
+     - Please face [Francis](people) at the [sink]{"entity": "furniture", "role": "from"} and take her to her [bedroom]{"entity": "room", "role": "to"}
+     - Could you go to the [bed]{"entity": "furniture", "role": "from"}, meet [Robin](people), and (accompany)[vb_escort] her to the [end table]{"entity" : "furniture", "role" : "to"}
+     - Go to the [bookcase]{"entity": "furniture", "role": "from"}, meet [Mary](people), and take her to the [exit]{"entity": "room", "role": "to"}
+     - Robot please go to the [dining table]{"entity": "furniture", "role": "from"}, meet [Michael](people), and take him to the [entrance]{"entity": "room", "role": "to"}
+     - can you [find](vb_find) [Simone](people) from the [kitchen]{"entity": "room", "role": "from"} and [escort](vb_escort) her [back](room_come_back)?
+     - go to the [study]{"entity": "room", "role": "from"} and [bring](vb_escort) [Axel](people) [back](room_come_back) here
+     
+  - intent: move_to+what_is_their_name
+    examples: |
+     - Go to the [bedroom]{"entity": "room", "role": "from"} and ask the man for his name.
+     - Go to the [bathroom]{"entity": "room", "role": "from"} and ask the woman for her name.
+
+
+  - intent: move_to+ask_to_leave
+    examples: |
+     - Find [Skyler](people) at the [sink]{"entity": "furniture", "role": "from"} and ask him to leave
+     - Greet [Robin](people) at the [bookcase]{"entity": "furniture", "role": "from"} and ask her to leave
+     - Could you greet [Skyler](people) at the [sink]{"entity": "furniture", "role": "from"} and ask her to leave
+
+  - intent: patriotism
+    examples: |
+     - Say your team's country to the person
+     - Say your team's country to the person in front of you
+     - Sing your national Anthem 
+
+  - intent: tell_time
+    examples: |
+     - Please tell the [time](information) to the person in the bedroom
+     - Please tell the [time](information) to the person pointing to the right in the living room
+     - tell the [time](information) to the person in the bedroom
+
+  - intent: tell_day
+    examples: |
+     - Please tell the [day of the week](information) to the person pointing to the right in the living room
+     - tell the [day of the week](information) to the person in the bedroom

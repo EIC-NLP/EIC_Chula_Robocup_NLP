@@ -1,0 +1,15 @@
+1. follow person
+2. Meet person via CV
+3. Escort person
+4. Find person
+
+5. tell day of the week
+6. Ask for name 
+7. ask him to leave (please follow me to the exit)
+8. tell the time
+
+
+
+for intent rasa
+move_to+
+Could you Tell me the name of the person in the bedroom

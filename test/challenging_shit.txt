@@ -1,0 +1,9 @@
+[{'recipient_id': 'bot', 'text': '{"intent": "move_to+grasp_object+place_object", "confidence": 0.43231409788131714, "text": "Please give me the left most object from the cupboard", "people": "me"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "follow_people", "confidence": 0.7536666989326477, "text": "Meet Jennifer at the end table, follow her, and escort her back", "people": "Jennifer", "furniture": "her", "object": "back"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "object_counting", "confidence": 0.3340957760810852, "text": "Please face Francis at the sink and take her to her taxi", "furniture": "her", "object": "taxi"}'}]
+
+[{'recipient_id': 'bot', 'text': '{"intent": "move_to+grasp_object+place_object", "confidence": 0.3783169686794281, "text": "Please tell the day of the week to the person pointing to the right in the living room", "room": "living room"}'}]
+
+Take out the debris

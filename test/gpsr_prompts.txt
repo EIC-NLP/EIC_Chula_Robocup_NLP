@@ -1,0 +1,21 @@
+Meet William at the sink and follow him
+Meet Charlie at the bed and follow him to the bedroom
+Please give me the left most object from the cupboard
+Tell me how many people in the dining room are boys
+Robot please meet Charlie at the desk and follow her to the corridor
+Please escort Patricia from the bed to the bookcase
+Give the spoon to me
+Follow Robin
+Navigate to the couch, meet Alex, and take him to the entrance
+Please meet Robert at the desk and follow him
+Meet Jennifer at the end table, follow her, and escort her back
+Please face Francis at the sink and take her to her taxi
+Follow Patricia from the couch to the bedroom
+Please tell the day of the week to the person pointing to the right in the living room
+Meet Robin at the sink, follow him, and go to the kitchen
+Could you place the bowl on the end table
+Could you go to the bed, meet Robin, and accompany her to the end table
+Take out the debris
+Take the scrubby to the cupboard
+Follow Linda from the sink to the living room
+
