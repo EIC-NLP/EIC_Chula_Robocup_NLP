@@ -6,7 +6,6 @@ rasa/.rasa/cache
 .DS_Store
 .vscode/settings.json
 client/nlp_client.egg-info
-*config
 *.wav
 .env
 .DS_Store
@@ -14,7 +13,6 @@ stt/temp.wav
 rasa/.rasa
 __pycache__
 *.egg-info
-config.py
 .DS_Store
 socketconfig_MacOS_root.yaml
 socketconfig_Linux_eic.yaml

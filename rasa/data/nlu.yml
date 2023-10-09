@@ -101,7 +101,7 @@ nlu:
       
   - intent: stop # general command
     examples: |
-      - stop
+      - stop,
       - pause
       - break
       - Hey walkie, Stop 

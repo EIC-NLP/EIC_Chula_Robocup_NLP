@@ -8,7 +8,7 @@ from ratfin import printclr
 from flask import Flask, request
 
 
-
+# crate server
 app = Flask("tts_mimic_bidge_flask")
 
 @app.route("/")
@@ -37,7 +37,6 @@ def speaklocalapi(text):
           f.write(response.content)
 
       #play the audio file
-
       wave_obj = sa.WaveObject.from_wave_file('output.wav')
       play_obj = wave_obj.play()
       play_obj.wait_done()
