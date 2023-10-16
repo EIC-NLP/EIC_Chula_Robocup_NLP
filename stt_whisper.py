@@ -33,7 +33,7 @@ class SttServer:
         import whisper  # this takes the longest to import
 
         # Init Flask 
-        self.app = Flask("stt_whisper_flask")
+        self.app = Flask("stt_stt_flask")
         self.app.add_url_rule("/", "listen", self.listen, methods=["POST"])
         self.app.add_url_rule("/live_listen", "live_listen", self.live_listen, methods=["POST"])
 

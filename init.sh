@@ -9,11 +9,8 @@ pip install --upgrade pip
 # pip install everything and setup python
 source _pipinstall.sh
 
-# run a script to generate config file and socket file with the correct paths
-python _initalisation.py
 
-
-# rasa train on your computer 
+# rasa train on your computer
 echo "Do you want to train rasa?, this is needed for first time setup. (yes/no)"
 read yesorno
 if [ "$yesorno" = yes ]; then

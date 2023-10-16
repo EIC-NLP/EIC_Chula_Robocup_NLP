@@ -26,12 +26,13 @@
 PyYAML==5.3.1
 packaging==20.0
 setuptools==58.2.0
+openai
 
-## General 
+## General
 flask==2.3.2
 chardet==5.1.0
 cchardet==2.1.7
-## For the setupapp 
+## For the setupapp
 prettytable==3.8.0
 
 ## stt requirements
