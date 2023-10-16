@@ -70,6 +70,8 @@ states:
     - tts_mimic_bridge
     - tts_mimic_server
     - wakeword_porcupine
+  nlpstt:
+    - stt_whisper
 
   nlptts:
     - tts_mimic_bridge
