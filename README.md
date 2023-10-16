@@ -38,28 +38,27 @@ Check if nlp is installed with ```conda activate nlp```
 
 
 ### 2. Install Dependencies
-To install everything run 
+To install everything run
 ```shell
 source init.sh
 ```
 
-NOTE: everything is in the requirements.txt file. and is run by pipinstall.sh file. If you need to use another verison of CUDA change the version in the pipinstall.sh file. 
+NOTE: everything is in the requirements.txt file. and is run by pipinstall.sh file. If you need to use another verison of CUDA change the version in the pipinstall.sh file.
 
 
 After running the script, everything should be installed and ready to run.
+        If this works then skip to step 5. & if you are running offline then skip to Runnning.
 
 ### 2.1 If you want to install everything manually
 ```shell
 pip install -r requirements.txt
 ```
 
-### 3. (Optional)Setup NLP parameters 
+### 3. (Optional)Setup NLP parameters
 
-#### 3.1 Setup runtime parameters 
+#### 3.1 Setup runtime parameters
 run `setup_tool.py` to setup the parameters for all the files. This will config the mic for stt & Wakeword
 
-#### 3.2 Setup socket parameters 
-find sockfile.....yaml in "setup" folder that match your OS and rename it to name output by setup_tool.py. This will config the socket for NLP server. then change the location of each "exec_dir" in the yaml file to your system. Lastly move the yaml file to the root directory.
 
 ### 4. (Optional)Setup-NLP-Client (Optional, ran by init.sh)
 For interfacing with NLP server(by running main), NLP Client is required. This will be install from github or locally from the .
@@ -67,7 +66,7 @@ For interfacing with NLP server(by running main), NLP Client is required. This w
 Install Local
 ```shell
 # change diretory to client_src
-cd client_src 
+cd client_src
 # install from local
 pip install -e .
 ```
@@ -77,7 +76,7 @@ pip install -e .
 pip install git+https://github.com/EIC-NLP/Robocup-2023-NLP/client_src.git
 ``` -->
 
-### 5. Configuration for all the keys 
+### 5. Configuration for all the keys(Only if running Online)
 All the keys are in the `config.py` file. Make sure to change the keys to your own keys.
 1. AzureKey for TTS, can be acquired from Azure Cognitive Service
 2. AccessKey for Wakeword, get from Porcupine website

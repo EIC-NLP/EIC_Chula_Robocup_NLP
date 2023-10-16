@@ -77,7 +77,13 @@ def read_config(config_path):
         if not isinstance(conf["exec_cmd"], str):
             raise ValueError(
                 "Value of 'exec_cmd' in process '%s' must be string" % name)
+
         conf["exec_dir"] = os.path.normpath(conf["exec_dir"])
+        if conf["exec_dir"] == "":
+            conf["exec_dir"] = os.path.dirname(os.path.realpath(__file__))
+        elif not os.path.isabs(conf["exec_dir"]):
+            conf["exec_dir"] = os.path.join(os.path.dirname(os.path.realpath(__file__)), conf["exec_dir"])
+
         process_names.add(name)
 
     for state, procs in configs["states"].items():
@@ -157,7 +163,7 @@ def main(args):
     configs = read_config(args["configpath"])
     configs_list = list(configs["states"].keys())
     ############################# choose task ############################
-    
+
     print("Choose task:")
     for i, state in enumerate(configs_list):
         print("%d. %s" % (i + 1, state))
@@ -226,7 +232,8 @@ if __name__ == "__main__":
     parser.add_argument("-f",
                         "--fileconfig",
                         dest="configpath",
-                        default=autoPathKeyWord(),
+                        # default=autoPathKeyWord(),
+                        default="socketconfig.yaml",
                         help="path to configurations .yaml file",
                         metavar="FILEPATH")
     args = vars(parser.parse_args())

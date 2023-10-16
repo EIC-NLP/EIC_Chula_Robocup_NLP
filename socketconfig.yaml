@@ -5,61 +5,61 @@ conda-exec: "conda"
 processes:
   wakeword_porcupine:
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/"
+    exec_dir: ""
     exec_cmd: "python3 wakeword_porcupine.py"
 
   asr_whisper:
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/"
+    exec_dir: ""
     exec_cmd: "python3 stt_whisper.py"
   asr_azure:  # haven't been maintained
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/"
+    exec_dir: ""
     exec_cmd: "python3 stt_azure.py"
 
   asr_whsiper_cpu:
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/"
+    exec_dir: ""
     exec_cmd: 'export CUDA_VISABLE_DEVICE=""'
 
   rasa1:
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/rasa"
+    exec_dir: "rasa"
     exec_cmd: "rasa run --enable-api"
   rasa2:
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/rasa"
+    exec_dir: "rasa"
     exec_cmd: "rasa run actions"
 
   tts_azure:
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/"
+    exec_dir: ""
     exec_cmd: "python3 tts_azure.py"
 
   tts_mimic_bridge:
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/"
+    exec_dir: ""
     exec_cmd: "python3 tts_mimic_bridge.py"
 
   tts_mimic_server:
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/"
+    exec_dir: ""
     exec_cmd: "mimic3-server --preload-voice en_US/vctk_low"
 
   llm_chatgpt:
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/"
-    exec_cmd: "python3 llm_chatgpt.py"
+    exec_dir: ""
+    exec_cmd: "python3 llm_chatgpt.py "
   llm_llama:
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/"
+    exec_dir: ""
     exec_cmd: "python3 llm_llama.py"
 
   respeaker:
     conda_env: "nlp"
-    exec_dir: "/Users/game/Documents/GitHub/Robocup-2023-NLP/"
+    exec_dir: ""
     exec_cmd: "python respeaker/PixelRingLight.py"
-    
+
 
 #* order from longest to setup to least
 states:
@@ -70,6 +70,11 @@ states:
     - tts_mimic_bridge
     - tts_mimic_server
     - wakeword_porcupine
+
+  nlptts:
+    - tts_mimic_bridge
+    - tts_mimic_server
+
 
   nlprasa:
     - rasa1
