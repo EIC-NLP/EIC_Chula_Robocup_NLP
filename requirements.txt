@@ -1,53 +1,52 @@
 
 # Unsure
-#scipy
-#actions
-#wheel
-#sanic
-#tqdm
-#more-itertools
-#requests==2.25.1
-#transformers>=4.19.0
-#click
-#openai
-#pydub
-#torch
-#cchardet
-#flask
-#noisereduce
-#pykwalify<=1.6.0
-#ffmpeg-python==0.2.0
+# scipy
+# # actions
+# wheel
+# sanic
+# tqdm
+# more-itertools
+# # click
+# pydub
+# torch
+# flask
+# noisereduce
+# transformers==4.21.0
+# ffmpeg-python==0.2.0
 # pyttsx3==2.90
-#SoundFile
 
+# Verified
+simpleaudio==1.0.4
+pykwalify==1.7.0 # for rasa
+requests==2.26.0 # for speech recog
 
 #>>>>>>>>>>>>CORE>>>>>>>>>>>>
 # Most important, change will cause build error due to deprecation
 PyYAML==5.3.1
-packaging==20.0
+packaging==20.9
 setuptools==58.2.0
 openai
 
 ## General
 flask==2.3.2
-chardet==5.1.0
+chardet==3.0.2
 cchardet==2.1.7
 ## For the setupapp
 prettytable==3.8.0
 
 ## stt requirements
-simpleaudio==1.0.4
 noisereduce==2.0.1
 pydub==0.25.1
 SpeechRecognition==3.10
-pyaudio==0.2.13
 # troublemaker
+# pyaudio==0.2.13
 numba==0.57.1
 numpy==1.23.5
 
 ## Text-To-Speech requirements
 azure-cognitiveservices-speech==1.30.0 #tts online
-mycroft-mimic3-tts[all]
+# mycroft-mimic3-tts[all]
+mycroft-mimic3-tts
 
 ## Rasa stuff
 rasa==3.6.2
@@ -60,7 +59,7 @@ pvrecorder==1.2.0
 
 ## Lots of problems
 git+https://github.com/openai/whisper.git
-ratfin @ git+https://github.com/GameTL/ratfingers@pytoml
+# ratfin @ git+https://github.com/GameTL/ratfingers@pytoml
 
 #<<<<<<<<<<<<CORE<<<<<<<<<<<<
 

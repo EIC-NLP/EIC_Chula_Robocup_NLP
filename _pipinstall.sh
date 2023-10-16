@@ -22,9 +22,12 @@ else
 fi
 
 # install pyaudio, pip fails
-conda install -c anaconda pyaudio
-pip install pipwin
-pipwin install pyaudio
+# conda install -c anaconda pyaudio
+# pip install pipwin
+# pipwin install pyaudio
+
+conda install pyaudio
+pip install git+https://github.com/GameTL/ratfingers.git --use-pep517
 # pip install all the requirements
 pip install -r requirements.txt
 

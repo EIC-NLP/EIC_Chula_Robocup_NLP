@@ -28,22 +28,22 @@ class SttServer:
                  pause=1,
                  rasa_nlu: bool = True,
                  always_listen: bool = False):
-        
+
         printclr(f"STT...init whisper {model}", "magenta")
         import whisper  # this takes the longest to import
 
-        # Init Flask 
+        # Init Flask
         self.app = Flask("stt_stt_flask")
         self.app.add_url_rule("/", "listen", self.listen, methods=["POST"])
         self.app.add_url_rule("/live_listen", "live_listen", self.live_listen, methods=["POST"])
 
 
-        # General variable 
+        # General variable
         self.body = None
         self.always_listen = always_listen
 
         self.model = model
-        
+
         # stt Variables
         self.energy = energy
         self.pause = pause
@@ -54,23 +54,23 @@ class SttServer:
         self.voice_path = os.path.join("stt/temp", "temp.wav")
 
         # check from config.py
-        if default_mic: 
+        if default_mic:
             self.mic_index = None
             self.mic_name = "Default Microphone"
         else:
             self.mic_index = stt_mic_index
             self.mic_name = stt_mic_name
 
-        
+
         # if always_listen:
         #     stt_url = always_stt_url
 
         # Load stt model
         self.audio_model = whisper.load_model(
-            name = self.model, 
+            name = self.model,
             download_root="stt/model"
             )
-        
+
         # Load stt Microphone
         self.r = sr.Recognizer()
         self.r.pause_threshold = pause
@@ -123,7 +123,7 @@ class SttServer:
 
     def get_intent(self, text) -> str(dict()):
         """ Return a json in type string
-        >>> repr(get_intent()) 
+        >>> repr(get_intent())
         '{"intent": "restaurant_order", "confidence": 0.9987571239471436, "text": "Can I have a cook or cola please?", "object": "cola"}'
         """
 
@@ -132,7 +132,7 @@ class SttServer:
                               "sender": "bot",
                               "message": text
                           })
-        if r.json() == []: 
+        if r.json() == []:
             printclr("Rasa return []","red")
             return '{"intent": "", "confidence": 0.0, "text": "Rasa Error"}'
         else:
@@ -165,7 +165,7 @@ class SttServer:
             result = self.audio_model.transcribe(self.voice_path, language='english')
 
         response = Response(text=result["text"])
-        
+
         path_friendly = response.text.replace(" ", "_")
 
         if noise_reduction:
@@ -204,7 +204,7 @@ class SttServer:
                     # payload = str({"text": stt_text})
                     # Return the JSON payload for 2 unfolding
                     obj = jsonify({"body": payload})
-                
+
                 print(f"stt Returning: {obj}")
                 return obj
 
@@ -212,7 +212,7 @@ class SttServer:
                 return jsonify({"error": "Invalid or missing 'intent' in JSON payload"}), 400
         except Exception as e:
             return jsonify({"body": ""})
-        
+
     def live_listen(self, trigger=None, noise_reduction=False, timeout=2):
         printclr("listening...", "blue")
 
@@ -273,13 +273,13 @@ class SttServer:
 
         response = Response(text=result["text"])
         printclr(f"Final transcription: {response.text}", "blue")
-        
+
         return response.text
 
 
 
 if __name__ == "__main__":
-    stt = sttServer(
+    stt = SttServer(
         rasa_nlu=True,
         model= stt_model
     )

@@ -6,6 +6,8 @@ conda activate nlp
 # update pip to the latest version
 pip install --upgrade pip
 
+
+
 # pip install everything and setup python
 source _pipinstall.sh
 

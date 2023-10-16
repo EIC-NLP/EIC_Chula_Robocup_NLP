@@ -8,16 +8,16 @@ processes:
     exec_dir: ""
     exec_cmd: "python3 wakeword_porcupine.py"
 
-  asr_whisper:
+  stt_whisper:
     conda_env: "nlp"
     exec_dir: ""
     exec_cmd: "python3 stt_whisper.py"
-  asr_azure:  # haven't been maintained
+  stt_azure:  # haven't been maintained
     conda_env: "nlp"
     exec_dir: ""
     exec_cmd: "python3 stt_azure.py"
 
-  asr_whsiper_cpu:
+  stt_whsiper_cpu:
     conda_env: "nlp"
     exec_dir: ""
     exec_cmd: 'export CUDA_VISABLE_DEVICE=""'
@@ -66,7 +66,7 @@ states:
   nlpall[offline]:
     - rasa1
     - rasa2
-    - asr_whisper
+    - stt_whisper
     - tts_mimic_bridge
     - tts_mimic_server
     - wakeword_porcupine
