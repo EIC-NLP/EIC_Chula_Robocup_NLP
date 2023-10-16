@@ -4,8 +4,8 @@ verbose = True
 default_mic = True # on or off
 
 #! CHAGE HERE FOR DISABLING THE CALIBRATION
-# calibration = True
-calibration = False
+calibration = True
+# calibration = False
 energy_threshold =  711
 calibration_coefficient =  1.5
 
