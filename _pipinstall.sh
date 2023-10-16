@@ -21,14 +21,14 @@ else
     echo "Unsupported operating system"
 fi
 
+# install pyaudio, pip fails
+conda install -c anaconda pyaudio
+pip install pipwin
+pipwin install pyaudio
 # pip install all the requirements
 pip install -r requirements.txt
 
 
-# install pyaudio, pip fails
-# conda install -c anaconda pyaudio
-# pip install pipwin
-# pipwin install pyaudio
 
 # install the client package for nlp
 cd src_client_pkg
