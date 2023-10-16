@@ -45,6 +45,7 @@ source init.sh
 
 NOTE: everything is in the requirements.txt file. and is run by pipinstall.sh file. If you need to use another verison of CUDA change the version in the pipinstall.sh file.
 
+If there's a problem with pyaudio use `conda install pyaudio` also in the requirements.txt file
 
 After running the script, everything should be installed and ready to run.
         If this works then skip to step 5. & if you are running offline then skip to Runnning.
