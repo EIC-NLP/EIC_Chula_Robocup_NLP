@@ -18,7 +18,7 @@ import simpleaudio as sa
 import time
 from src_client_pkg.nlp_client.response import Response
 
-
+print("half finished feature for stt")
 class SttServer:
     def __init__(self,
                  deploymode=False,
