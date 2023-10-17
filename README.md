@@ -38,7 +38,7 @@ Check if nlp is installed with ```conda activate nlp```
 
 
 ### 2. Install Dependencies
-To install everything run
+To install everything run (Only works on Ubuntu & Mac)
 ```shell
 source init.sh
 ```
