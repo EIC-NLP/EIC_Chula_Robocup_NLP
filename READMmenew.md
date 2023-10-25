@@ -3,9 +3,9 @@
 <a name="readme-top"></a>
 
 <!-- PROJECT LOGO -->
-<!-- <br />
+<br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://eicrobocup.com">
     <img src="misc/EIC-France-Robocup2023.jpeg" alt="Logo" width="600" height="600">
   </a>
 
@@ -15,7 +15,7 @@
     A network of NLP services for Robocup2025
 
   </p>
-</div> -->
+</div>
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -160,9 +160,11 @@ If the above scripts do not work, please install manually.
 2. Install pytorch for the GPU accerlation:
 
     - For MacOS, use the following command:
+
     ```sh
     conda install pytorch-nightly::pytorch torchvision torchaudio -c pytorch-nightly
     ```
+
     - For Ubuntu go to [Pytorch Run Locally](https://pytorch.org/get-started/locally/)
     select:
         - Stable
@@ -173,21 +175,60 @@ If the above scripts do not work, please install manually.
             - Then install the selected version of CUDA here [![CUDA][CUDA.io]][CUDA-url]
 
 
+## Architechture
+
+This NLP system is built on a client-server architecture. The client is a python package `src_client_pkg`. the client is a installable library. The server can be run independently.
+
+Each service has a unique port number. however each service server has the same port to make switch from one service to another easier.
+For example, Azure and Mimic has the same port number. To switch from Azure to Mimic, simply start one server over another.
+**This it to avoid having to change the client code.**
+
+More information at `config.py`
+
+<br />
+<div align="center">
+  <a href="misc/NLPv1Arch.png">
+    <img src="misc/NLPv1Arch.png" alt="Logo" width="800" height="500">
+  </a>
+</div>
+
+
+
 <!-- USAGE EXAMPLES -->
 
 ## Usage
 
-### Run All Services
+
+
+`main.py` runs the available services indexed at `socketconfig.yaml`. when running `main.py`, the user will be prompted to select which service to run.
+
+Any of the services' server in the root directory can be run independently with `python <service_name>.py`.
+
+### Running services
+
+main.py can run any combination of services. To run all services, run the following command and select option 1.
+
+
 
 ```shell
 # Run all services
 conda activate nlp
 python main.py
------------------
-# Select all 
+
+
+------ OUTPUT ------
+Choose task:
+1. nlpall[offline]
+2. nlpstt
+3. nlptts
+4. nlprasa
+5. nlpwakeword
+task:
+
 ```
 
-### STT - Whisper 
+### Running client libraries in python
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
