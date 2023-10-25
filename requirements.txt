@@ -56,6 +56,7 @@ SQLAlchemy==1.4.49
 ## Porcupine Wakeword requirements
 pvporcupine==2.2.1
 pvrecorder==1.2.0
+dotenv==1.0.0
 
 ## Lots of problems
 git+https://github.com/openai/whisper.git

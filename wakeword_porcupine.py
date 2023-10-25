@@ -1,14 +1,20 @@
 import pvporcupine
 from pvrecorder import PvRecorder
-from config import mic_index_ww, stt_url, wakeword_url, default_mic, wakeword_key
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+
+from config import mic_index_ww, stt_url, wakeword_url, default_mic
 from flask import Flask,request
 from ratfin import *
 import platform
 
-# for keyword in pvporcupine.KEYWORDS:
-#     print(keyword)
+porcupine_key = os.getenv('PORCUPINE_KEY')
 
-# keywords = ['jarvis']
+print(f'Your API key is: {porcupine_key}')
+
 if platform.system() == "Darwin":
     platform_ = "MacOS"
     hey_walkie_path = ["wakeword/resources/keyword_files/mac/Hey-Walkie_en_mac_v2_2_0.ppn"]
@@ -21,7 +27,7 @@ else:
 
 def listen_for_hey_walkie():
     try:
-        porcupine = pvporcupine.create(access_key=wakeword_key, keyword_paths=hey_walkie_path)
+        porcupine = pvporcupine.create(access_key=porcupine_key, keyword_paths=hey_walkie_path)
         recorder = PvRecorder(device_index=-1, frame_length=porcupine.frame_length)
         printclr("Listening...", "blue")
         recorder.start()
@@ -57,7 +63,7 @@ def listen_for_hey_walkie():
 
 def listen_for_walkie_freeze():
     try:
-        porcupine = pvporcupine.create(access_key=wakeword_key, keyword_paths=walkie_freeze_path)
+        porcupine = pvporcupine.create(access_key=porcupine_key, keyword_paths=walkie_freeze_path)
         recorder = PvRecorder(device_index=-1, frame_length=porcupine.frame_length)
         printclr("Listening...", "blue")
         recorder.start()

@@ -9,6 +9,7 @@ client/nlp_client.egg-info
 *.wav
 .env
 .DS_Store
+.env
 stt/temp.wav
 rasa/.rasa
 __pycache__

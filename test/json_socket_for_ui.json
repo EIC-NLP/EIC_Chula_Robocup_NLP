@@ -1,0 +1,40 @@
+{
+    "page": "llm",
+    "command": "user-append",
+    "content": "How's the weather?"
+}
+{
+    "page": "llm",
+    "command": "bot-append",
+    "content": "It's fucking hot today"
+}
+{
+    "page": "llm",
+    "command": "clear",
+    "content": ""
+}
+{
+    "page": "transcription",
+    "command": "show",
+    "content": "How's the weather?"
+}
+{
+    "page": "transcription",
+    "command": "show-stream",
+    "content": "How's"
+}
+{
+    "page": "transcription",
+    "command": "show-stream",
+    "content": "the"
+}
+{
+    "page": "transcription",
+    "command": "show-stream",
+    "content": "Weather?"
+}
+{
+    "page": "idle",
+    "command": "show-sponsor",
+    "content": "Thai-Airways"
+}

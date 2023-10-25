@@ -39,10 +39,12 @@ Check if nlp is installed with ```conda activate nlp```
 
 ### 2. Install Dependencies
 To install everything run (Only works on Ubuntu & Mac)
+
+ON MAC: install this first `brew install portaudio`
+
 ```shell
 source init.sh
 ```
-
 NOTE: everything is in the requirements.txt file. and is run by pipinstall.sh file. If you need to use another verison of CUDA change the version in the pipinstall.sh file.
 
 If there's a problem with pyaudio use `conda install pyaudio` also in the requirements.txt file

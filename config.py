@@ -5,8 +5,8 @@ default_mic = True # on or off
 
 #! CHAGE HERE FOR DISABLING THE CALIBRATION
 calibration = True
-# calibration = False
-energy_threshold =  711
+# calibration = Falsew
+energy_threshold =  746 # for quiet room for Game's Mac (Mic at 90%)
 calibration_coefficient =  1.5
 
 # LocalHost Servers
@@ -19,24 +19,21 @@ rasa_parse_url =  "http://localhost:5005/model/parse"
 rasa_actions_url =  "http://localhost:5055"
 
 #* stt
-stt_model = "medium.en"
+stt_model = "base.en"
 stt_mic_index= 4
 stt_mic_name='USB Audio Device'
 stt_energy_calibration =  True #
 noise_reduction = True
 
 #* Wakeword
-wakeword_key = "A60C/RHA8NoFcfih1VnnW+MR736qtLekdo/2DrKSTx3dQnd4kmZBlw=="
 mic_index_ww =  0
 mic_name_ww = "Built-in Microphone"
 
 #* TTS
-azure_key = "fd196d9bb49147e2bde3874c1447512e"
 
 
 #* RASA NLU
 
-gpt_key = ""
 
 """
 stt Notes

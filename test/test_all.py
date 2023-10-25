@@ -1,9 +1,9 @@
-from nlp_client import * 
+from nlp_client import *
 from ratfin import printclr
 
 # printclr("testing normal stt with intent","yellow")
-# x = listen(intent=True, log=True)
-# printclr(x.text,'blue')
+x = listen(intent=True, log=True)
+printclr(x.text,'blue')
 
 # printclr("testing normal stt without intent","yellow")
 x = listen(intent=False, log=True)

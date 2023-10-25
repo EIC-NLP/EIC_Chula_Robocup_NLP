@@ -3,7 +3,12 @@ from nlp_client import listen
 
 while True:
     input("enter to continue, stt")
-    x = listen(intent=False, log=False)
+    print("Speak now")
+    x = listen(intent=True, log=False)
     print(f"{x}")
+    # write to a file
+    with open("test.txt", "a") as f:
+        f.write(f"{x.text}\n")
+
     # speak(x.text, online=False)
     # speak(x["body"])

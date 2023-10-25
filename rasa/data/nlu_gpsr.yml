@@ -10,7 +10,7 @@ nlu: # composite intents
     examples: |
      - [go](vb_gor) to the [kitchen]{"entity": "room", "role": "from"}, [grasp](vb_take) the [milk](object) and [go](vb_gor) to the [living room]{"entity": "room", "role": "to"}
      - [get](vb_take) the [milk](object) in the [kitchen]{"entity": "room", "role": "from"} and [go](vb_gor) to the [living room]{"entity": "room", "role": "to"}
-  
+
   - intent: move_to+grasp_object+place_object
     examples: |
      - [go](vb_gor) to the [kitchen]{"entity": "room", "role": "from"}, [grasp](vb_take) the [milk](object) and [place](vb_place) it in the [living room]{"entity": "room", "role": "to"}
@@ -51,7 +51,7 @@ nlu: # composite intents
      - Robot please go to the [dining table]{"entity": "furniture", "role": "from"}, meet [Michael](people), and take him to the [entrance]{"entity": "room", "role": "to"}
      - can you [find](vb_find) [Simone](people) from the [kitchen]{"entity": "room", "role": "from"} and [escort](vb_escort) her [back](room_come_back)?
      - go to the [study]{"entity": "room", "role": "from"} and [bring](vb_escort) [Axel](people) [back](room_come_back) here
-     
+
   - intent: move_to+what_is_their_name
     examples: |
      - Go to the [bedroom]{"entity": "room", "role": "from"} and ask the man for his name.
@@ -68,7 +68,7 @@ nlu: # composite intents
     examples: |
      - Say your team's country to the person
      - Say your team's country to the person in front of you
-     - Sing your national Anthem 
+     - Sing your national Anthem
 
   - intent: tell_time
     examples: |
