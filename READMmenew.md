@@ -81,10 +81,9 @@ Of course, no one template will serve all projects since your needs may be diffe
 - ✅ Trancription as accurate as humans
 - ✅ Multi-Intent Extraction
 - [ ] Streaming Live-Transcription
-- [ ] Add "components" document to easily copy & paste sections of the readme
 - [ ] Multi-language Support
-  - [ ] Chinese
-  - [ ] Spanish
+  - ✅ English
+  - [ ] Thai
 
 ### Requirements
 
@@ -178,21 +177,21 @@ If the above scripts do not work, please install manually.
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+### Run All Services
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+```shell
+# Run all services
+conda activate nlp
+python main.py
+-----------------
+# Select all 
+```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ROADMAP -->
-
-## Roadmap
-
-
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+### STT - Whisper 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
 <!-- CONTRIBUTING -->
 

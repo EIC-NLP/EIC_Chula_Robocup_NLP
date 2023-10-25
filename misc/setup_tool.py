@@ -1,3 +1,5 @@
+# Depreciated
+
 # init import
 import os
 os.system("clear")
@@ -11,7 +13,7 @@ import time
 
 def interface(text):
     basicUI = PrettyTable()
-    basicUI.field_names = [text] 
+    basicUI.field_names = [text]
     print(basicUI)
 
 
@@ -36,7 +38,7 @@ def config_mic():
 
     os.environ["mic_index"] = device_index
     os.environ["mic_name"] = io_list[int(device_index)]
-    
+
     dotenv.set_key(dotenv_file, "mic_index", device_index)
     dotenv.set_key(dotenv_file, "mic_name", io_list[int(device_index)])
     clearterm()
@@ -45,7 +47,7 @@ def config_mic():
     printclr(f"\tmic_index={repr(x1)}","green")
     printclr(f"\tmic_name={repr(x2)}","green")
     printclr(f"\n\nnlp_config.json updated\n","green")
-    
+
     # clearterm()
     # from wakeword.wakeword_porcupine import PorcupineDemo
     # interface("Config WakeWord Mic")
@@ -66,7 +68,7 @@ def config_mic():
     #     with open('nlp_config.json', 'r') as f:
     #         # Reading from json file
     #         json_object = json.load(f)
-            
+
     #     with open('nlp_config.json', 'w') as f:
     #         # print({"mic_device": [device_index,io_list[device_index]]})
     #         json_object.update({
@@ -80,7 +82,7 @@ def config_mic():
     # except:
     #     print("Error during reading nlp_config.json, using default mic")
     #     print("\n\n\ttry to create a new file nlp_config.json with the following content:\n\t{   }\n")
-    
+
 
 def get_range_energy():
     ambient_energy = int(0)
@@ -90,9 +92,9 @@ def get_range_energy():
     mic_name = os.getenv("mic_name")
     printclr(f"\tmic_index={repr(mic_index)}","green")
     printclr(f"\tmic_name={repr(mic_name)}","green")
-    
-    import speech_recognition as sr 
-    r = sr.Recognizer() # load the app  
+
+    import speech_recognition as sr
+    r = sr.Recognizer() # load the app
     speak("Please be quiet")
     time.sleep(1.5)
     with sr.Microphone(sample_rate=16000, device_index=mic_index) as source:
@@ -100,7 +102,7 @@ def get_range_energy():
         printclr("Please wait. Calibrating microphone...", "magenta")
         r.adjust_for_ambient_noise(source, duration=3)
         printclr(f"\tAmbient: {r.energy_threshold=}\n","magenta")
-    r = sr.Recognizer() # load the app  
+    r = sr.Recognizer() # load the app
     speak("say something.")
     time.sleep(1.5)
     with sr.Microphone(sample_rate=16000, device_index=mic_index) as source:
@@ -129,7 +131,7 @@ def get_socket_name():
     print(f"\n Above is the name that your socketconfig file must use to ensure no error for path in different computer")
 
 def main():
-    clearterm() 
+    clearterm()
     functions = [config_mic, get_socket_name, get_range_energy]
     print("Setup tool for EIC NLP")
     print("1. config mic")
