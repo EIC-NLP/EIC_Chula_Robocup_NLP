@@ -1,177 +1,302 @@
-# Robocup-2023-NLP
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 
-## Table of Contents
+<a name="readme-top"></a>
 
-## Table of Contents
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://eicrobocup.com">
+    <img src="misc/EIC-France-Robocup2023.jpeg" alt="Logo" width="600" height="600">
+  </a>
 
-- [Robocup-2023-NLP](#robocup-2023-nlp)
-  - [Table of Contents](#table-of-contents)
-  - [Requires](#requires)
-  - 🚀 [How-To Setup](#how-to-setup)
-  - [Checking if everything is installed correctly](#checking-if-everything-is-installed-correctly)
-  - [Running](#running)
-  - [Reference](#reference)
-  - [Rasa NLU/NLG README](https://github.com/EIC-NLP/Robocup-2023-NLP/tree/main/rasa)
-  - [Automatic Speech Recognition README](https://github.com/EIC-NLP/Robocup-2023-NLP/tree/main/stt)
-  - [WakeWord README](https://github.com/EIC-NLP/Robocup-2023-NLP/tree/main/wakeword)
-  - [Text-to-Speech README](https://github.com/EIC-NLP/Robocup-2023-NLP/tree/main/tts)
+  <h3 align="center">Robocup2025-NLP</h3>
 
-## Requires
+  <p align="center">
+    A network of NLP services for Robocup2025
 
-- python 3.9.16 in conda named "nlp"
-- CUDA 12.1 (if on Ubuntu, if mac not needed)
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+[![The MIT License](https://flat.badgen.net/badge/license/MIT/orange)](http://opensource.org/licenses/MIT)
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+More information about the project are on our website [EIC Chula Robocup](https://eicrobocup.com/)
+
+There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+
+Here's why:
+
+- Your time should be focused on creating something amazing. A project that solves a problem and helps others
+- You shouldn't be doing the same tasks over and over like creating a README from scratch
+- You should implement DRY principles to the rest of your life :smile:
+
+Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Features
+
+| Service                | Name                    | Offline |Status   |     | Legend |           |
+| :------------          | :------------           | :-----: |:-----:  | --- | -----: | :-------  |
+| Intent Classification  | Rasa Open Source        | ✅      | 🟩      |     | 🟩     | Working   |
+| Large-Language-Model   | OpenAI ChatGPT3.5/4     | ❌      | 🟩      |     | 🟨     | Developing|
+| Large-Language-Model   | Meta Llama              | ✅      | 🟨      |     | 🟥     | Broken    |
+| ROS Server             | Custom Package          | ✅      | 🟨      |
+| Speech-to-Text         | OpenAI Whisper          | ✅      | 🟩      |
+| Text-to-Speech         | IBM Mimic               | ✅      | 🟥      |
+| Text-to-Speech         | Azure Cognitive Service | ❌      | 🟩      |
+| Wake Word              | Porquipine              | ✅      | 🟩      |
+
+### Roadmap:
+
+- ✅ Trancription as accurate as humans
+- ✅ Multi-Intent Extraction
+- [ ] Streaming Live-Transcription
+- [ ] Multi-language Support
+  - ✅ English
+  - [ ] Thai
+
+### Requirements
+
+Supported Operating system:
+
+- ✅ ![macos][macos.io]
+- ✅ ![Ubuntu][Ubuntu.io]
+- ❌ ![Windows][Windows.io] <sup>[1](#myfootnote1)</sup>.
+
+Hardware preference:
+
+1. Nvidia GPU with CUDA support
+1. AMD GPU with ROCm support
+1. Macbook with Apple Silicon
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+
+<a name="myfootnote1">1</a>: Libraries conflict with Pydub and PyAudio. Dual-booting is recommended.
+
+## Getting Started
+
+Software installation is required. Please install the following:
+
+- [![VSCode][VSCode.io]][VSCode-url]
+- [![Anaconda][Anaconda.io]][Anaconda-url]
+- [![GHDesktop][GHDesktop.io]][GHDesktop-url]
+- [![HomeBrew][HomeBrew.io]][HomeBrew-url] (for MacOS only)
+
+### Installation & Setup for MacOS
+
+- In VS Code, open a terminal, in the root directory of the project (/Robocup-2024-NLP).
+
+  ```sh
+  source init_macos.sh
+  ```
+
+### Installation & Setup for Ubuntu
+
+- In VS Code, open a terminal, in the root directory of the project (/Robocup-2024-NLP).
+
+  ```sh
+  source init_ubuntu.sh
+  ```
+
+### Installation & Setup Manually
+
+If the above scripts do not work, please install manually.
+
+1. In VS Code, open a terminal, in the root directory of the project (/Robocup-2024-NLP).
+
+  ```sh
+    # Create a new conda environment
+    conda create -n "nlp" python=3.9.16
+
+    # Activate the environment
+    conda activate nlp
+
+    # Update pip
+    pip install --upgrade pip
+
+    # custom library for coloring the terminal and clearing the terminal
+    pip install git+https://github.com/GameTL/ratfingers.git --use-pep517
+
+    # Install all the requirements
+    pip install -r requirements.txt
+
+    # install the client package, which is used to communicate with the server in python files
+    cd src_client_pkg
+    pip install -e .
+  ```
+
+2. Install pytorch for the GPU accerlation:
+
+    - For MacOS, use the following command:
+
+    ```sh
+    conda install pytorch-nightly::pytorch torchvision torchaudio -c pytorch-nightly
+    ```
+
+    - For Ubuntu go to [Pytorch Run Locally](https://pytorch.org/get-started/locally/)
+    select:
+        - Stable
+        - Linux
+        - Conda
+        - Python
+        - CUDA 12.1 {or other CUDA version}
+            - Then install the selected version of CUDA here [![CUDA][CUDA.io]][CUDA-url]
 
 
-## How-To Setup
+## Architechture
 
-### 1. Setup virtual environments with Conda
+This NLP system is built on a client-server architecture. The client is a python package `src_client_pkg`. the client is a installable library. The server can be run independently.
 
-Create anaconda virtual environment. (make sure you are in the root directory)
+Each service has a unique port number. however each service server has the same port to make switch from one service to another easier.
+For example, Azure and Mimic has the same port number. To switch from Azure to Mimic, simply start one server over another.
+**This it to avoid having to change the client code.**
 
-NOTE: if you run into importing problem with VS Code try to use the base version of Anaconda with
-```conda create -n "nlp" python=3.9.16```
+More information at `config.py`
 
-Activate conda
-   if on VS Code, just select the intreperter to 3.9.13 "nlp" conda
+<br />
+<div align="center">
+  <a href="misc/NLPv1Arch.png">
+    <img src="misc/NLPv1Arch.png" alt="Logo" width="800" height="500">
+  </a>
+</div>
 
-Check if nlp is installed with ```conda activate nlp```
 
 
-### 2. Install Dependencies
-To install everything run (Only works on Ubuntu & Mac)
+<!-- USAGE EXAMPLES -->
 
-ON MAC: install this first `brew install portaudio`
+## Usage
+
+
+
+`main.py` runs the available services indexed at `socketconfig.yaml`. when running `main.py`, the user will be prompted to select which service to run.
+
+Any of the services' server in the root directory can be run independently with `python <service_name>.py`.
+
+### Running services
+
+main.py can run any combination of services. To run all services, run the following command and select option 1.
+
+
 
 ```shell
-source init.sh
-```
-NOTE: everything is in the requirements.txt file. and is run by pipinstall.sh file. If you need to use another verison of CUDA change the version in the pipinstall.sh file.
-
-If there's a problem with pyaudio use `conda install pyaudio` also in the requirements.txt file
-
-After running the script, everything should be installed and ready to run.
-        If this works then skip to step 5. & if you are running offline then skip to Runnning.
-
-### 2.1 If you want to install everything manually
-```shell
-pip install -r requirements.txt
-```
-
-### 3. (Optional)Setup NLP parameters
-
-#### 3.1 Setup runtime parameters
-run `setup_tool.py` to setup the parameters for all the files. This will config the mic for stt & Wakeword
+# Run all services
+conda activate nlp
+python main.py
 
 
-### 4. (Optional)Setup-NLP-Client (Optional, ran by init.sh)
-For interfacing with NLP server(by running main), NLP Client is required. This will be install from github or locally from the .
-
-Install Local
-```shell
-# change diretory to client_src
-cd client_src
-# install from local
-pip install -e .
-```
-
-<!-- Install the lastest from Github
-```shell
-pip install git+https://github.com/EIC-NLP/Robocup-2023-NLP/client_src.git
-``` -->
-
-### 5. Configuration for all the keys(Only if running Online)
-All the keys are in the `config.py` file. Make sure to change the keys to your own keys.
-1. AzureKey for TTS, can be acquired from Azure Cognitive Service
-2. AccessKey for Wakeword, get from Porcupine website
-3. ChatGPT(Expensive), only few can use it. Get from OpenAI
-
-
-## Checking if everything is installed correctly
-Run `python main.py` and enter 1 (nlpall) to check if all the libraries installed correctly
-
-when running the socket fle, rasa1 will take the longest time to load. This is normal. It will take about 2 minutes to load.
-when rasa1 is loaded, it will look like the image below.
-
-**If everything is ok, all the server should be running. Else check the error message and debug.**
-
-it should say `rasa1 | 2023-01-20 21:54:50 INFO     root  - Rasa server is up and running.`
-![alt text](misc/runningexample1.png)
-
-
-## Running
-
-1. Run the server with `python main.py` and enter 1 (nlpall)
-2. run the code below
-
-```
-from nlp_client import *
-
-# speak with tts
-speak()
-"""
-Output: {
-    'synthesised': 'hello there'
-    }
-
-# listen with stt
-listen()
-"""
-Output: {
-    'body': ' grasp me a Coke.',
-    'confidence': 0.8590593338012695,
-    'intent': 'restaurant_order',
-    'object': 'Coke',
-    'recipient_id': 'bot'
-    }
-"""
-
-
-# listen with wakeword
-ww_listen()
-"""
-Output: {
-    'body': ' Can I get the check please?',
-    'confidence': 0.9713435173034668,
-    'intent': 'restaurant_checkout',
-    'recipient_id': 'bot'}
-"""
-```
+------ OUTPUT ------
+Choose task:
+1. nlpall[offline]
+2. nlpstt
+3. nlptts
+4. nlprasa
+5. nlpwakeword
+task:
 
 ```
 
-## 2. Error handling
+### Running client libraries in python
 
-Saying `" Hello there, my name is Gabe.",` to rasa will return an error message with a confidence of 0. This is because the intent is not in the training data. This is a good way to test the error handling. :
-it will output the following
 
-```{
-"body": " Hello there, my name is Gabe.",
-"confidence": 0,
-"recipient_id": "bot"
-}
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-```
 
-## Testing
 
-**[Insomnia](https://insomnia.rest/download)** is recommended for testing the POST request. files are in the testing folder. This is the endpoint that will be use in the real deployment.
+<!-- CONTRIBUTING -->
 
-### To test the rasa NLU API without actions
+## Contributing
 
-This will only return the **intent and entities**
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-1. http://localhost:5005/model/parse [POST request]
-2. format: {"text": " hello world"}
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-### To test the rasa NLU API with actions
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This will only return the **intent & execute actions (if any)**
-Use this to test the actions,
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-1. http://localhost:5005/webhooks/rest/webhook [POST request]
-2. format: `{"sender": "human", "message": "hello world"}`
-3. should return `[{"recipient_id": "human","text": "Hello World!"}]` & execute the action
+<!-- CONTACT -->
 
-# Reference
+## Contact
 
-- [Rasa docs](https://rasa.com/docs/)
+First Author: Tinapat (Game) Limsila - [LinkedIn](https://www.linkedin.com/in/gametl/) - [@gametl02](https://www.instagram.com/gametl02/) - limsila.limsila@gmail.com
+
+Second Author: Suppakit (Jom) Laomahamek - [LinkedIn](https://www.linkedin.com/in/suppakit-laomahamek/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+
+## Acknowledgments
+
+Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+
+- [Choose an Open Source License](https://choosealicense.com)
+- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+- [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
+- [Malven's Grid Cheatsheet](https://grid.malven.co/)
+- [Img Shields](https://shields.io)
+- [GitHub Pages](https://pages.github.com)
+- [Font Awesome](https://fontawesome.com)
+- [React Icons](https://react-icons.github.io/react-icons/search)
+- [Best-README-Template](https://github.com/othneildrew/Best-README-Template/blob/master/README.md?plain=1)
+- [Shield.io-Index](https://ileriayo.github.io/markdown-badges/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[linkedin-url]: https://www.linkedin.com/in/gametl/
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
+[VSCode.io]: https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white
+[VSCode-url]: https://code.visualstudio.com/download
+[HomeBrew.io]: https://img.shields.io/badge/homebrew-%23FBB040.svg?&style=for-the-badge&logo=homebrew&logoColor=black
+[HomeBrew-url]: https://brew.sh/
+[CUDA.io]: https://img.shields.io/badge/CUDA-%2376B900.svg?style=for-the-badge&logo=nVIDIA&logoColor=white
+[CUDA-url]: https://developer.nvidia.com/cuda-toolkit-archive
+[GHDesktop.io]: https://img.shields.io/badge/github%20desktop-%23121011.svg?style=for-the-badge&logo=github&logoColor=purple
+[GHDesktop-url]: https://desktop.github.com/
+[Anaconda.io]: https://img.shields.io/badge/Anaconda-%2344A833.svg?style=for-the-badge&logo=anaconda&logoColor=white
+[Anaconda-url]: https://docs.conda.io/projects/miniconda/en/latest/miniconda-other-installer-links.html
+[macOS.io]: https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0
+[Ubuntu.io]: https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white
+[Windows.io]: https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white
