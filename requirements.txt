@@ -19,13 +19,9 @@
 simpleaudio==1.0.4
 pykwalify==1.7.0 # for rasa
 requests==2.26.0 # for speech recog
+ruamel.yaml==0.17.28
 
 #>>>>>>>>>>>>CORE>>>>>>>>>>>>
-# Most important, change will cause build error due to deprecation
-PyYAML==5.3.1
-packaging==20.9
-setuptools==58.2.0
-openai
 
 ## General
 flask==2.3.2
@@ -49,14 +45,21 @@ azure-cognitiveservices-speech==1.30.0 #tts online
 mycroft-mimic3-tts
 
 ## Rasa stuff
-rasa==3.6.2
+rasa==3.6.13
 fbmessenger==6.0.0
 SQLAlchemy==1.4.49
 
 ## Porcupine Wakeword requirements
 pvporcupine==2.2.1
-pvrecorder==1.2.0
-dotenv==1.0.0
+# pvrecorder==1.2.0
+# dotenv
+
+# Most important, change will cause build error due to deprecation
+PyYAML==5.3.1
+packaging==21.0
+setuptools==58.2.0
+openai
+Werkzeug==2.2.2 # Overwrite the mimic default
 
 ## Lots of problems
 git+https://github.com/openai/whisper.git

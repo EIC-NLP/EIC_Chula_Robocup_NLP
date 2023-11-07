@@ -12,8 +12,7 @@ calibration_coefficient =  1.5
 # LocalHost Servers
 wakeword_url =  "http://localhost:5100/"
 stt_url =  "http://localhost:5101/"
-# tts_url =  "http://localhost:5003/tts" # Azure
-tts_url =  'http://localhost:59125/api/tts' # mimic
+tts_url =  "http://localhost:5003/tts"
 rasa_url =  "http://localhost:5005/webhooks/rest/webhook"
 rasa_parse_url =  "http://localhost:5005/model/parse"
 rasa_actions_url =  "http://localhost:5055"

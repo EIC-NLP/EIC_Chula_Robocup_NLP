@@ -16,7 +16,7 @@ def home():
     return "home"
 
 @app.route("/tts", methods=["POST","GET"])
-def speaklocalapi(text):
+def speaklocalapi():
     try:
       ssml = '''<speak>
       <voice name="en_US/vctk_low#p260">
@@ -28,6 +28,8 @@ def speaklocalapi(text):
       </voice>
     </speak>'''
       headers = {'Content-Type': 'application/ssml+xml'}
+      request_data = request.get_json()
+      text = request_data['text']
       ssml = ssml.replace("TEXTTOBEREPLACED", text)
       # print(ssml)
       response = requests.post(url='http://localhost:59125/api/tts',
@@ -41,10 +43,10 @@ def speaklocalapi(text):
       play_obj = wave_obj.play()
       play_obj.wait_done()
 
-      printclr('synthesized": f"{text}', "blue")
+      printclr(f'synthesized: {text}', "blue")
 
       return {"synthesized": f"{text}"}
-    
+
     except Exception as e:
         printclr(e, "red")
 

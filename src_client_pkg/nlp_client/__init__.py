@@ -1,7 +1,7 @@
 
 
 __version__ = '1.14.0'
-""" 
+"""
 Date: 28 Jan 2023
 """
 import requests
@@ -9,22 +9,22 @@ from ratfin import *
 import json
 import ast
 import simpleaudio as sa
-from config import tts_url, gpt_key
+import sys
 
 # for ChatGPT online Function
-import openai 
+import openai
 
-## In house variable 
+## In house variable
 
 import json
 # from response import Response
 class Response:
-    """Response for the NLP-pipeline. 
+    """Response for the NLP-pipeline.
     Possible Entities: [object, furniture, storage, adj_object, people, people_action, place_object, position, demonstrative, rpos, door_action, room]
-    
+
     Text from stt
     Intent from NLU Rasa
-    
+
     Example of how to use Response for NLP Robocup ::
 
         >>> x = Response()
@@ -37,8 +37,8 @@ class Response:
             people=''
         )
         >>> x.join_json("{
-            \"intent\": \"restaurant_order\", 
-            \"object\": \"coca-cola\", 
+            \"intent\": \"restaurant_order\",
+            \"object\": \"coca-cola\",
             \"people\": \"me\",
             \"place\": \"your mum\"
             }")
@@ -111,78 +111,43 @@ class Response:
         return f'''Response(\n\t{output}\n)'''
 
 def speak(text: str = "Hi my name is Walkie",
-          voice: str = "en-US-JaneNeural",
-          style: str = "normal",
-          profanity: str = "2",
           log: bool = False) -> None:
     """Speak text using TTS server. Use sync = False to return immediately."""
 
     # try:
     if log:
         printclr("synthesizing...","blue")
-    
-    #* Requesting TTS server 
-    if False:
-        x = requests.post(tts_url,
-                        json={
-                            'text': text,
-                            'voice': voice,
-                            'style': style,
-                            'profanity': profanity
-                        })
-        print(x.json())
-        return x.json()
-    else:
-        ssml = '''<speak>
-<voice name="en_US/vctk_low#p260">
-<prosody rate='0.7'>
-    <s>
-    TEXTTOBEREPLACED
-    </s>
-</prosody>
-</voice>
-</speak>'''
-        headers = {'Content-Type': 'application/ssml+xml'}
-        ssml = ssml.replace("TEXTTOBEREPLACED", text)
-        # print(ssml)
-        response = requests.post(url='http://localhost:59125/api/tts',
-                            headers=headers,
-                            data=ssml)
-        with open('output.wav', 'wb') as f:
-            f.write(response.content)
 
-        #play the audio file
-
-        wave_obj = sa.WaveObject.from_wave_file('output.wav')
-        play_obj = wave_obj.play()
-        play_obj.wait_done()
-    return
-    # except Exception as e:
-    #     # printclr(e, "red")
-    #     return
+    #* Requesting TTS server
+    x = requests.post("http://localhost:5003/tts",
+                    json={
+                        'text': text,
+                    })
+    print(x.json())
+    return x.json()
 
 def ww_listen(text : str = "hey_walkie", log : bool = False) :
-    """ 
+    """
     -Options-
     >>> ww_listen() # listens for "Hey Walkie"
 
     >>> ww_listen("hey_walkie") # listens for "Hey Walkie"
-    >>> ww_listen("walkie_freeze") # listens for "Walkie Freeze" 
-    
+    >>> ww_listen("walkie_freeze") # listens for "Walkie Freeze"
+
     """
 
     if not isinstance(text, str):
             raise ValueError("Argument 'text' must be of type string")
-    if log: 
+    if log:
         print(f"posting to - http://localhost:5100/{text}","blue")
 
     response = requests.get(f"http://localhost:5100/{text}")
-    return response.status_code == 200 
+    return response.status_code == 200
 
 
 def listen(intent=True,
            log = False) -> Response:  # go to stt server, By-pass wakeword
-    """ 
+    """
     >>> listen()
     Response(
         text='my favourite drink is Coca-Cola'
@@ -190,7 +155,7 @@ def listen(intent=True,
         confidence=0.89
         object='Coca-Cola'
         people=''
-    )  
+    )
 
     >>> listen(intent=False)
     Response(
@@ -199,8 +164,8 @@ def listen(intent=True,
         confidence=0.0
         object=''
         people=''
-    )  
-    """ 
+    )
+    """
     if intent:
         # Prepare the payload
         payload = {"intent": True}
@@ -210,10 +175,10 @@ def listen(intent=True,
 
 
     # Post request to stt
-    if log: 
+    if log:
         print("listening...")
     response = requests.post("http://localhost:5101/", json=payload)
-    if log: 
+    if log:
         print("computing...")
 
     if intent:
@@ -283,7 +248,7 @@ def listen(intent=True,
 
 def live_listen(intent=True,
            log = False):  # go to stt server, By-pass wakeword
-    
+
     if intent:
         # Prepare the payload
         payload = {"intent": True}
@@ -293,7 +258,7 @@ def live_listen(intent=True,
 
     # Post request to stt
     response = requests.post("http://localhost:5101/live_listen", json=payload)
-        
+
     if intent:
             rasa_res = response.json()
 
@@ -306,7 +271,7 @@ def live_listen(intent=True,
             if log:
                 print(rasa_dict)
                 # {'intent': 'restaurant_order', 'confidence': 0.9962742328643799, 'text': 'Can I have a Coca-Cola please?', 'object': 'Coca-Cola'}
-            
+
             # Create a Response object
             obj = Response()
 
@@ -375,24 +340,24 @@ def get_intent(predicted_text, log=True):
 
 
 messages = [{
-            "role": "system", 
-            "content" : """You’re a kind helpful assistant robot, 
-                            respond back to me what my commands were but rephrase it like a assistant would 
-                            by accepting my request. don't ask a question back just do as I says. For example, 
-                            if I ask you to retrieve a coke. You should respond with something like "Certainly, grabing you a coke now" but make the sentence dynamic dont actually use the word certainly its too formal. 
+            "role": "system",
+            "content" : """You’re a kind helpful assistant robot,
+                            respond back to me what my commands were but rephrase it like a assistant would
+                            by accepting my request. don't ask a question back just do as I says. For example,
+                            if I ask you to retrieve a coke. You should respond with something like "Certainly, grabing you a coke now" but make the sentence dynamic dont actually use the word certainly its too formal.
                             This is a role-play"""}]
 
 def query_llm(prompt='', log=False, clear=False) -> str:
         global messages
-    
+
     #* Initialisation
         if clear:
             messages = [{
-            "role": "system", 
-            "content" : """You’re a kind helpful assistant robot, 
-                            respond back to me what my commands were but rephrase it like a assistant would 
-                            by accepting my request. don't ask a question back just do as I says. For example, 
-                            if I ask you to retrieve a coke. You should respond with something like "Certainly, grabing you a coke now" but make the sentence dynamic dont actually use the word certainly its too formal. 
+            "role": "system",
+            "content" : """You’re a kind helpful assistant robot,
+                            respond back to me what my commands were but rephrase it like a assistant would
+                            by accepting my request. don't ask a question back just do as I says. For example,
+                            if I ask you to retrieve a coke. You should respond with something like "Certainly, grabing you a coke now" but make the sentence dynamic dont actually use the word certainly its too formal.
                             This is a role-play"""}]
         else:
             # init the key
@@ -408,7 +373,7 @@ def query_llm(prompt='', log=False, clear=False) -> str:
 
             # Append to messages
             messages.append({"role": "user", "content": prompt})
-            
+
             # packaged the messages and post request
             completion = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
