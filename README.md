@@ -66,14 +66,15 @@ More information about the project are on our website [EIC Chula Robocup](https:
 | Large-Language-Model   | Meta Llama              | ✅      | 🟨      |     | 🟥     | Broken    |
 | ROS Server             | Custom Package          | ✅      | 🟨      |
 | Speech-to-Text         | OpenAI Whisper          | ✅      | 🟩      |
-| Text-to-Speech         | IBM Mimic               | ✅      | 🟥      |
-| Text-to-Speech         | Azure Cognitive Service | ❌      | 🟩      |
+| Text-to-Speech         | IBM Mimic               | ✅      | 🟩      |
+| Text-to-Speech         | Azure Cognitive Service | ❌      | 🟥      |
 | Wake Word              | Porquipine              | ✅      | 🟩      |
 
 ### Roadmap:
 
 - ✅ Trancription as accurate as humans
 - ✅ Multi-Intent Extraction
+- [ ] Offline LLM
 - [ ] Streaming Live-Transcription
 - [ ] Multi-language Support
   - ✅ English

@@ -1,3 +1,5 @@
+
+# Building NLP Enviroment
 conda create -n "nlp" python=3.9.16
 conda activate nlp
 pip install --upgrade pip
@@ -25,6 +27,14 @@ pip install -e .
 
 # change directory back to the root
 cd ../
+
+# Building Rasa Enviroment
+conda create -n "rasa" python=3.9.16
+conda activate nlp
+pip install --upgrade pip
+pip install rasa
+pip install fbmessenger==6.0.0
+pip install SQLAlchemy==1.4.49
 
 # text to tell the user
 echo """\033[01;32mInstallation successful! please run the following command to start the server"""

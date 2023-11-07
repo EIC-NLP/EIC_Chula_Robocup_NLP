@@ -23,11 +23,11 @@ processes:
     exec_cmd: 'export CUDA_VISABLE_DEVICE=""'
 
   rasa1:
-    conda_env: "nlp"
+    conda_env: "rasa"
     exec_dir: "rasa"
     exec_cmd: "rasa run --enable-api"
   rasa2:
-    conda_env: "nlp"
+    conda_env: "rasa"
     exec_dir: "rasa"
     exec_cmd: "rasa run actions"
 

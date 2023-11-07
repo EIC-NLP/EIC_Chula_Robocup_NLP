@@ -5,7 +5,7 @@ __version__ = '1.14.0'
 Date: 28 Jan 2023
 """
 import requests
-from ratfin import *
+from ratfin import printclr
 import json
 import ast
 import simpleaudio as sa

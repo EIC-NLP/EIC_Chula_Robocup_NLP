@@ -19,7 +19,7 @@
 simpleaudio==1.0.4
 pykwalify==1.7.0 # for rasa
 requests==2.26.0 # for speech recog
-ruamel.yaml==0.17.28
+ruamel.yaml==0.17.20
 
 #>>>>>>>>>>>>CORE>>>>>>>>>>>>
 
@@ -44,10 +44,6 @@ azure-cognitiveservices-speech==1.30.0 #tts online
 # mycroft-mimic3-tts[all]
 mycroft-mimic3-tts
 
-## Rasa stuff
-rasa==3.6.13
-fbmessenger==6.0.0
-SQLAlchemy==1.4.49
 
 ## Porcupine Wakeword requirements
 pvporcupine==2.2.1
@@ -55,8 +51,9 @@ pvporcupine==2.2.1
 # dotenv
 
 # Most important, change will cause build error due to deprecation
-PyYAML==5.3.1
-packaging==21.0
+# PyYAML==5.3.1 # last worked
+PyYAML==6.0
+packaging==20.9
 setuptools==58.2.0
 openai
 Werkzeug==2.3.3 # Overwrite the mimic default
