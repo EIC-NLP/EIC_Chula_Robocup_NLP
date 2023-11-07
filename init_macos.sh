@@ -30,11 +30,11 @@ cd ../
 
 # Building Rasa Enviroment
 conda create -n "rasa" python=3.9.16
-conda activate nlp
+conda activate rasa
 pip install --upgrade pip
-pip install rasa
 pip install fbmessenger==6.0.0
 pip install SQLAlchemy==1.4.49
+pip install rasa
 
 # text to tell the user
 echo """\033[01;32mInstallation successful! please run the following command to start the server"""
