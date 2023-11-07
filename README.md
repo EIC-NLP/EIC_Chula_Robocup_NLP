@@ -17,7 +17,7 @@
   </p>
 </div>
 
-<!-- TABLE OF CONTENTS -->
+<!-- TABLE OF CONTENTS
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -41,7 +41,7 @@
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
-</details>
+</details> -->
 
 [![The MIT License](https://flat.badgen.net/badge/license/MIT/orange)](http://opensource.org/licenses/MIT)
 
@@ -50,6 +50,8 @@
 ## About The Project
 
 More information about the project are on our website [EIC Chula Robocup](https://eicrobocup.com/)
+
+<!-- INSERT SMACH TASK EXAMPLE -->
 
 <!-- TODO -->
 
@@ -180,7 +182,7 @@ More information at `config.py`
 <br />
 <div align="center">
   <a href="misc/NLPv1Arch.png">
-    <img src="misc/NLPv1Arch.png" alt="Logo" width="800" height="500">
+    <img src="misc/NLPv1Arch.png" alt="Logo" width="800">
   </a>
 </div>
 
