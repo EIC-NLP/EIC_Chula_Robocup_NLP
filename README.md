@@ -65,14 +65,16 @@ More information about the project are on our website [EIC Chula Robocup](https:
 | Large-Language-Model   | OpenAI ChatGPT3.5/4     | ❌      | 🟩      |     | 🟨     | Developing|
 | Large-Language-Model   | Meta Llama              | ✅      | 🟨      |     | 🟥     | Broken    |
 | ROS Server             | Custom Package          | ✅      | 🟨      |
-| Speech-to-Text         | OpenAI Whisper          | ✅      | 🟩      |
+| Speech-to-Text         | OpenAI/whisper          | ✅      | 🟩      |
+| Speech-to-Text         | hugging-face/distil-whisper          | ✅      | 🟩      |
 | Text-to-Speech         | IBM Mimic               | ✅      | 🟩      |
 | Text-to-Speech         | Azure Cognitive Service | ❌      | 🟥      |
 | Wake Word              | Porquipine              | ✅      | 🟩      |
 
 ### Roadmap:
 
-- ✅ Trancription as accurate as humans
+- ✅ Trancription as accurate as human
+- ✅ Hardware acceleration on NVIDIA & Macbook Apple Silicon
 - ✅ Multi-Intent Extraction
 - [ ] Offline LLM
 - [ ] Streaming Live-Transcription

@@ -30,7 +30,7 @@ cchardet==2.1.7
 ## For the setupapp
 prettytable==3.8.0
 
-## stt requirements
+## stt whisper OG requirements
 noisereduce==2.0.1
 pydub==0.25.1
 SpeechRecognition==3.10
@@ -38,6 +38,10 @@ SpeechRecognition==3.10
 # pyaudio==0.2.13
 numba==0.57.1
 numpy==1.23.5
+
+## stt distil_whisper requirements
+accelerate==0.24.1
+transformers==4.35.0
 
 ## Text-To-Speech requirements
 azure-cognitiveservices-speech==1.30.0 #tts online

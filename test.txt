@@ -6,3 +6,36 @@
  Hello there, go grab me a Coke.
 Hello there, grab me a Coke.
 Go to the bedroom, grab me a coke and return to the living room.
+So this is a test of the machine learning models using CPU or GPU acceleration.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hello there my name is Game Can Have a Coke please.
+Stop.
+My name is Gaimkin and go to the bathroom and get me a coke please.
+ Hello there, my name is Game.

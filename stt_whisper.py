@@ -120,25 +120,6 @@ class SttServer:
         play_obj = wave_obj.play()
         play_obj.wait_done()  # Wait until sound has finished playing
 
-
-    def get_intent(self, text) -> str(dict()):
-        """ Return a json in type string
-        >>> repr(get_intent())
-        '{"intent": "restaurant_order", "confidence": 0.9987571239471436, "text": "Can I have a cook or cola please?", "object": "cola"}'
-        """
-
-        r = requests.post(url=rasa_url,
-                          json={
-                              "sender": "bot",
-                              "message": text
-                          })
-        if r.json() == []:
-            printclr("Rasa return []","red")
-            return '{"intent": "", "confidence": 0.0, "text": "Rasa Error"}'
-        else:
-            # print("getintent: ", r.json()[0]['text'])
-            return r.json()[0]['text']
-
     # Predicting the input from Audio
     def stt_result(self, trigger=False) -> Response:
         printclr("listening...", "blue")
@@ -159,14 +140,13 @@ class SttServer:
             reduced_noise = nr.reduce_noise(y=data, sr=rate)
             wavfile.write(f"{self.voice_path}_processed.wav", rate, reduced_noise)
             # run stt on processed audio
-            result = self.audio_model.transcribe(f"{self.voice_path}_processed.wav", language='english')
+            transcribed_text_dict = self.audio_model.transcribe(f"{self.voice_path}_processed.wav", language='english')
         else:
             # run stt on processed audio
-            result = self.audio_model.transcribe(self.voice_path, language='english')
+            transcribed_text_dict = self.audio_model.transcribe(self.voice_path, language='english')
 
-        response = Response(text=result["text"])
-
-        path_friendly = response.text.replace(" ", "_")
+        transcribed_text = transcribed_text_dict["text"]
+        path_friendly = transcribed_text.replace(" ", "_")
 
         if noise_reduction:
             logging_path = "stt/logs/" + datetime.now().strftime("%Y-%m-%d--%H:%M:%S_") + path_friendly + "_processed.wav"
@@ -175,43 +155,14 @@ class SttServer:
             logging_path = "stt/logs/" + datetime.now().strftime("%Y-%m-%d--%H:%M:%S_") + path_friendly + ".wav"
             audio_clip.export(logging_path, format="wav")
 
-        printclr("You said: " + response.text, "blue")
-        return response.text
+        printclr("You said: " + transcribed_text, "blue")
+        return transcribed_text
 
 
     def listen(self, trigger=False) -> dict[str, str]:
-        try:
             stt_text = self.stt_result(trigger=trigger)
 
-            # Parse the JSON from the request
-            data = request.get_json()
-
-            # Get the 'intent' value from the JSON
-            intent = data.get('intent', None)
-
-            # Check if intent is provided and is a boolean
-            if intent is not None and isinstance(intent, bool):
-                # Execute your code here
-                # For instance, let's return a different message based on the intent value
-                if intent:
-                    # obj  = {"body": self.get_intent(stt_text)}
-                    import ast
-                    obj  = jsonify(ast.literal_eval(self.get_intent(stt_text)))
-
-                else: # for no intent
-                    # Create a JSON payload as string
-                    payload = {"text": stt_text}
-                    # payload = str({"text": stt_text})
-                    # Return the JSON payload for 2 unfolding
-                    obj = jsonify({"body": payload})
-
-                print(f"stt Returning: {obj}")
-                return obj
-
-            else:
-                return jsonify({"error": "Invalid or missing 'intent' in JSON payload"}), 400
-        except Exception as e:
-            return jsonify({"body": ""})
+            return stt_text
 
     def live_listen(self, trigger=None, noise_reduction=False, timeout=2):
         printclr("listening...", "blue")

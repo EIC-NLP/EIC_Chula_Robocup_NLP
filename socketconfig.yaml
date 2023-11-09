@@ -8,10 +8,15 @@ processes:
     exec_dir: ""
     exec_cmd: "python3 wakeword_porcupine.py"
 
-  stt_whisper:
+  stt_openai_whisper:
     conda_env: "nlp"
     exec_dir: ""
     exec_cmd: "python3 stt_whisper.py"
+  stt_distil_whisper:
+    conda_env: "nlp"
+    exec_dir: ""
+    exec_cmd: "python3 stt_distil_whisper.py"
+
   stt_azure:  # haven't been maintained
     conda_env: "nlp"
     exec_dir: ""
@@ -66,12 +71,16 @@ states:
   nlpall[offline]:
     - rasa1
     - rasa2
-    - stt_whisper
+    - stt_distil_whisper
     - tts_mimic_bridge
     - tts_mimic_server
     - wakeword_porcupine
-  nlpstt:
-    - stt_whisper
+  nlpstt_DistilWhisper:
+    - stt_distil_whisper
+  nlpstt_DistilWhisper w/rasa:
+    - rasa1
+    - rasa2
+    - stt_distil_whisper
 
   nlptts:
     - tts_mimic_bridge
