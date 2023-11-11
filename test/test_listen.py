@@ -4,7 +4,7 @@ from nlp_client import listen
 while True:
     input("enter to continue, stt")
     print("Speak now")
-    x = listen(intent=True, log=False)
+    x = listen(intent=False, log=False)
     print(f"{x}")
     # write to a file
     with open("test.txt", "a") as f:

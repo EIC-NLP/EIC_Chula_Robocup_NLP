@@ -8,9 +8,7 @@ import requests
 from ratfin import printclr
 import json
 import ast
-import simpleaudio as sa
-import sys
-
+import json
 # for ChatGPT online Function
 import openai
 
@@ -176,73 +174,54 @@ def listen(intent=True,
     # Post request to stt
     if log:
         print("listening...")
-    response = requests.post("http://localhost:5101/listen", json=payload)
+    stt_response = requests.post("http://localhost:5101/listen", json=payload)
     if log:
         print("computing...")
 
+    transcribed_text = stt_response.text
     if intent:
-
-            rasa_res = response.json()
             if log:
-                print(repr(rasa_res))
-                # {'body': '{"intent": "restaurant_order", "confidence": 0.9962742328643799, "text": "Can I have a Coca-Cola please?", "object": "Coca-Cola"}'}
+                print(repr(transcribed_text))
+                # "can I have a coca-cola please?"
 
-            rasa_dict = ast.literal_eval(str(rasa_res))
+            rasa_payload = {"sender": "bot", "message": transcribed_text}
 
-            if log:
-                print(repr(rasa_dict))
-                # {'intent': 'restaurant_order', 'confidence': 0.9962742328643799, 'text': 'Can I have a Coca-Cola please?', 'object': 'Coca-Cola'}
+            rasa_res = requests.post("http://localhost:5005/webhooks/rest/webhook", json=rasa_payload)
+            # rasa_res=[{'recipient_id': 'bot', 'text': '{"intent": "my_name", "confidence": 0.629075527, "text": "my name is Walkie", "object": "", "people": ""}'}]
 
-            # Create a Response object
-            obj = Response()
+            if rasa_res.json() == []:
+                printclr("Rasa return []","red")
+                return Response(text=transcribed_text)
+            else:
 
-            # Join the dictionary to the Response object
-            obj.join_dict(rasa_dict)
-            """ Response(
-                        text='Can I have a Coca-Cola please?'
-                        intent='restaurant_order'
-                        confidence=0.9962742328643799
-                        object='Coca-Cola'
-                        people=''
-                ) """
+                rasa_dict = ast.literal_eval(rasa_res.json()[0]['text']) # string to dict
 
-            # Return the Response object
-            return obj
+                # if log:
+                #     print(repr(rasa_dict))
+                #     # {'intent': 'restaurant_order', 'confidence': 0.9962742328643799, 'text': 'Can I have a Coca-Cola please?', 'object': 'Coca-Cola'}
+
+                # Create a Response object
+                obj = Response()
+
+                # Join the dictionary to the Response object
+                obj.join_dict(rasa_dict)
+                """ Response(
+                            text='Can I have a Coca-Cola please?'
+                            intent='restaurant_order'
+                            confidence=0.9962742328643799
+                            object='Coca-Cola'
+                            people=''
+                    ) """
+                if log:
+                    print(obj)
+
+                # Return the Response object
+                return obj
     else:
-        # Your received response
-        res_txt = response.json()
-        # {'body': "{'text': ' How are you today?'}"}
-
-        if log:
-            print(repr(res_txt))
-
-        # Parse the 'body' string into a dictionary
-        body_dict = ast.literal_eval(str(res_txt['body']))
-        # {'text': ' How are you today?'}
-
-        if log:
-            print(repr(body_dict))
-
-        # Extract 'text' from the 'body' dictionary
-        text = body_dict['text']
-        # "How are you today?"
-
-        if log:
-            print(repr(text))
-
-        # Create a Response object with the extracted text
-        obj = Response(text=text)
-        """ Response(
-                    text=' How are you today?'
-                    intent=''
-                    confidence=0.0
-                    object=''
-                    people=''
-        ) """
-
-
         # return a Response object
-        return obj
+        return Response(text=transcribed_text)
+
+
 
 
 def live_listen(intent=True,

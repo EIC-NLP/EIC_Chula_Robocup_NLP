@@ -4,9 +4,9 @@ verbose = True
 default_mic = True # on or off
 
 #! CHAGE HERE FOR DISABLING THE CALIBRATION
-calibration = True
-# calibration = Falsew
-energy_threshold =  746 # for quiet room for Game's Mac (Mic at 90%)
+# calibration = True
+calibration = False
+energy_threshold =  2500 # for quiet room for Game's Mac (Mic at 90%)
 calibration_coefficient =  1.5
 
 # LocalHost Servers
