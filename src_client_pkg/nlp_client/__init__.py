@@ -119,7 +119,7 @@ def speak(text: str = "Hi my name is Walkie",
         printclr("synthesizing...","blue")
 
     #* Requesting TTS server
-    x = requests.post("http://localhost:5003/tts",
+    x = requests.post("http://localhost:5101/tts",
                     json={
                         'text': text,
                     })
@@ -139,11 +139,10 @@ def ww_listen(text : str = "hey_walkie", log : bool = False) :
     if not isinstance(text, str):
             raise ValueError("Argument 'text' must be of type string")
     if log:
-        print(f"posting to - http://localhost:5100/{text}","blue")
+        print(f"posting to - http://localhost:5101/ww_listen/{text}","blue")
 
-    response = requests.get(f"http://localhost:5100/{text}")
+    response = requests.get(f"http://localhost:5101/ww_listen/{text}")
     return response.status_code == 200
-
 
 def listen(intent=True,
            log = False) -> Response:  # go to stt server, By-pass wakeword
@@ -177,7 +176,7 @@ def listen(intent=True,
     # Post request to stt
     if log:
         print("listening...")
-    response = requests.post("http://localhost:5101/", json=payload)
+    response = requests.post("http://localhost:5101/listen", json=payload)
     if log:
         print("computing...")
 
@@ -323,7 +322,7 @@ def get_intent(predicted_text, log=True):
 
     #TODO try and except UGLY.......
     #* Get intent
-    r = requests.post(url="http://localhost:5005/webhooks/rest/webhook",
+    r = requests.post(url="http://localhost:5101/get_intent",
                       json={
                           "sender": "bot",
                           "message": predicted_text
