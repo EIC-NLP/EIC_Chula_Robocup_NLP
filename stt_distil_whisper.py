@@ -18,7 +18,6 @@ from datetime import datetime
 from scipy.io import wavfile
 import simpleaudio as sa
 import noisereduce as nr
-from src_client_pkg.nlp_client.response import Response
 import torch
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 
