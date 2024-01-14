@@ -8,7 +8,7 @@ import threading
 import signal
 import time
 import os
-from ratfin import *
+from termcolor import colored
 from person import Person
 from nlp_utils import (WakeWord, Speak, GetIntent, GetName, GetObject, GetLocation,)
 

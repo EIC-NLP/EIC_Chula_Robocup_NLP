@@ -2,14 +2,14 @@ import ast
 import os
 import yaml
 import requests
-from ratfin import *
+from termcolor import colored
 import re
 
 global counter, sub_counter
 
 log = False
 counter = 0
-sub_counter = 0 
+sub_counter = 0
 import time
 timing = True
 global numcorrect, numwrong
@@ -45,11 +45,11 @@ def process_file(file_path):
     filename = file_path.split('/')[-1]  # get the last part of the path
 
     if filename in list_band_names:
-        printclr(f"skipping {filename}","yellow")
+        print(colored(f"skipping {filename}","yellow"))
     else:
         file_read.append(filename)
         with open(file_path, 'r') as file:
-            printclr(f"\n\nreading from: {file_path}","yellow")
+            print(colored(f"\n\nreading from: {file_path}","yellow"))
             lines = file.readlines()
             if len(lines) > 1 and 'nlu' in lines[1]:
                 file.seek(0)
@@ -62,13 +62,13 @@ def process_file(file_path):
                                 print(f"Skipping intent '{intent}' due to '/' character")
                                 continue
                             examples = intent_block['examples'].split('\n')
-                            printclr(f"\n[{counter}] Testing on intent: {intent}","blue")
+                            print(colored(f"\n[{counter}] Testing on intent: {intent}","blue"))
                             for example in examples:
                                 if example.strip() != '':
                                     sub_counter += 1
                                     process_example(intent, example)
 
-                            sub_counter = 0 
+                            sub_counter = 0
                     counter += 1
 
 
@@ -86,7 +86,7 @@ def post_request(intent, message, force_green=False):
     response = requests.post(url=link, json={"sender": "bot", "message": message})
     # response = requests.post(url=link, json={"sender": "bot", "message": message[2::]})
     if timing: out_time = str(time.time()-start)[:5] + "s"
-    
+
     global numcorrect, numwrong
 
     if response.status_code == 200:
@@ -95,28 +95,28 @@ def post_request(intent, message, force_green=False):
             if log:print(json_response)
             json_response = json_response[0]
             if log:print(json_response)
-            
+
             dict_response = ast.literal_eval(json_response["text"])
             response_intent = dict_response["intent"]
             if response_intent == intent or force_green:
-                printclr(f"[{out_time}] [{counter}.{sub_counter}]"+str(json_response["text"]),"green")
+                print(colored(f"[{out_time}] [{counter}.{sub_counter}]"+str(json_response["text"]),"green"))
                 numcorrect += 1
             else:
-                printclr(f"[{out_time}] [{counter}.{sub_counter}]"+str(json_response["text"]),"red")
+                print(colored(f"[{out_time}] [{counter}.{sub_counter}]"+str(json_response["text"]),"red"))
                 numwrong += 1
         except:
-            printclr(f"[{out_time}] [{counter}.{sub_counter}]"+str(json_response),"red")
+            print(colored(f"[{out_time}] [{counter}.{sub_counter}]"+str(json_response),"red"))
             numwrong += 1
-        
+
     else:
-        printclr(f"[{out_time}] [{counter}.{sub_counter}]"+str(json_response),"red")
+        print(colored(f"[{out_time}] [{counter}.{sub_counter}]"+str(json_response),"red"))
         numwrong += 1
     return response_intent
 
 if __name__ == '__main__':
     CUSTOM_DATA = False
 
-    custom_request = """ 
+    custom_request = """
     hey walkie come over here
     hello there
     say hello to me
@@ -134,14 +134,14 @@ if __name__ == '__main__':
     print(f"File read: ")
     for i in file_read:
         print(i)
-    
-    printclr(f"-------------Total correct: {numcorrect}","green")
-    printclr(f"-------------Total wrong: {numwrong}","red")
+
+    print(colored(f"-------------Total correct: {numcorrect}","green"))
+    print(colored(f"-------------Total wrong: {numwrong}","red"))
 
 
-    printclr(f"-------------Total time taken: {str(time.time()-start_program)[:8]}s","yellow")
+    print(colored(f"-------------Total time taken: {str(time.time()-start_program)[:8]}s","yellow"))
     # print in minutes
-    printclr(f"-------------Total time taken: {str((time.time()-start_program)/60)[:6]}m","yellow")
+    print(colored(f"-------------Total time taken: {str((time.time()-start_program)/60)[:6]}m","yellow"))
 
 
     # DUMB TESTER

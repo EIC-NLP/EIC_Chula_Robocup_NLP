@@ -1,11 +1,11 @@
 
-""" 
+"""
 
 Guidelines for writing a state:
 
 Consult example_smach_state.py for an ideal state
 --------------------------------------------
---MUST HAVE: 
+--MUST HAVE:
 
 1. OUTCOME INFORMATION: Have to declear all
     outcomes=['out1','out2','loop','undo','fail'] # out2 is optional, a good practice should have loop & undo
@@ -19,7 +19,7 @@ Consult example_smach_state.py for an ideal state
     rospy.loginfo(f'({name of class state}}): Executing..')
     rospy.loginfo(f'(AddPerson): {p.name} added to people_list. {p.__dict__}')
 
-3. REMAPPING: ADD TO LIST FOR CONSTRUCTOR 
+3. REMAPPING: ADD TO LIST FOR CONSTRUCTOR
     # Will be added to the state machine by inputs and outputs
     remappings = {'data1': 'data1', 'data2': 'data2'}  # Use actual remappings
 
@@ -34,7 +34,7 @@ Consult example_smach_state.py for an ideal state
     if None then raise exception for variable CANNOT BE NONE
 
 --------------------------------------------
---OPTIONAL:  
+--OPTIONAL:
 
 """
 
@@ -42,7 +42,7 @@ import rospy
 import smach
 import nlp_client
 import threading
-from ratfin import *
+from termcolor import colored
 import socket
 import cv2
 from cv_custom_socket import CustomSocket
@@ -61,7 +61,7 @@ def list_available_cam(max_n):
         if ret:
             list_cam.append(n)
         cap.release()
-    
+
     if len(list_cam) == 1:
         return list_cam[0]
     else:
@@ -75,27 +75,27 @@ def list_available_cam(max_n):
 
 # Model Smach States
 class DetectFace(smach.State):
-    """ 
-    TemplateVersion 1.1.0 
+    """
+    TemplateVersion 1.1.0
     """
 
-    def __init__(self, 
+    def __init__(self,
                  log : bool = False,
                  timeout_tries: int = 0 # 0 means infinite tries
                  ):
         self.log = log
-        
+
         # Raise exceptions if any entity parameter is not of type bool
         if not isinstance(log, bool):
             raise ValueError("Argument 'log' must be of type bool")
-        
+
         # Initialize the state
-        smach.State.__init__(self, 
+        smach.State.__init__(self,
                              outcomes=['out1','undo'],
                             #  outcomes=['out1','out2','loop','undo','timeout'],
                              input_keys=['name'],
                              output_keys=['name'])
-        
+
         # timout configuration, (don't change)
         if timeout_tries == 0:
             self.timeout_bool = False
@@ -129,7 +129,7 @@ class DetectFace(smach.State):
 
             # Do something
             print(userdata)
-            try: 
+            try:
                 rospy.loginfo(f'(DetectFace): Starting CV..')
                 while self.cap.isOpened():
 
@@ -162,36 +162,36 @@ class DetectFace(smach.State):
             if False:
                 raise Exception(
                     "(ExampleState): No attribute detected in the timeout period")
-            
+
             return "out1"
         except Exception as e:
-            printclr(e, "red")
+            print(e, "red")
             return "undo"
 
 
 # # Model Smach States
 class RegisterFace(smach.State):
-    """ 
-    TemplateVersion 1.1.0 
+    """
+    TemplateVersion 1.1.0
     """
 
-    def __init__(self, 
+    def __init__(self,
                  log : bool = True,
                  timeout_tries: int = 0 # 0 means infinite tries
                  ):
         self.log = log
-        
+
         # Raise exceptions if any entity parameter is not of type bool
         if not isinstance(log, bool):
             raise ValueError("Argument 'log' must be of type bool")
-        
+
         # Initialize the state
-        smach.State.__init__(self, 
+        smach.State.__init__(self,
                              outcomes=['out1','undo'],
                             #  outcomes=['out1','out2','loop','undo','timeout'],
                              input_keys=['name'],
                              output_keys=['name'])
-        
+
         # timout configuration, (don't change)
         if timeout_tries == 0:
             self.timeout_bool = False
@@ -227,9 +227,9 @@ class RegisterFace(smach.State):
             # Do something
             if userdata.name == "":
                 raise Exception("No name given")
-            
+
             print(userdata)
-            try: 
+            try:
 
                 # Log the execution stage
                 rospy.loginfo(f'(RegisterFace): Starting CV Capturing..')
@@ -239,17 +239,17 @@ class RegisterFace(smach.State):
                     ret, frame = self.cap.read()
                     cv2.imshow("RegisterFace", frame)
 
-                    
-                    
+
+
                     res = self.c.register(frame, userdata.name)
-                    if res: 
+                    if res:
                         if self.log:
                             print(res)
                         # Log the execution stage
                         rospy.loginfo(f'(RegisterFace: CV Captured for {userdata.name}')
                         return "out1"
 
-                    
+
                     key = cv2.waitKey(1)
                     if key == ord("q"):
                         self.cap.release()
@@ -265,10 +265,10 @@ class RegisterFace(smach.State):
             if False:
                 raise Exception(
                     "(RegisterFace): No attribute detected in the timeout period")
-            
+
             return "out1"
         except Exception as e:
-            printclr(e, "red")
+            print(e, "red")
             return "undo"
 
 
@@ -276,7 +276,7 @@ def main():
     # Initialize the node
     NODE_NAME = "smach_core_cv_face_recognition"
     rospy.init_node(NODE_NAME)
-    
+
     # Create a SMACH state machine
     sm = smach.StateMachine(outcomes=['out1'])
 
@@ -290,7 +290,7 @@ def main():
                             transitions={'out1': 'out1',
                                          'undo': 'out1',}
                                         )
-        
+
         # smach.StateMachine.add('DETECT_FACE',
         #                     DetectFace(),
         #                     remapping={'name': 'name'},
@@ -299,7 +299,7 @@ def main():
         #                                 )
 
 
-    
+
     # Create a thread to execute the smach container
     # Execute SMACH plan
     smach_thread = threading.Thread(target=sm.execute)
@@ -307,7 +307,7 @@ def main():
 
     # listen_for_kill_command()
 
-    
+
 if __name__ == '__main__':
     main()
 

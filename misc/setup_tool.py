@@ -4,7 +4,7 @@
 import os
 os.system("clear")
 import json
-from ratfin import *
+from termcolor import colored
 from prettytable import PrettyTable
 from nlp_client import *
 # constants
@@ -32,7 +32,7 @@ def config_mic():
         my_table.add_row([i, name])
 
     print(my_table)
-    printclr("If there's a 'default option', use that. \n otherwise use the most default one'","yellow")
+    print("If there's a 'default option', use that. \n otherwise use the most default one'","yellow")
     print("which device_index do you want to use?")
     device_index = input("device_index: ")
 
@@ -44,9 +44,9 @@ def config_mic():
     clearterm()
     x1 = int(os.getenv("mic_index"))
     x2 = os.getenv("mic_name")
-    printclr(f"\tmic_index={repr(x1)}","green")
-    printclr(f"\tmic_name={repr(x2)}","green")
-    printclr(f"\n\nnlp_config.json updated\n","green")
+    print(f"\tmic_index={repr(x1)}","green")
+    print(f"\tmic_name={repr(x2)}","green")
+    print(f"\n\nnlp_config.json updated\n","green")
 
     # clearterm()
     # from wakeword.wakeword_porcupine import PorcupineDemo
@@ -90,26 +90,26 @@ def get_range_energy():
 
     mic_index = int(os.getenv("mic_index"))
     mic_name = os.getenv("mic_name")
-    printclr(f"\tmic_index={repr(mic_index)}","green")
-    printclr(f"\tmic_name={repr(mic_name)}","green")
+    print(f"\tmic_index={repr(mic_index)}","green")
+    print(f"\tmic_name={repr(mic_name)}","green")
 
     import speech_recognition as sr
     r = sr.Recognizer() # load the app
     speak("Please be quiet")
     time.sleep(1.5)
     with sr.Microphone(sample_rate=16000, device_index=mic_index) as source:
-        printclr(f"Mic: {str(mic_index)} {mic_name}", "magenta")
-        printclr("Please wait. Calibrating microphone...", "magenta")
+        print(f"Mic: {str(mic_index)} {mic_name}", "magenta")
+        print("Please wait. Calibrating microphone...", "magenta")
         r.adjust_for_ambient_noise(source, duration=3)
-        printclr(f"\tAmbient: {r.energy_threshold=}\n","magenta")
+        print(f"\tAmbient: {r.energy_threshold=}\n","magenta")
     r = sr.Recognizer() # load the app
     speak("say something.")
     time.sleep(1.5)
     with sr.Microphone(sample_rate=16000, device_index=mic_index) as source:
-        printclr(f"Mic: {str(mic_index)} {mic_name}", "magenta")
-        printclr("Please wait. Calibrating microphone...", "magenta")
+        print(f"Mic: {str(mic_index)} {mic_name}", "magenta")
+        print("Please wait. Calibrating microphone...", "magenta")
         r.adjust_for_ambient_noise(source, duration=3)
-        printclr(f"\Speech: {r.energy_threshold=}\n","magenta")
+        print(f"\Speech: {r.energy_threshold=}\n","magenta")
 
 
 """ config keyword """
@@ -127,7 +127,7 @@ def get_socket_name():
     else:
         platform_ = platform.system()
     path = f"socketconfig_{platform_}_{os.getlogin( )}.yaml"
-    printclr(path, "green")
+    print(path, "green")
     print(f"\n Above is the name that your socketconfig file must use to ensure no error for path in different computer")
 
 def main():

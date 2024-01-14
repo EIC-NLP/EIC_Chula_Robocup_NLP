@@ -5,7 +5,7 @@ import rospy
 import smach
 import smach_ros
 from nlp_client import *
-from ratfin import *
+from termcolor import colored
 
 
 def prompt_user_repeat():
@@ -15,10 +15,10 @@ def prompt_user_repeat():
 
 
 class WakeWord(smach.State):
-    """ 
+    """
     return "out1" if wakeword is detected
     >>> outcome map: {'WAKEWORD_DETECTED': 'out1'}
-     
+
        """
     def __init__(self):
         smach.State.__init__(self, outcomes=['out1'])
@@ -59,12 +59,12 @@ class Speak(smach.State):
 
             return "out1"
         except Exception as e:
-            printclr(e, "red")
+            print(e, "red")
             return "out0"
 
 
 class GetEntities(smach.State):
-    """ 
+    """
     smach.StateMachine.add('GET_ENTITIES',
                            GetEntities(intent=True, name=True, object=False, location=False,
                                                        speak_debug=speak_debug,
@@ -113,7 +113,7 @@ class GetEntities(smach.State):
         self.timeout = timeout
         self.valid_out = False  # check if the output is valid
 
-        # adding enities to extract 
+        # adding enities to extract
         self.attributes = []
 
         if intent:
@@ -182,13 +182,13 @@ class GetEntities(smach.State):
             return "out1"
 
         except Exception as e:
-            printclr(e, "red")
+            print(e, "red")
             return "out0"
 
 
 # define state GetIntent
 class GetIntent(smach.State):
-    """ 
+    """
     smach.StateMachine.add('GET_INTENT',
                                GetIntent(speak_debug=speak_debug,
                                          response_debug=response_debug,
@@ -281,12 +281,12 @@ class GetIntent(smach.State):
 
             return "out1"
         except Exception as e:
-            printclr(e, "red")
+            print(e, "red")
             return "out0"
 
 
 class GetName(smach.State):
-    """ 
+    """
     smach.StateMachine.add('GET_NAME',
                                GetName(speak_debug=speak_debug,
                                        response_debug=response_debug,
@@ -368,12 +368,12 @@ class GetName(smach.State):
 
             return "out1"
         except Exception as e:
-            printclr(e, "red")
+            print(e, "red")
             return "out0"
 
 
 class GetObject(smach.State):
-    """ 
+    """
     smach.StateMachine.add('GET_OBJECT',
                                GetObject(speak_debug=speak_debug,
                                          response_debug=response_debug,
@@ -458,12 +458,12 @@ class GetObject(smach.State):
 
             return "out1"
         except Exception as e:
-            printclr(e, "red")
+            print(e, "red")
             return "out0"
 
 
 class GetLocation(smach.State):
-    """ 
+    """
     smach.StateMachine.add('GET_LOCATION',
                                GetLocation(speak_debug=speak_debug,
                                            response_debug=response_debug,
@@ -548,7 +548,7 @@ class GetLocation(smach.State):
 
             return "out1"
         except Exception as e:
-            printclr(e, "red")
+            print(e, "red")
             return "out0"
 
 

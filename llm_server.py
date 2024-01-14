@@ -82,7 +82,7 @@ class LLMServer:#server class
     #         print("hi")
     #         self.app.run(host="0.0.0.0")
     #     except OSError:
-    #         #printclr("Port already in use, please change port in .env", "red")
+    #         #print(colored(("Port already in use, please change port in .env", "red")
     #         print("bruhMoment")
     #         exit()
 

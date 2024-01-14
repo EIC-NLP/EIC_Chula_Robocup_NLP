@@ -1,7 +1,7 @@
 #file made for testing llm_server.py
 # DONOT USE
 import requests
-from ratfin import printclr
+from ratfin import print
 import json
 
 def speak(text: str = "Hi my name is Walkie",
@@ -10,7 +10,7 @@ def speak(text: str = "Hi my name is Walkie",
 
     # try:
     if log:
-        printclr("synthesizing...","blue")
+        print("synthesizing...","blue")
 
     #* Requesting TTS server
     x = requests.post("http://localhost:5101/speak",
@@ -58,12 +58,12 @@ def get_intent(predicted_text, log=True):
                       })
     rasa_json = r.json()[0]['text']
     rasa_json = json.loads(rasa_json)
-    # printclr(rasa_json,"red")
-    # printclr(response,"red")
+    # print(rasa_json,"red")
+    # print(response,"red")
     response.update(rasa_json)
     if log:
-        printclr(f"\t{json.dumps(response, indent=4)}", "blue")
-        printclr(f"\tlisten() sending back...", "green")
+        print(f"\t{json.dumps(response, indent=4)}", "blue")
+        print(f"\tlisten() sending back...", "green")
     return response
 
 def ww_listen(text : str = "hey_walkie", log : bool = False) :

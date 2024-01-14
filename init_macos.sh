@@ -14,9 +14,6 @@ echo "Finished installing Pytorch for Mac"
 brew install portaudio
 pip install pyaudio
 
-# custom library for coloring the terminal and clearing
-pip install git+https://github.com/GameTL/ratfingers.git --use-pep517
-
 # Install all the requirements
 pip install -r requirements.txt
 

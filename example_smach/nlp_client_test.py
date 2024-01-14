@@ -1,13 +1,13 @@
 import requests
-from ratfin import *
+from termcolor import colored
 from nlp_client import ww_listen, listen, speak
 import json
 
-""" 
+"""
 Funcitons:
     speak()
     listen()
-    ww_listen() 
+    ww_listen()
 """
 """ intent: restaurant_order """
 
@@ -17,7 +17,7 @@ def main():
 
         print(result)
         input()
-        clearterm() 
+        clearterm()
 
 
     # print("this is speak")
@@ -32,7 +32,7 @@ def main():
     # print(json.dumps(listen(), indent=4))
     # print(json.dumps(listen(), indent=4))
         # if x['intent'] == "stop":
-        #     printclr("STOPPINGGGG........","red")
+        #     print("STOPPINGGGG........","red")
         #     speak("stop")
     # my_list = dict({
     #     "intent": "restaurant_order",

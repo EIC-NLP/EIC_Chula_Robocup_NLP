@@ -27,6 +27,7 @@ ruamel.yaml==0.17.20
 flask==2.3.2
 chardet==3.0.2
 cchardet==2.1.7
+termcolor==2.4.0
 ## For the setupapp
 prettytable==3.8.0
 
@@ -48,11 +49,10 @@ azure-cognitiveservices-speech==1.30.0 #tts online
 # mycroft-mimic3-tts[all]
 mycroft-mimic3-tts
 
-
 ## Porcupine Wakeword requirements
 pvporcupine==2.2.1
 # pvrecorder==1.2.0
-# dotenv
+python-dotenv
 
 # Most important, change will cause build error due to deprecation
 # PyYAML==5.3.1 # last worked
@@ -64,10 +64,5 @@ Werkzeug==2.3.3 # Overwrite the mimic default
 
 ## Lots of problems
 git+https://github.com/openai/whisper.git
-# ratfin @ git+https://github.com/GameTL/ratfingers@pytoml
 
 #<<<<<<<<<<<<CORE<<<<<<<<<<<<
-
-## Last hope
-# conda install pyaudio
-# pip install git+https://github.com/GameTL/ratfingers.git --use-pep517

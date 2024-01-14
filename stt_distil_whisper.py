@@ -1,5 +1,5 @@
 # Custom Libraries
-from ratfin import printclr, log_exception_with_traceback
+from termcolor import colored
 from config import (
     calibration,
     calibration_coefficient,
@@ -59,22 +59,22 @@ class SttServer:
             with sr.Microphone(
                 sample_rate=self.sample_rate, device_index=self.mic_index
             ) as source:
-                printclr(f"Mic: {str(self.mic_index)} {self.mic_name}", "magenta")
-                printclr("Calibrating microphone...", "magenta")
+                print(colored(f"Mic: {str(self.mic_index)} {self.mic_name}", "magenta"))
+                print(colored("Calibrating microphone...", "magenta"))
                 self.r.adjust_for_ambient_noise(source, duration=5)
-                printclr(f"\t{calibration=}", "magenta")
+                print(colored(f"\t{calibration=}", "magenta"))
 
                 # Mulipler for the calibrated energy threshold
                 self.r.energy_threshold *= calibration_coefficient
 
-                printclr(
+                print(colored(
                     f"\tAfterMulitplierOffset: {self.r.energy_threshold=}", "magenta"
-                )
+                ))
         else:
             self.r.energy_threshold = energy_threshold
-            printclr(f"\tUsing manual energy: {self.r.energy_threshold=}", "magenta")
+            print(colored(f"\tUsing manual energy: {self.r.energy_threshold=}", "magenta"))
 
-        printclr(f"STT...init whisper {self.model}", "magenta")
+        print(colored(f"STT...init whisper {self.model}", "magenta"))
         if torch.cuda.is_available():
             self.torch_dtype = torch.float16
             self.device = "cuda:0"
@@ -111,7 +111,7 @@ class SttServer:
             device=self.device,
         )
         # Finished init
-        printclr("stt...success", "magenta")
+        print(colored("stt...success", "magenta"))
 
     # Run the stt server REST API
     def run(self):
@@ -121,7 +121,7 @@ class SttServer:
             )
             print("\033[0;35m" + f"\nlisten(GET): {stt_url}" + "\n\033[0m")
         except OSError:
-            printclr("Port already in use, please change port in .env", "red")
+            print(colored("Port already in use, please change port in .env", "red"))
             exit()
 
     def listen(self, trigger=False) -> dict[str, str]:
@@ -132,12 +132,12 @@ class SttServer:
             ) as source:
                 if trigger:
                     trigger()
-                printclr("listening...", "blue")
+                print(colored("listening...", "blue"))
                 audio = self.r.listen(source)
                 data = io.BytesIO(audio.get_wav_data())
                 audio_clip = AudioSegment.from_file(data)
                 audio_clip.export(self.voice_path, format="wav")
-                printclr("computing...", "yellow")
+                print(colored("computing...", "yellow"))
             # Processing
             if noise_reduction:
                 # load data
@@ -157,7 +157,7 @@ class SttServer:
 
             transcribed_text = transcribed_text_dict["text"]
 
-            printclr("You said: " + transcribed_text, "blue")
+            print(colored("You said: " + transcribed_text, "blue"))
 
             # Logging
             path_friendly = transcribed_text.replace(" ", "_")

@@ -1,7 +1,7 @@
 # #! stt-https 2.0 - Speech Recognition Server
 
 # Custom Libraries
-from ratfin import *
+from termcolor import colored
 from config import *
 
 # Standard Libraries
@@ -29,7 +29,7 @@ class SttServer:
                  rasa_nlu: bool = True,
                  always_listen: bool = False):
 
-        printclr(f"STT...init whisper {model}", "magenta")
+        print(colored(f"STT...init whisper {model}", "magenta"))
         import whisper  # this takes the longest to import
 
         # Init Flask
@@ -83,23 +83,23 @@ class SttServer:
                 device_index=self.mic_index
                 ) as source:
 
-                printclr(f"Mic: {str(self.mic_index)} {self.mic_name}",
-                         "magenta")
-                printclr("Calibrating microphone...", "magenta")
+                print(colored(f"Mic: {str(self.mic_index)} {self.mic_name}",
+                         "magenta"))
+                print(colored("Calibrating microphone...", "magenta"))
                 self.r.adjust_for_ambient_noise(source, duration=5)
-                printclr(f"\t{calibration=}", "magenta")
+                print(colored(f"\t{calibration=}", "magenta"))
 
                 # Mulipler for the calibrated energy threshold
                 self.r.energy_threshold *= calibration_coefficient
 
-                printclr(f"\tAfterMulitplierOffset: {self.r.energy_threshold=}", "magenta")
+                print(colored(f"\tAfterMulitplierOffset: {self.r.energy_threshold=}", "magenta"))
         else:
 
             self.r.energy_threshold = energy_threshold
-            printclr(f"\tUsing manual energy: {self.r.energy_threshold=}", "magenta")
+            print(colored(f"\tUsing manual energy: {self.r.energy_threshold=}", "magenta"))
 
         # Finished init
-        printclr("stt...success", "magenta")
+        print(colored("stt...success", "magenta"))
 
 
     # Run the stt server REST API
@@ -111,7 +111,7 @@ class SttServer:
             print("\033[0;35m" + f"\nlisten(GET): {stt_url}" +
                 "\n\033[0m")
         except OSError:
-            printclr("Port already in use, please change port in .env", "red")
+            print(colored("Port already in use, please change port in .env", "red"))
             exit()
 
 
@@ -122,7 +122,7 @@ class SttServer:
 
     # Predicting the input from Audio
     def stt_result(self, trigger=False) -> Response:
-        printclr("listening...", "blue")
+        print(colored("listening...", "blue"))
         with sr.Microphone(sample_rate=self.sample_rate, device_index=self.mic_index) as source:
             if trigger:
                 trigger()
@@ -130,7 +130,7 @@ class SttServer:
             data = io.BytesIO(audio.get_wav_data())
             audio_clip = AudioSegment.from_file(data)
             audio_clip.export(self.voice_path, format="wav")
-            printclr("computing...", "yellow")
+            print(colored("computing...", "yellow"))
 
         if noise_reduction:
             # load data
@@ -155,7 +155,7 @@ class SttServer:
             logging_path = "stt/logs/" + datetime.now().strftime("%Y-%m-%d--%H:%M:%S_") + path_friendly + ".wav"
             audio_clip.export(logging_path, format="wav")
 
-        printclr("You said: " + transcribed_text, "blue")
+        print(colored("You said: " + transcribed_text, "blue"))
         return transcribed_text
 
 
@@ -165,7 +165,7 @@ class SttServer:
             return stt_text
 
     def live_listen(self, trigger=None, noise_reduction=False, timeout=2):
-        printclr("listening...", "blue")
+        print(colored("listening...", "blue"))
 
         full_audio_data = io.BytesIO()
         last_audio_time = time.time()
@@ -183,7 +183,7 @@ class SttServer:
             data = io.BytesIO(audio.get_wav_data())
             audio_clip = AudioSegment.from_file(data)
             slice_result = self.audio_model.transcribe(data, language='english')
-            printclr(f"Real-time transcription: {slice_result['text']}", "blue")
+            print(colored(f"Real-time transcription: {slice_result['text']}", "blue"))
 
             # append audio data to the buffer
             full_audio_data.write(audio.get_wav_data())
@@ -206,7 +206,7 @@ class SttServer:
         full_audio_clip = AudioSegment.from_file(full_audio_data)
         full_audio_clip.export(self.voice_path, format="wav")
 
-        printclr("computing...", "yellow")
+        print(colored("computing...", "yellow"))
 
         if noise_reduction:
             # load data
@@ -223,7 +223,7 @@ class SttServer:
             result = self.audio_model.transcribe(self.voice_path, language='english')
 
         response = Response(text=result["text"])
-        printclr(f"Final transcription: {response.text}", "blue")
+        print(colored(f"Final transcription: {response.text}", "blue"))
 
         return response.text
 

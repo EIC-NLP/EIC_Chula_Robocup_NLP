@@ -1,7 +1,7 @@
 import subprocess
 import smach
 import nlp_client
-from ratfin import *
+from termcolor import colored
 import sys
 
 from cv_connector.msg import CV_type
@@ -17,7 +17,7 @@ import smach
 import smach_ros
 import nlp_client
 import threading
-from ratfin import *
+from termcolor import colored
 import time
 import os
 import threading

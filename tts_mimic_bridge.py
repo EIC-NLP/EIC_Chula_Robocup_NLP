@@ -4,7 +4,7 @@
 
 import simpleaudio as sa
 import requests
-from ratfin import printclr
+from termcolor import colored
 from flask import Flask, request
 
 
@@ -43,12 +43,12 @@ def speaklocalapi():
       play_obj = wave_obj.play()
       play_obj.wait_done()
 
-      printclr(f'synthesized: {text}', "blue")
+      print(colored(f'synthesized: {text}', "blue"))
 
       return {"synthesized": f"{text}"}
 
     except Exception as e:
-        printclr(e, "red")
+        print(colored(e, "red"))
 
 #* running server tts
 app.run(host="localhost", port=5003)

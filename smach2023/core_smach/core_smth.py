@@ -8,17 +8,17 @@ import smach
 import smach_ros
 import nlp_client
 import threading
-from ratfin import *
+from termcolor import colored
 
 # MoveTo state
 class GraspObject(smach.State):
-    """ 
-    TemplateVersion 1.1.0 
+    """
+    TemplateVersion 1.1.0
     GraspObject state
 
     BASIC FUNCTION:
     Move from A to B with CV to find object/person
-    1. [NLP] 
+    1. [NLP]
     2. [NAVIGATION] Move to the specified location
     3. [COMPUTER VISION] Detect the object/person. If not detected, repeat step 2
     3.1 [NLP] Announce "Unable to detect the object/person. Please try again" --> Loop
@@ -26,17 +26,17 @@ class GraspObject(smach.State):
 
     """
 
-    def __init__(self, 
+    def __init__(self,
                  log : bool = False,
                  timeout_tries: int = 0 # 0 means infinite tries
                  ):
-        
+
         # Raise exceptions if any entity parameter is not of type bool
         if not isinstance(log, bool):
             raise ValueError("Argument 'log' must be of type bool")
-        
+
         # Initialize the state
-        smach.State.__init__(self, 
+        smach.State.__init__(self,
                              outcomes=['out1','out2','loop','undo','timeout'],
                              input_keys=['room','furniture','data3'],
                              output_keys=['data1','data3'])
@@ -60,7 +60,7 @@ class GraspObject(smach.State):
             rospy.loginfo(f'(MoveTo): Checking userdata..')
 
             print_available_userdata(userdata)
-            
+
             # Check if the userdata room, object,furniture is None
             if (userdata.room == "") and (userdata.furniture == "") and (userdata.object == "") and (userdata.person == ""):
                 raise Exception(
@@ -68,9 +68,9 @@ class GraspObject(smach.State):
             else:
 
                 # if room is provided
-                if (userdata.room != ""): 
+                if (userdata.room != ""):
                     # if furniture is provided
-                    if userdata.furniture != "": 
+                    if userdata.furniture != "":
                         # if furniture is found, move to the furniture (add nlp trying to find the furniture)
                         if userdata.person != "": # room+furniture+person
                             #TODO turn on CV to try to detect the person around the furniture in the room
@@ -93,11 +93,11 @@ class GraspObject(smach.State):
                         return "out1"
 
                 # if room is not provided and furniture is provided
-                elif (userdata.furniture != ""): 
-                    if userdata.object != "": # furniture+object 
+                elif (userdata.furniture != ""):
+                    if userdata.object != "": # furniture+object
                         #TODO turn on CV to try to detect the object around the furniture (360 around furniture)
                         return "out1"
-                    elif (userdata.person != ""): # furniture+person 
+                    elif (userdata.person != ""): # furniture+person
                         #TODO turn on CV to try to detect the person at the furniture (360 around furniture)
                         return "out1"
                     else: # furniture
@@ -105,7 +105,7 @@ class GraspObject(smach.State):
                         return "out1"
 
                 # find the first person around the arena
-                elif (userdata.person != ""):  # person 
+                elif (userdata.person != ""):  # person
                     #TODO turn on CV to try to detect the person in the entire arena
                     return "out1"
                 else:
@@ -125,10 +125,10 @@ class GraspObject(smach.State):
             if False:
                 raise Exception(
                     "(MoveTo): No attribute detected in the timeout period")
-            
+
             return "out1"
         except Exception as e:
-            printclr(e, "red")
+            print(e, "red")
             return "undo"
 
 

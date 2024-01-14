@@ -8,7 +8,7 @@ load_dotenv()
 
 from config import mic_index_ww, stt_url, wakeword_url, default_mic
 from flask import Flask,request
-from ratfin import *
+from termcolor import colored
 import platform
 
 porcupine_key = os.getenv('PORCUPINE_KEY')
@@ -29,7 +29,7 @@ def listen_for_hey_walkie():
     try:
         porcupine = pvporcupine.create(access_key=porcupine_key, keyword_paths=hey_walkie_path)
         recorder = PvRecorder(device_index=-1, frame_length=porcupine.frame_length)
-        printclr("Listening...", "blue")
+        print(colored("Listening...", "blue"))
         recorder.start()
         while True:
             try:
@@ -65,7 +65,7 @@ def listen_for_walkie_freeze():
     try:
         porcupine = pvporcupine.create(access_key=porcupine_key, keyword_paths=walkie_freeze_path)
         recorder = PvRecorder(device_index=-1, frame_length=porcupine.frame_length)
-        printclr("Listening...", "blue")
+        print(colored("Listening...", "blue"))
         recorder.start()
         while True:
             try:
@@ -112,8 +112,8 @@ if __name__ == "__main__":
                 threaded=True)
         print("\033[0;35m" + f"\nlisten(GET): {wakeword_url}" + "\n\033[0m")
     except OSError:
-        printclr("Port already in use, please change port in nlp_config.json",
-                    "red")
+        print(colored("Port already in use, please change port in nlp_config.json",
+                    "red"))
         exit()
 
 

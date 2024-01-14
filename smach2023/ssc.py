@@ -3,7 +3,7 @@
 
 import smach
 from nlp_client import *
-from ratfin import *
+from termcolor import colored
 import sys
 
 

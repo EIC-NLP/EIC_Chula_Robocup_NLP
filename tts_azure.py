@@ -1,12 +1,12 @@
 import azure.cognitiveservices.speech as speechsdk
-from ratfin import printclr
+from termcolor import colored
 from flask import Flask, request
 from config import azure_key
 
 #https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=speechtotext#prebuilt-neural-voices
 
 region = "southeastasia"
-printclr(f"\t{azure_key=}", "green")
+print(colored(f"\t{azure_key=}", "green"))
 
 list_voices = [
     "en-US-AmberNeural", #4
@@ -30,8 +30,8 @@ try:
     speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
 except Exception as e:
-    printclr(e,"red")
-    
+    print(colored(e,"red"))
+
 
 app = Flask("tts_azure")
 
@@ -41,22 +41,22 @@ def home():
 
 @app.route("/tts", methods=["POST","GET"])
 def speak(
-    text: str="Deafault Response" , 
-    voice : str = "en-US-JaneNeural" , 
+    text: str="Deafault Response" ,
+    voice : str = "en-US-JaneNeural" ,
     style : str = "normal" ,
-    log : bool = False , 
-    # profanity : str ="2" 
+    log : bool = False ,
+    # profanity : str ="2"
     ):
     try:
         x = request.get_json()
-        # printclr("synthesizing...","blue")
+        # print(colored("synthesizing...","blue")
         text = x['text']
         voice = x['voice']
         style = x['style']
         profanity = x['profanity']
     except:
-        printclr("going with default values", "yellow")
-        
+        print(colored("going with default values", "yellow"))
+
 
     try:
         # Read XML
@@ -68,10 +68,10 @@ def speak(
         #* Speech Config
         # speech_config.set_profanity = profanity
         # speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
-        
+
         # sending & receiver from Azure
         result = speech_synthesizer.speak_ssml_async(ssml_string).get()
-        printclr(f"\tsynthesized: {text=}", "blue")
+        print(colored(f"\tsynthesized: {text=}", "blue"))
 
         #* Convert into audio stream
         # stream = speechsdk.AudioDataStream(result)
@@ -79,9 +79,9 @@ def speak(
 
 
         return {"synthesized": f"{text}"}
-    
+
     except Exception as e:
-        printclr(e, "red")
+        print(colored(e, "red"))
 
 
 def test():
@@ -101,7 +101,7 @@ def test():
         speech_synthesis_result = speech_synthesizer.speak_text_async(text).get()
 
         if speech_synthesis_result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
-            printclr(f"\tsynthesized.", "blue")
+            print(colored(f"\tsynthesized.", "blue"))
 
         elif speech_synthesis_result.reason == speechsdk.ResultReason.Canceled:
             cancellation_details = speech_synthesis_result.cancellation_details
@@ -111,8 +111,8 @@ def test():
                     print("Error details: {}".format(cancellation_details.error_details))
                     print("Did you set the speech resource key and region values?")
 
-    
-#* testing 
+
+#* testing
 # speak(text="Thank you, now get your arse in the shower")
 
 #* running server tts

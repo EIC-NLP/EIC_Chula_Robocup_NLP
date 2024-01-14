@@ -1,11 +1,11 @@
 
-""" 
+"""
 
 Guidelines for writing a state:
 
 Consult example_smach_state.py for an ideal state
 --------------------------------------------
---MUST HAVE: 
+--MUST HAVE:
 
 1. OUTCOME INFORMATION: Have to declear all
     outcomes=['out1','out2','loop','undo','fail'] # out2 is optional, a good practice should have loop & undo
@@ -19,7 +19,7 @@ Consult example_smach_state.py for an ideal state
     rospy.loginfo(f'({name of class state}}): Executing..')
     rospy.loginfo(f'(AddPerson): {p.name} added to people_list. {p.__dict__}')
 
-3. REMAPPING: ADD TO LIST FOR CONSTRUCTOR 
+3. REMAPPING: ADD TO LIST FOR CONSTRUCTOR
     # Will be added to the state machine by inputs and outputs
     remappings = {'data1': 'data1', 'data2': 'data2'}  # Use actual remappings
 
@@ -34,7 +34,7 @@ Consult example_smach_state.py for an ideal state
     if None then raise exception for variable CANNOT BE NONE
 
 --------------------------------------------
---OPTIONAL:  
+--OPTIONAL:
 
 """
 
@@ -47,7 +47,7 @@ import smach
 import smach_ros
 import nlp_client
 import threading
-from ratfin import *
+from termcolor import colored
 import time
 import os
 
@@ -55,21 +55,21 @@ from core_smach.nlp_emerStop import EmergencyStop
 
 # Model Smach States
 class ExampleState(smach.State):
-    """ 
-    TemplateVersion 1.1.0 
+    """
+    TemplateVersion 1.1.0
     """
 
-    def __init__(self, 
+    def __init__(self,
                  log : bool = False,
                  timeout_tries: int = 0 # 0 means infinite tries
                  ):
-        
+
         # Raise exceptions if any entity parameter is not of type bool
         if not isinstance(log, bool):
             raise ValueError("Argument 'log' must be of type bool")
-        
+
         # Initialize the state
-        smach.State.__init__(self, 
+        smach.State.__init__(self,
                              outcomes=['out1','out2','loop','undo','timeout'],
                              input_keys=['data1','data2','data3'],
                              output_keys=['data1','data3'])
@@ -105,10 +105,10 @@ class ExampleState(smach.State):
             if False:
                 raise Exception(
                     "(ExampleState): No attribute detected in the timeout period")
-            
+
             return "out1"
         except Exception as e:
-            printclr(e, "red")
+            print(e, "red")
             return "undo"
 
 
@@ -116,16 +116,16 @@ def main():
     # Initialize the node
     NODE_NAME = "smach_task_receptionist"
     rospy.init_node(NODE_NAME)
-    
+
     # Create a SMACH state machine
     sm = smach.StateMachine(outcomes=['out0'])
-    
 
-    
-    
+
+
+
     # Declear Variables for top-state
     sm.userdata.name = ""
-    
+
 
     with sm:
 
@@ -136,10 +136,10 @@ def main():
                             transitions={'out1': 'SPEAK_SCAN',
                                         'out0': 'INTRODUCE_PEOPLE'}
                                         )
-        
-        
-        
-    
+
+
+
+
 
     # Create a thread to execute the smach container
     # Execute SMACH plan
@@ -151,7 +151,7 @@ def main():
     es_thread.start()
     es.emer_stop_handler()
 
-    
+
 if __name__ == '__main__':
     main()
 

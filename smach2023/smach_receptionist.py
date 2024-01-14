@@ -7,7 +7,7 @@ import smach
 import smach_ros
 import nlp_client
 import threading
-from ratfin import *
+from termcolor import colored
 
 from core_smach.person import Person
 from utils import (WakeWord, Speak, GetIntent, GetName, GetObject, GetLocation,)

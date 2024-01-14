@@ -1,16 +1,16 @@
 from nlp_client import *
-from ratfin import printclr
+from termcolor import colored
 
-# printclr("testing normal stt with intent","yellow")
+# print(colored("testing normal stt with intent","yellow")
 x = listen(intent=True, log=True)
-printclr(x.text,'blue')
+print(colored(x.text,'blue'))
 
-# printclr("testing normal stt without intent","yellow")
+# print(colored("testing normal stt without intent","yellow")
 x = listen(intent=False, log=True)
-printclr(x.text,'blue')
+print(colored(x.text,'blue'))
 
-# printclr("testing TTS Azure","yellow")
+# print(colored("testing TTS Azure","yellow")
 # speak("Hello there my name is Game",online=True)
 
-# printclr("testing TTS Mimic","yellow")
+# print(colored("testing TTS Mimic","yellow")
 # speak("Hello there. my name is Game",online=False)

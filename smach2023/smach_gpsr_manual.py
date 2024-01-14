@@ -35,7 +35,7 @@ import smach
 import sys
 import smach_ros
 import nlp_client
-from ratfin import *
+from termcolor import colored
 import os
 import openai
 from person import Person

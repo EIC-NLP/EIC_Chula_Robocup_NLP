@@ -10,7 +10,6 @@ import socket
 from argparse import ArgumentParser
 import yaml
 from dependancies.custom_socket import CustomSocket
-from ratfin import *
 # import sys
 # import signal
 
@@ -32,6 +31,7 @@ colors = [
     bcolors.OKPURPLE, bcolors.OKBLUE, bcolors.OKGREEN, bcolors.OKYELLOW,
     bcolors.OKCYAN, bcolors.OKGRAY
 ]
+
 p_count = 0
 configs = dict()
 running_processes = dict()
@@ -221,7 +221,7 @@ def autoPathKeyWord():
     else:
         platform_ = platform.system()
     path += f"/socketconfig_{platform_}_{os.getlogin( )}.yaml"
-    printclr(path, "green")
+    print(colored(path, 'green'))
     # path += "\\resources\\keyword_files\\windows\\hey walkie_en_windows_v2_1_0.ppn"
     return path
 

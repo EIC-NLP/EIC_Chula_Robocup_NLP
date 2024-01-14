@@ -4,7 +4,7 @@ import rospy
 import smach
 import smach_ros
 import nlp_client
-from ratfin import *
+from termcolor import colored
 from person import Person
 from utils import (WakeWord, Speak, GetIntent, GetName, GetObject, GetLocation,)
 

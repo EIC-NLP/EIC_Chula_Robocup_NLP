@@ -5,12 +5,9 @@ __version__ = '1.14.0'
 Date: 28 Jan 2023
 """
 import requests
-from ratfin import printclr
 import json
 import ast
-import simpleaudio as sa
-import sys
-
+from termcolor import colored
 # for ChatGPT online Function
 import openai
 
@@ -116,7 +113,7 @@ def speak(text: str = "Hi my name is Walkie",
 
     # try:
     if log:
-        printclr("synthesizing...","blue")
+        print(colored('synthesizing', 'blue'))
 
     #* Requesting TTS server
     x = requests.post("http://localhost:5003/tts",
@@ -330,12 +327,12 @@ def get_intent(predicted_text, log=True):
                       })
     rasa_json = r.json()[0]['text']
     rasa_json = json.loads(rasa_json)
-    # printclr(rasa_json,"red")
-    # printclr(response,"red")
+    # print(rasa_json,"red")
+    # print(response,"red")
     response.update(rasa_json)
     if log:
-        printclr(f"\t{json.dumps(response, indent=4)}", "blue")
-        printclr(f"\tlisten() sending back...", "green")
+        print(f"\t{json.dumps(response, indent=4)}", "blue")
+        print(f"\tlisten() sending back...", "green")
     return response
 
 
@@ -368,7 +365,7 @@ def query_llm(prompt='', log=False, clear=False) -> str:
 
             # Log the execution stage
             if log:
-                printclr(prompt,'blue')
+                print(prompt,'blue')
 
 
             # Append to messages
@@ -383,7 +380,7 @@ def query_llm(prompt='', log=False, clear=False) -> str:
             chat_response = completion.choices[0].message.content
 
             # Log the execution stage
-            printclr(f'(ChatGPTQuery): ChatGPT response: {chat_response}','blue')
+            print(f'(ChatGPTQuery): ChatGPT response: {chat_response}','blue')
 
             # Save the response to userdata
             return chat_response
@@ -406,7 +403,7 @@ class EmerStop():
                 if "intent" in x:
                     # print("in")
                     if x["intent"] == "stop" and x["confidence"] > 0.62:
-                        printclr("STOPPINGGGG........", "red")
+                        print("STOPPINGGGG........", "red")
                         self.confidence = x["confidence"]
                         self.intent = x["intent"]
             except:
@@ -446,7 +443,7 @@ def main():
     # print(json.dumps(listen(), indent=4))
     # print(json.dumps(ww_listen(), indent=4))
     # if x['intent'] == "stop":
-    #     printclr("STOPPINGGGG........","red")
+    #     print("STOPPINGGGG........","red")
     #     speak("stop")
     pass
 

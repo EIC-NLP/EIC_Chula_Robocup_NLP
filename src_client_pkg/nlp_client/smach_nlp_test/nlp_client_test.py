@@ -1,10 +1,10 @@
 import requests
-from ratfin import *
+from termcolor import colored
 from nlp_client import *
 import json
 
 def main():
-    clearterm() 
+    clearterm()
 
     # print("this is speak")
     # print(speak("say stop motherfucker"))
@@ -16,7 +16,7 @@ def main():
     # print(json.dumps(listen(), indent=4))
     print(json.dumps(listen(), indent=4))
         # if x['intent'] == "stop":
-        #     printclr("STOPPINGGGG........","red")
+        #     print("STOPPINGGGG........","red")
         #     speak("stop")
 
 main()

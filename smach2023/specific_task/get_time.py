@@ -1,11 +1,11 @@
 
-""" 
+"""
 
 Guidelines for writing a state:
 
 Consult example_smach_state.py for an ideal state
 --------------------------------------------
---MUST HAVE: 
+--MUST HAVE:
 
 1. OUTCOME INFORMATION: Have to declear all
     outcomes=['out1','out2','loop','undo','fail'] # out2 is optional, a good practice should have loop & undo
@@ -19,7 +19,7 @@ Consult example_smach_state.py for an ideal state
     rospy.loginfo(f'({name of class state}}): Executing..')
     rospy.loginfo(f'(AddPerson): {p.name} added to people_list. {p.__dict__}')
 
-3. REMAPPING: ADD TO LIST FOR CONSTRUCTOR 
+3. REMAPPING: ADD TO LIST FOR CONSTRUCTOR
     # Will be added to the state machine by inputs and outputs
     remappings = {'data1': 'data1', 'data2': 'data2'}  # Use actual remappings
 
@@ -34,14 +34,14 @@ Consult example_smach_state.py for an ideal state
     if None then raise exception for variable CANNOT BE NONE
 
 --------------------------------------------
---OPTIONAL:  
+--OPTIONAL:
 
 """
 # Import libraries
 import rospy
 import smach
 import threading
-from ratfin import *
+from termcolor import colored
 import time
 import nlp_client
 from datetime import datetime
@@ -54,33 +54,33 @@ hours = ["twelve", "one", "two", "three", "four", "five",
 tens = ["", "", "twenty", "thirty", "forty", "fifty"]
 ones = ["", "one", "two", "three", "four", "five",
         "six", "seven", "eight", "nine"]
-teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", 
+teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
             "sixteen", "seventeen", "eighteen", "nineteen"]
 
 # TellTime Smach States
 class TellTime(smach.State):
-    """ 
-    TemplateVersion 1.1.0 
+    """
+    TemplateVersion 1.1.0
     """
 
-    def __init__(self, 
+    def __init__(self,
                  log : bool = False,
                  timeout_tries: int = 0, # 0 means infinite tries
                  time: datetime = datetime.now()
                  ):
-        """ 
-         To test custom time use 
+        """
+         To test custom time use
         >>> test_time = datetime.strptime('12:59', '%H:%M')
         >>> print(tell_time(test_time)) """
-        
+
         # Raise exceptions if any entity parameter is not of type bool
         if not isinstance(log, bool):
             raise ValueError("Argument 'log' must be of type bool")
         if not isinstance(time, datetime):
             raise ValueError("Argument 'time' must be of type datetime")
-        
+
         # Initialize the state
-        smach.State.__init__(self, 
+        smach.State.__init__(self,
                              outcomes=['out1','out2','loop','undo','timeout'],
                              input_keys=['time_str'],
                              output_keys=['time_str'])
@@ -105,13 +105,13 @@ class TellTime(smach.State):
 
             # Do something
             print(userdata)
-            
+
             while (self.tries_counter < self.timeout_tries) or not self.timeout_bool:
                 # Increment the counter
                 self.tries_counter += 1
                 hour = int(time.strftime('%I')) # 12-hour format
                 minute = int(time.strftime('%M'))
-                
+
                 # Get the hour in words
                 hour_word = hours[hour]
 
@@ -122,17 +122,17 @@ class TellTime(smach.State):
                     # If minute is a 'teen'
                     if 10 <= minute < 20:
                         minute_word = teens[minute-10]
-                    
+
                     # If minute is non-zero but not a 'teen'
                     else:
                         minute_word = tens[minute//10]
                         if minute % 10 > 0:
                             minute_word += " " + ones[minute % 10]
                     to_speak =  f"It's {hour_word} {minute_word}."
-                
+
                 # Connect to nlp and speak the time
                 nlp_client.speak(to_speak)
-                
+
 
 
 
@@ -143,17 +143,17 @@ class TellTime(smach.State):
             userdata.to_speak = ""
             return "out1"
         except Exception as e:
-            printclr(e, "red")
+            print(e, "red")
             return "undo"
 
 
 def main():
-    # Initialize the node 
+    # Initialize the node
     rospy.init_node("smach_task_receptionist")
-    
+
     # Create a SMACH state machine
     sm = smach.StateMachine(outcomes=['out0'])
-    
+
     # Declear Variables for top-state
     sm.userdata.time_str = ""
 
@@ -179,7 +179,7 @@ def main():
     es_thread.start()
     es.emer_stop_handler()
 
-    
+
 if __name__ == '__main__':
     main()
 
