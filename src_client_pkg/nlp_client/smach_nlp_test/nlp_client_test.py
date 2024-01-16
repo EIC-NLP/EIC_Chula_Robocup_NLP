@@ -4,7 +4,7 @@ from nlp_client import *
 import json
 
 def main():
-    clearterm()
+    os.system("clear")
 
     # print("this is speak")
     # print(speak("say stop motherfucker"))

@@ -8,8 +8,10 @@ import threading
 import os
 import socket
 from argparse import ArgumentParser
+import platform
 import yaml
 from dependancies.custom_socket import CustomSocket
+from termcolor import colored
 # import sys
 # import signal
 
@@ -159,7 +161,6 @@ def change_state(desired_state):
 
 def main(args):
     global configs
-    clearterm()
     configs = read_config(args["configpath"])
     configs_list = list(configs["states"].keys())
     ############################# choose task ############################

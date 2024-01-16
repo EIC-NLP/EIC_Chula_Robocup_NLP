@@ -17,7 +17,7 @@ def main():
 
         print(result)
         input()
-        clearterm()
+        os.system("clear")
 
 
     # print("this is speak")

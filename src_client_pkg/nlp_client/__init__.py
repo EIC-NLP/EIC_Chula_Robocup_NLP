@@ -415,7 +415,7 @@ class EmerStop():
 
 
 def main():
-    # clearterm()
+    # os.system("clear")
     # import threading, time
     # hi = EmerStop("nlp")
     # t = threading.Thread(target=hi.run, name="EmerStopFlask")

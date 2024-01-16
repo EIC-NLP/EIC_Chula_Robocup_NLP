@@ -41,14 +41,14 @@ def config_mic():
 
     dotenv.set_key(dotenv_file, "mic_index", device_index)
     dotenv.set_key(dotenv_file, "mic_name", io_list[int(device_index)])
-    clearterm()
+    os.system("clear")
     x1 = int(os.getenv("mic_index"))
     x2 = os.getenv("mic_name")
     print(f"\tmic_index={repr(x1)}","green")
     print(f"\tmic_name={repr(x2)}","green")
     print(f"\n\nnlp_config.json updated\n","green")
 
-    # clearterm()
+    # os.system("clear")
     # from wakeword.wakeword_porcupine import PorcupineDemo
     # interface("Config WakeWord Mic")
     # devices = PorcupineDemo.show_audio_devices(verbose=False)
@@ -64,7 +64,7 @@ def config_mic():
     # device_index = int(input("device_index: "))
     # try:
 
-    #     clearterm()
+    #     os.system("clear")
     #     with open('nlp_config.json', 'r') as f:
     #         # Reading from json file
     #         json_object = json.load(f)
@@ -131,7 +131,7 @@ def get_socket_name():
     print(f"\n Above is the name that your socketconfig file must use to ensure no error for path in different computer")
 
 def main():
-    clearterm()
+    os.system("clear")
     functions = [config_mic, get_socket_name, get_range_energy]
     print("Setup tool for EIC NLP")
     print("1. config mic")
@@ -139,7 +139,7 @@ def main():
     print("3. get_range_energy")
     print("4. exit")
     choice = int(input("choice: ")) -1
-    clearterm()
+    os.system("clear")
     if choice == len(functions):
         exit()
     functions[choice]()

@@ -1,5 +1,5 @@
 __version__ = '2.2.0'
-""" 
+"""
 Date: 19 Jan 2023
 """
 
@@ -20,7 +20,7 @@ colors = {
     "white": "37"
 }
 
-def clearterm():
+def os.system("clear"):
     system = platform.system()
     if system == 'Windows': # for Windows
         os.system("cls")
@@ -51,7 +51,7 @@ def upDirPath(path="", up=1, filename=""):
     if path == "":
         printclr("missing argument for upDirPath()","red")
         printclr("""enter the following on top of the upDirPath() function:
-    
+
     path = os.path.dirname(os.path.realpath(__file__))
 
 Your code should look like this:
@@ -68,7 +68,7 @@ Your code should look like this:
             path = "\\".join(path[:-up:]) + f"\\{filename}"
             # printclr(path,"red")
             return path
-            
+
         else:
             path = path.split("/")
             # printclr(path,"red")
