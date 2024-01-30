@@ -9,10 +9,10 @@
     <img src="misc/EIC-France-Robocup2023.jpeg" alt="Logo" width="600" height="600">
   </a>
 
-  <h3 align="center">Robocup2025-NLP</h3>
+  <h3 align="center">EIC Chula Robocup NLP</h3>
 
   <p align="center">
-    A network of NLP services for Robocup2025
+    A network of NLP services for robocup competition
 
   </p>
 </div>
@@ -53,6 +53,11 @@ More information about the project are on our website [EIC Chula Robocup](https:
 
 <!-- INSERT SMACH TASK EXAMPLE -->
 
+### Guide for Beginners
+
+For Python beginnering or new NLP team recruitment, check out the guide please.
+
+[Click here for Guide](READMEGUIDE.md)
 <!-- TODO -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -143,9 +148,6 @@ If the above scripts do not work, please install manually.
     # Update pip
     pip install --upgrade pip
 
-    # custom library for coloring the terminal and clearing the terminal
-    pip install git+https://github.com/GameTL/ratfingers.git --use-pep517
-
     # Install all the requirements
     pip install -r requirements.txt
 
@@ -159,7 +161,7 @@ If the above scripts do not work, please install manually.
     - For MacOS, use the following command:
 
     ```sh
-    conda install pytorch-nightly::pytorch torchvision torchaudio -c pytorch-nightly
+    conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 -c pytorch
     ```
 
     - For Ubuntu go to [Pytorch Run Locally](https://pytorch.org/get-started/locally/)
@@ -170,6 +172,9 @@ If the above scripts do not work, please install manually.
         - Python
         - CUDA 12.1 {or other CUDA version}
             - Then install the selected version of CUDA here [![CUDA][CUDA.io]][CUDA-url]
+    ```sh
+    conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.7 -c pytorch -c nvidia
+    ```
 
 
 ## Architechture

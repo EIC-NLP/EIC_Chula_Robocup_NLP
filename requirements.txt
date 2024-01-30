@@ -51,7 +51,7 @@ mycroft-mimic3-tts
 
 ## Porcupine Wakeword requirements
 pvporcupine==2.2.1
-# pvrecorder==1.2.0
+pvrecorder==1.2.0
 python-dotenv
 
 # Most important, change will cause build error due to deprecation

@@ -7,7 +7,7 @@ pip install --upgrade pip
 # Install pytorch with acceleration
 echo "Installing Pytorch for Mac..."
 # install pytorch with acceleration
-conda install pytorch-nightly::pytorch torchvision torchaudio -c pytorch-nightly
+conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 -c pytorch
 echo "Finished installing Pytorch for Mac"
 
 # pyaudio requires portaudio by homebrew, cannot be install by only pip

@@ -4,7 +4,7 @@ pip install --upgrade pip
 
 # Install pytorch with acceleration
 echo "Installing Pytorch for Ubuntu with CUDA 12.1"
-conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch-nightly -c nvidia
+conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.7 -c pytorch -c nvidia
 
 # Unsure if works
 conda install pyaudio
