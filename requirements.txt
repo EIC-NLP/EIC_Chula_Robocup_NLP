@@ -28,6 +28,7 @@ flask==2.3.2
 chardet==3.0.2
 cchardet==2.1.7
 termcolor==2.4.0
+jsonify==0.5
 ## For the setupapp
 prettytable==3.8.0
 

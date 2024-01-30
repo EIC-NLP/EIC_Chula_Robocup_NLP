@@ -2,10 +2,11 @@
 pkill -f python
 $ python3 main.py
 """
-
+import traceback
 import subprocess
 import threading
 import os
+import time
 import socket
 from argparse import ArgumentParser
 import platform
@@ -17,23 +18,23 @@ from termcolor import colored
 
 
 class bcolors:
-    OKPURPLE = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    OKYELLOW = '\033[93m'
-    OKGRAY = '\033[90m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+    RED_FAIL       = '\033[91m'
+    GRAY_OK        = '\033[90m'
+    GREEN_OK       = '\033[92m'
+    YELLOW_WARNING = '\033[93m'
+    BLUE_OK        = '\033[94m'
+    MAGENTA_OK     = '\033[95m'
+    CYAN_OK        = '\033[96m'
+    ENDC           = '\033[0m'
+    BOLD           = '\033[1m'
+    ITALIC         = '\033[3m'
+    UNDERLINE      = '\033[4m'
 
 
 colors = [
-    bcolors.OKPURPLE, bcolors.OKBLUE, bcolors.OKGREEN, bcolors.OKYELLOW,
-    bcolors.OKCYAN, bcolors.OKGRAY
+    bcolors.MAGENTA_OK, bcolors.BLUE_OK, bcolors.GREEN_OK, bcolors.YELLOW_WARNING,
+    bcolors.CYAN_OK, bcolors.GRAY_OK
 ]
-
 p_count = 0
 configs = dict()
 running_processes = dict()
@@ -102,7 +103,7 @@ def run_new_process(env_name,
                     exec_cmd,
                     process_name,
                     conda_exec="conda",
-                    color=bcolors.OKBLUE):
+                    color=bcolors.BLUE_OK):
     global running_processes
 
     print(color + "Starting %s..." % process_name + bcolors.ENDC)
@@ -158,6 +159,14 @@ def change_state(desired_state):
 
     current_state = desired_state
 
+def progress_bar(total_steps, current_step, progress):
+
+    total_steps = 10
+    for i in range(total_steps + 1):
+        progress = (i / total_steps) * 100
+        print(f"\rProgress: [{i * '#':<10}] {progress:.2f}%", end="")
+        time.sleep(1)
+
 
 def main(args):
     global configs
@@ -175,7 +184,6 @@ def main(args):
     change_state(configs_list[int(task) - 1])
 
     ###########################12##########################################
-
     server = CustomSocket(socket.gethostname(), configs["port"])
     server.startServer()
     while True:
@@ -185,7 +193,7 @@ def main(args):
             try:
                 msg = server.recvMsg(conn)
             except Exception as e:
-                print("Error while receiving data from client %s" % addr)
+                print(bcolors.RED_FAIL + "Error while receiving data from client %s" % addr + bcolors.ENDC)
                 break
             if msg is None:
                 break
@@ -198,13 +206,16 @@ def main(args):
                 print("Message received with error:", msg, type(msg))
                 print(e)
                 server.sendMsg(conn,
-                               "Error while processing message: %s" % msg)
+                            "Error while processing message: %s" % msg)
             try:
                 server.sendMsg(conn, "Server has changed to state %s" % state)
             except Exception as e:
                 # Error while sending response
                 print(e)
                 print("Error while sending response to client")
+
+
+
 
 
 def autoPathKeyWord():

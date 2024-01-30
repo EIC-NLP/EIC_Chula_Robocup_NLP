@@ -1,5 +1,4 @@
 # Custom Libraries
-from termcolor import colored
 from config import (
     calibration,
     calibration_coefficient,
@@ -10,6 +9,7 @@ from config import (
 
 # Standard Libraries
 import io
+import traceback
 from pydub import AudioSegment
 import speech_recognition as sr
 from flask import Flask, jsonify
@@ -20,6 +20,20 @@ import simpleaudio as sa
 import noisereduce as nr
 import torch
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
+
+
+class bcolors:
+    RED_FAIL = "\033[91m"
+    GRAY_OK = "\033[90m"
+    GREEN_OK = "\033[92m"
+    YELLOW_WARNING = "\033[93m"
+    BLUE_OK = "\033[94m"
+    MAGENTA_OK = "\033[95m"
+    CYAN_OK = "\033[96m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    ITALIC = "\033[3m"
+    UNDERLINE = "\033[4m"
 
 
 class SttServer:
@@ -59,34 +73,51 @@ class SttServer:
             with sr.Microphone(
                 sample_rate=self.sample_rate, device_index=self.mic_index
             ) as source:
-                print(colored(f"Mic: {str(self.mic_index)} {self.mic_name}", "magenta"))
-                print(colored("Calibrating microphone...", "magenta"))
+                print(
+                    bcolors.GREEN_OK
+                    + f"Mic: {str(self.mic_index)} {self.mic_name}"
+                    + bcolors.ENDC
+                )
+                print(bcolors.GREEN_OK + bcolors.BOLD + f"Calibration On: " + bcolors.ENDC)
+                print(bcolors.GREEN_OK + f"Calibrating microphone..." + bcolors.ENDC)
                 self.r.adjust_for_ambient_noise(source, duration=5)
-                print(colored(f"\t{calibration=}", "magenta"))
+                print(bcolors.GREEN_OK + f"{calibration=}" + bcolors.ENDC)
 
                 # Mulipler for the calibrated energy threshold
                 self.r.energy_threshold *= calibration_coefficient
 
-                print(colored(
-                    f"\tAfterMulitplierOffset: {self.r.energy_threshold=}", "magenta"
-                ))
+            print(
+                bcolors.GREEN_OK + bcolors.BOLD + f"Calibration: " + bcolors.ENDC +"\n"
+                + f"\tAfterMulitplierOffset: {self.r.energy_threshold=}"
+                + bcolors.ENDC
+            )
         else:
             self.r.energy_threshold = energy_threshold
-            print(colored(f"\tUsing manual energy: {self.r.energy_threshold=}", "magenta"))
+            print(
+                bcolors.MAGENTA_OK + bcolors.BOLD + f"Calibration Off: " + bcolors.ENDC
+            )
+            print(
+                bcolors.YELLOW_WARNING + f"# For macbook: for 2500 level put mic at 90% input volume" + bcolors.ENDC
+            )
+            print(
+                bcolors.MAGENTA_OK
+                + f"\tUsing manual fixed energy: {self.r.energy_threshold=}"
+                + bcolors.ENDC
+            )
 
-        print(colored(f"STT...init whisper {self.model}", "magenta"))
+        print(bcolors.GRAY_OK+ f"STT...init   |   distil-whisper {self.model}" + bcolors.ENDC)
         if torch.cuda.is_available():
             self.torch_dtype = torch.float16
             self.device = "cuda:0"
-            print("Using CUDA acceleration")
+            print(bcolors.GRAY_OK+ f"Using CUDA acceleration" + bcolors.ENDC)
         elif torch.backends.mps.is_available():
             self.torch_dtype = torch.float16
             self.device = "mps"
-            print("Using MPS acceleration")
+            print(bcolors.GRAY_OK+ f"Using MPS acceleration" + bcolors.ENDC)
         else:
             self.torch_dtype = torch.float32
             self.device = "cpu"
-            print("Using CPU Float32")
+            print(bcolors.GRAY_OK+ f"Using CPU Float32" + bcolors.ENDC)
 
         ## init the model
         self.distil_model = AutoModelForSpeechSeq2Seq.from_pretrained(
@@ -111,7 +142,7 @@ class SttServer:
             device=self.device,
         )
         # Finished init
-        print(colored("stt...success", "magenta"))
+        print(bcolors.GREEN_OK + f"STT...Ready!" + bcolors.ENDC)
 
     # Run the stt server REST API
     def run(self):
@@ -121,7 +152,7 @@ class SttServer:
             )
             print("\033[0;35m" + f"\nlisten(GET): {stt_url}" + "\n\033[0m")
         except OSError:
-            print(colored("Port already in use, please change port in .env", "red"))
+            print(bcolors.RED_FAIL + f"Port already in use, please change port in .env" + bcolors.ENDC)
             exit()
 
     def listen(self, trigger=False) -> dict[str, str]:
@@ -132,12 +163,12 @@ class SttServer:
             ) as source:
                 if trigger:
                     trigger()
-                print(colored("listening...", "blue"))
+                print(bcolors.BLUE_OK + f"listening..." + bcolors.ENDC)
                 audio = self.r.listen(source)
                 data = io.BytesIO(audio.get_wav_data())
                 audio_clip = AudioSegment.from_file(data)
                 audio_clip.export(self.voice_path, format="wav")
-                print(colored("computing...", "yellow"))
+                print(bcolors.YELLOW_WARNING + f"computing..." + bcolors.ENDC)
             # Processing
             if noise_reduction:
                 # load data
@@ -157,7 +188,7 @@ class SttServer:
 
             transcribed_text = transcribed_text_dict["text"]
 
-            print(colored("You said: " + transcribed_text, "blue"))
+            print(bcolors.BLUE_OK + f"You said: {transcribed_text}" + bcolors.ENDC)
 
             # Logging
             path_friendly = transcribed_text.replace(" ", "_")
@@ -183,7 +214,8 @@ class SttServer:
             return transcribed_text
 
         except Exception as e:
-            log_exception_with_traceback(e)
+            tb_str = traceback.format_exc()
+            print(bcolors.RED_FAIL + tb_str + bcolors.ENDC)
             return jsonify({"error": "An exception occurred: " + str(e)}), 500
 
     def _trigger():
