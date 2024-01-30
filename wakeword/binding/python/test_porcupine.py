@@ -12,7 +12,6 @@
 import sys
 import unittest
 
-from parameterized import parameterized
 
 from porcupine import Porcupine
 from test_util import *
