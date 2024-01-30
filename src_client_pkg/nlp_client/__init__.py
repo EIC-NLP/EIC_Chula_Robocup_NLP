@@ -107,6 +107,31 @@ class Response:
         output = '\n\t'.join(attributes)
         return f'''Response(\n\t{output}\n)'''
 
+
+def get_intent(prompt_text, log=False):
+    # Old function haven't been updated
+    #* unlikely to be used
+    response = {"recipient_id": "bot", "body": prompt_text}
+
+    #TODO try and except UGLY.......
+    #* Get intent
+    r = requests.post(url="http://localhost:5005/webhooks/rest/webhook",
+                      json={
+                          "sender": "bot",
+                          "message": prompt_text
+                      })
+    rasa_json = r.json()[0]['text']
+    rasa_json = json.loads(rasa_json)
+    # print(rasa_json,"red")
+    # print(response,"red")
+    response.update(rasa_json)
+    if log:
+        print(f"\t{json.dumps(response, indent=4)}", "blue")
+        print(f"\tlisten() sending back...", "green")
+    return response
+
+
+
 def speak(text: str = "Hi my name is Walkie",
           log: bool = False) -> None:
     """Speak text using TTS server. Use sync = False to return immediately."""
@@ -178,9 +203,12 @@ def listen(intent=True,
     if log:
         print("computing...")
 
-    if intent:
+    # Your received response
+    transcribed_text = response.text
+    # " How are you today?"
 
-            rasa_res = response.json()
+    if intent:
+            rasa_res= get_intent(prompt_text=transcribed_text)
             if log:
                 print(repr(rasa_res))
                 # {'body': '{"intent": "restaurant_order", "confidence": 0.9962742328643799, "text": "Can I have a Coca-Cola please?", "object": "Coca-Cola"}'}
@@ -207,29 +235,11 @@ def listen(intent=True,
             # Return the Response object
             return obj
     else:
-        # Your received response
-        res_txt = response.json()
-        # {'body': "{'text': ' How are you today?'}"}
 
-        if log:
-            print(repr(res_txt))
 
-        # Parse the 'body' string into a dictionary
-        body_dict = ast.literal_eval(str(res_txt['body']))
-        # {'text': ' How are you today?'}
-
-        if log:
-            print(repr(body_dict))
-
-        # Extract 'text' from the 'body' dictionary
-        text = body_dict['text']
-        # "How are you today?"
-
-        if log:
-            print(repr(text))
 
         # Create a Response object with the extracted text
-        obj = Response(text=text)
+        obj = Response(text=transcribed_text)
         """ Response(
                     text=' How are you today?'
                     intent=''
@@ -311,29 +321,6 @@ def live_listen(intent=True,
         # return a Response object
         return obj
 
-
-
-def get_intent(predicted_text, log=True):
-    # Old function haven't been updated
-    #* unlikely to be used
-    response = {"recipient_id": "bot", "body": predicted_text}
-
-    #TODO try and except UGLY.......
-    #* Get intent
-    r = requests.post(url="http://localhost:5005/webhooks/rest/webhook",
-                      json={
-                          "sender": "bot",
-                          "message": predicted_text
-                      })
-    rasa_json = r.json()[0]['text']
-    rasa_json = json.loads(rasa_json)
-    # print(rasa_json,"red")
-    # print(response,"red")
-    response.update(rasa_json)
-    if log:
-        print(f"\t{json.dumps(response, indent=4)}", "blue")
-        print(f"\tlisten() sending back...", "green")
-    return response
 
 
 messages = [{
